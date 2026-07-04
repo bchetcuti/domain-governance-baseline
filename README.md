@@ -4,7 +4,7 @@ A public, standalone guide and self-assessment built on the essay
 [Domain Governance as a Trust Surface](https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/)
 by Bryan Chetcuti.
 
-Intended public home: `https://baseline.bryanchetcuti.com/`.
+Published: `https://baseline.bryanchetcuti.com/`.
 
 ## Positioning
 
@@ -49,17 +49,7 @@ lives in the browser tab and is gone when it closes.
 
 ## Tech
 
-Plain HTML + CSS + vanilla JS. No build step, no dependencies. Deploys as static files
-to Cloudflare Pages or any static host.
-
-```
-index.html
-_headers
-css/style.css
-js/data.js
-js/app.js
-js/reflection-priorities.js
-```
+Plain HTML + CSS + vanilla JS. No build step, no dependencies.
 
 ## Extending later
 
