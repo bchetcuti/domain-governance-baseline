@@ -35,6 +35,22 @@
     return layerQuestions.length > 0 && layerQuestions.every((question) => state.baseline[question.id] === "in_place");
   }
 
+  function addResourceEntryPoints() {
+    const heroActions = document.querySelector(".hero .cta-row");
+    if (heroActions && !heroActions.querySelector('a[href="resources/"]')) {
+      const link = create("a", "btn btn-ghost btn-lg", "Use the governance templates");
+      link.href = "resources/";
+      heroActions.appendChild(link);
+    }
+
+    const footerLinks = document.querySelector('.footer-nav[aria-label="Explore"] .footer-links');
+    if (footerLinks && !footerLinks.querySelector('a[href="/resources/"]')) {
+      const link = create("a", "", "Reflection resources");
+      link.href = "/resources/";
+      footerLinks.appendChild(link);
+    }
+  }
+
   function enhanceBaselineLayers() {
     BASELINE_QUESTIONS.forEach((question) => {
       const layer = layerFor(question);
@@ -158,6 +174,11 @@
       lines.push("");
     });
 
+    lines.push("RESOURCE PACK");
+    lines.push("Use the printable reflection resources to turn this baseline summary into a board update, CIO/CISO briefing, supplier assurance note or quarterly governance report.");
+    lines.push("Link: https://baseline.bryanchetcuti.com/resources/");
+    lines.push("");
+
     return lines.join("\n");
   }
 
@@ -179,6 +200,7 @@
     });
   }
 
+  addResourceEntryPoints();
   enhanceBaselineLayers();
 
   document.addEventListener("click", (event) => {

@@ -44,6 +44,31 @@ is not judgement.
 The output is a reflection summary or conversation brief, not an assurance report,
 compliance instrument, maturity score or rating.
 
+## Reflection resources
+
+The `/resources/` section contains printable companion templates designed to work beside
+the in-browser baseline. They do not populate data, score maturity or certify control
+effectiveness. They provide a structured place to transcribe the user's baseline answers,
+notes, observations, ownership details, evidence sources and review actions.
+
+Resource pages:
+
+- `resources/index.html` - resource pack landing page.
+- `resources/executive-reflection-template.html` - one-page executive reflection panel.
+- `resources/governance-dashboard-panel.html` - governance status panel across baseline areas.
+- `resources/portfolio-rationalisation-worksheet.html` - domain keep / consolidate / retire / investigate worksheet.
+- `resources/public-signal-review-sheet.html` - public-signal observation and interpretation boundary sheet.
+- `resources/quarterly-domain-governance-report.html` - recurring quarterly report shell.
+
+Design principles:
+
+- blank templates only;
+- governance-grade language;
+- clear ownership, evidence and escalation fields;
+- no scoring, rating, maturity number or assurance framing;
+- printable, shareable and storable;
+- static HTML and external CSS only.
+
 ## Guided interaction model
 
 The baseline is designed as a guided pass rather than a long static checklist.
@@ -72,6 +97,8 @@ tab and is gone when the tab closes or reloads.
 The copied conversation brief and printed/PDF reflection are generated locally in the
 browser.
 
+The companion resources are static templates. They do not collect, submit or store data.
+
 ## Tech
 
 Plain HTML, CSS and vanilla JavaScript.
@@ -82,6 +109,7 @@ Key files:
 
 - `index.html` - page structure and static content sections.
 - `css/style.css` - visual system, layout, responsive behaviour and print styling.
+- `css/resources.css` - resource pack and printable template styling.
 - `js/data.js` - baseline questions, maturity themes, answer states and signal metadata.
 - `js/app.js` - base rendering, state, progress, theme toggle and default reflection logic.
 - `js/reflection-priorities.js` - guided-pass interaction, conversation-first reflection
@@ -102,5 +130,5 @@ Potential future extensions:
 
 - pre-fill externally observable signal checks using ThreatScope Check;
 - add optional local export/import of an in-progress session;
-- add a static printable blank worksheet;
+- improve copy/export mapping between the reflection summary and the resource templates;
 - add a versioned changelog for baseline content changes.
