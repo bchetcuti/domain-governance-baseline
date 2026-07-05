@@ -23,6 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/instrument.css" />
 
   <script type="application/ld+json">
     {
@@ -58,7 +59,7 @@
         </svg>
         <span class="brand-text">
           <span class="brand-name">Domain Governance Baseline</span>
-          <span class="brand-sub">by Bryan Chetcuti · domain governance and digital trust</span>
+          <span class="brand-sub">Baseline Instrument v1.0 · by Bryan Chetcuti</span>
         </span>
       </a>
       <div class="header-actions">
@@ -86,6 +87,7 @@
     </p>
 
     <div class="hero-meta">
+      <span class="pill">Baseline Instrument v1.0</span>
       <span class="pill">10 baseline questions</span>
       <span class="pill">6 maturity themes</span>
       <span class="pill">Copy / print reflection summary</span>
@@ -177,6 +179,33 @@
             executive, board and service-leadership audiences.
           </p>
         </div>
+
+        <div class="instrument-meta" aria-label="Baseline instrument metadata">
+          <p class="instrument-meta-title">Baseline Governance Instrument v1.0</p>
+          <dl>
+            <div>
+              <dt>Methodology basis</dt>
+              <dd>Domain Governance as a Trust Surface</dd>
+            </div>
+            <div>
+              <dt>Instrument</dt>
+              <dd>Domain Governance Baseline v1.0</dd>
+            </div>
+            <div>
+              <dt>Schema</dt>
+              <dd>Ten baseline questions, five governance layers and six maturity themes</dd>
+            </div>
+            <div>
+              <dt>Output</dt>
+              <dd>Reflection summary / conversation brief — not a score, rating or assurance report</dd>
+            </div>
+            <div>
+              <dt>Processing</dt>
+              <dd>Generated locally in the browser. No answers are sent to a backend.</dd>
+            </div>
+          </dl>
+        </div>
+
         <div class="q-list">
           <article class="m-card">
             <h3 class="m-theme">What it is</h3>
@@ -314,6 +343,12 @@
           <div id="external-block"></div>
         </div>
 
+        <div class="reflect-block" id="pathways-section">
+          <h3>Suggested next pathways</h3>
+          <p class="block-intro">Guidance paths only. These are not scores, findings of fault or automated recommendations.</p>
+          <div class="pathway-list" id="pathways-block"></div>
+        </div>
+
         <div class="reflect-block">
           <h3>What is already in place</h3>
           <p class="block-intro">Baseline items you can answer clearly today. Worth protecting - the maturity themes are how you keep them true.</p>
@@ -352,7 +387,7 @@
           </svg>
           <span>
             <span class="footer-brand-title">Domain Governance Baseline</span>
-            <span class="footer-brand-sub">by Bryan Chetcuti</span>
+            <span class="footer-brand-sub">Baseline Instrument v1.0 · by Bryan Chetcuti</span>
           </span>
         </a>
   
@@ -384,12 +419,15 @@
       </nav>
   
       <div class="footer-note">
-        <p class="footer-note-title">Built with intent</p>
-        <p>
-          Reflection aid. Not an assurance report, compliance instrument, maturity score or rating.
-        </p>
+        <p class="footer-note-title">Trust &amp; privacy</p>
+        <ul class="trust-list">
+          <li>No answer storage</li>
+          <li>No analytics or telemetry</li>
+          <li>No backend assessment processing</li>
+          <li>Reflection summary generated locally in the browser</li>
+        </ul>
         <p class="footer-note-small">
-          No backend, no analytics, no answer storage.
+          Reflection aid. Not an assurance report, compliance instrument, maturity score or rating.
         </p>
       </div>
     </div>
@@ -400,5 +438,6 @@
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
   <script src="js/reflection-priorities.js"></script>
+  <script src="js/instrument-enhancements.js"></script>
 </body>
 </html>
