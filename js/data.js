@@ -30,12 +30,42 @@ const VISIBILITY = {
   },
 };
 
+/* Governance layers make the baseline taxonomy explicit without turning it into a score. */
+const GOVERNANCE_LAYERS = {
+  registration: {
+    id: "registration",
+    label: "Registration Hygiene Layer",
+    blurb: "Ownership, accountability, registrar access and renewal continuity.",
+  },
+  dns: {
+    id: "dns",
+    label: "DNS Governance Layer",
+    blurb: "Authoritative DNS, DNS change control and recoverability.",
+  },
+  email: {
+    id: "email",
+    label: "Email Trust Layer",
+    blurb: "Sending authority, authentication and visible mail posture.",
+  },
+  delivery: {
+    id: "delivery",
+    label: "Delivery Integrity Layer",
+    blurb: "Systems, suppliers and services that depend on the domain layer.",
+  },
+  operational: {
+    id: "operational",
+    label: "Operational Clarity Layer",
+    blurb: "Incident paths, escalation and governance visibility.",
+  },
+};
+
 /* -------------------- SECTION 1: THE BASELINE (verbatim from the essay) -------------------- */
 const BASELINE_QUESTIONS = [
   {
     id: "b1",
     question: "Which domains do we own, and why do we own them?",
     visibility: "internal",
+    layer: "registration",
     domain: "Ownership & inventory",
     why: "A domain you have forgotten is a domain you cannot govern. An accurate inventory is the precondition for every other control.",
     // Board / exec / technical layered notes for the reflection
@@ -47,6 +77,7 @@ const BASELINE_QUESTIONS = [
     id: "b2",
     question: "Who is the accountable business owner for each domain?",
     visibility: "internal",
+    layer: "registration",
     domain: "Accountability",
     why: "Technical management is not the same as accountability. Someone at a governance level must own the risk.",
     board: "Accountability should sit with a named role, not a departed individual or an unassigned inbox.",
@@ -57,6 +88,7 @@ const BASELINE_QUESTIONS = [
     id: "b3",
     question: "Who has registrar access, and how is that access controlled?",
     visibility: "internal",
+    layer: "registration",
     domain: "Access control",
     why: "Registrar access is root authority over your public identity. Uncontrolled access is uncontrolled risk.",
     board: "A single shared login or a former staff member holding access is a governance failure waiting to surface.",
@@ -67,6 +99,7 @@ const BASELINE_QUESTIONS = [
     id: "b4",
     question: "When do the domains renew, and who receives renewal notices?",
     visibility: "internal",
+    layer: "registration",
     domain: "Continuity",
     why: "An expired domain is one of the most common and most avoidable ways a service goes dark.",
     board: "Renewal should not depend on one person noticing an email.",
@@ -77,6 +110,7 @@ const BASELINE_QUESTIONS = [
     id: "b5",
     question: "Which providers host authoritative DNS?",
     visibility: "external",
+    layer: "dns",
     domain: "Infrastructure",
     why: "DNS is the control plane for your entire domain. You should know exactly who operates it.",
     board: "Concentration or ambiguity in DNS providers is a continuity and supplier-risk question.",
@@ -87,6 +121,7 @@ const BASELINE_QUESTIONS = [
     id: "b6",
     question: "Which systems and suppliers rely on each domain?",
     visibility: "internal",
+    layer: "delivery",
     domain: "Dependency mapping",
     why: "A domain rarely serves one thing. A change in one place can break many.",
     board: "Understanding dependencies is what separates a contained incident from a cascading one.",
@@ -97,6 +132,7 @@ const BASELINE_QUESTIONS = [
     id: "b7",
     question: "Which domains are authorised to send email?",
     visibility: "external",
+    layer: "email",
     domain: "Email authority",
     why: "Every domain that can send mail is a domain that can be impersonated if left unauthenticated.",
     board: "Unmanaged sending domains widen the surface for phishing that uses your name against the public.",
@@ -107,6 +143,7 @@ const BASELINE_QUESTIONS = [
     id: "b8",
     question: "Are SPF, DKIM and DMARC configured and reviewed?",
     visibility: "external",
+    layer: "email",
     domain: "Email authentication",
     why: "These are the published, externally visible signals of whether email authentication policy exists.",
     board: "A missing or permissive DMARC policy is one of the most legible weak signals on your trust surface.",
@@ -117,6 +154,7 @@ const BASELINE_QUESTIONS = [
     id: "b9",
     question: "Are DNS changes logged, reviewed and recoverable?",
     visibility: "internal",
+    layer: "dns",
     domain: "Change control",
     why: "A change you cannot see or undo is a change you cannot govern.",
     board: "Change control at the DNS layer is where governance meets operational reality.",
@@ -127,6 +165,7 @@ const BASELINE_QUESTIONS = [
     id: "b10",
     question: "What is the incident path if a domain, DNS record or email control fails?",
     visibility: "internal",
+    layer: "operational",
     domain: "Incident readiness",
     why: "The worst time to work out who to call is during the incident.",
     board: "A rehearsed incident path is the difference between minutes of disruption and days.",
