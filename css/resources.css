@@ -1,0 +1,335 @@
+/* ============================================================
+   Domain Governance Reflection Resources
+   Static, printable templates. No scoring, no populated data.
+   ============================================================ */
+
+.resource-hero h1 {
+  max-width: 21ch;
+}
+
+.resource-nav {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.resource-nav a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+}
+
+.resource-nav a:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-5);
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 100%;
+}
+
+.resource-card .m-meaning {
+  flex: 1;
+}
+
+.resource-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.resource-note {
+  margin-top: var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-surface);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  max-width: 76ch;
+}
+
+.template-shell {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+  box-shadow: var(--shadow-sm);
+}
+
+.template-head {
+  display: grid;
+  gap: var(--space-4);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.template-kicker {
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.template-head h1 {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  max-width: 24ch;
+}
+
+.template-head p {
+  color: var(--color-text-muted);
+  max-width: 76ch;
+}
+
+.template-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.template-field,
+.template-panel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: var(--space-4);
+}
+
+.template-field span,
+.template-panel span {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.blank-line {
+  display: block;
+  min-height: 1.65rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.blank-area {
+  display: block;
+  min-height: 5.5rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--color-surface) 80%, transparent);
+}
+
+.blank-area.blank-area-lg {
+  min-height: 8rem;
+}
+
+.template-section {
+  margin-top: var(--space-8);
+}
+
+.template-section h2 {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  margin-bottom: var(--space-3);
+}
+
+.template-section > p {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  max-width: 78ch;
+  margin-bottom: var(--space-4);
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.template-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.template-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 860px;
+  font-size: var(--text-sm);
+}
+
+.template-table th,
+.template-table td {
+  border-bottom: 1px solid var(--color-divider);
+  border-right: 1px solid var(--color-divider);
+  text-align: left;
+  vertical-align: top;
+  padding: var(--space-3);
+}
+
+.template-table th:last-child,
+.template-table td:last-child {
+  border-right: 0;
+}
+
+.template-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.template-table th {
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: var(--color-surface-offset);
+}
+
+.template-table td {
+  min-height: 3.25rem;
+}
+
+.template-table .wide-cell {
+  min-width: 190px;
+}
+
+.template-checklist {
+  display: grid;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.template-checklist li {
+  display: grid;
+  grid-template-columns: 1.2rem 1fr;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.template-checklist li::before {
+  content: "";
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  margin-top: 0.2rem;
+  background: var(--color-surface-2);
+}
+
+.template-footer-note {
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-divider);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.template-actions {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.compact-template .template-section {
+  margin-top: var(--space-6);
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 10.5pt;
+  }
+
+  .site-header,
+  .site-footer,
+  .resource-nav,
+  .template-actions,
+  .cta-row {
+    display: none !important;
+  }
+
+  .section,
+  .hero {
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  .wrap {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  .template-shell {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .template-head {
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .template-head h1 {
+    font-size: 18pt;
+  }
+
+  .template-section {
+    break-inside: avoid;
+    margin-top: 1rem;
+  }
+
+  .template-table-wrap,
+  .template-field,
+  .template-panel {
+    break-inside: avoid;
+  }
+
+  .template-table {
+    min-width: 0;
+    font-size: 8.5pt;
+  }
+
+  .template-table th,
+  .template-table td {
+    padding: 0.35rem;
+  }
+
+  .blank-area {
+    min-height: 3.5rem;
+  }
+
+  .blank-area.blank-area-lg {
+    min-height: 5rem;
+  }
+}
