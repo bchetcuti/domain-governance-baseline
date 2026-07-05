@@ -277,8 +277,9 @@
     display: none !important;
   }
 
-  .section,
-  .hero {
+  body .section:not(#reflection-section),
+  body .hero {
+    display: block !important;
     padding: 0 !important;
     border: 0 !important;
   }
@@ -289,6 +290,7 @@
   }
 
   .template-shell {
+    display: block !important;
     border: 0;
     border-radius: 0;
     box-shadow: none;
