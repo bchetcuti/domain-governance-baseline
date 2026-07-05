@@ -481,6 +481,36 @@ a, button, [role="button"], input, select {
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ---------- PRINT ---------- */
+.print-brand {
+  display: none;
+}
+
+@media print {
+  .print-brand {
+    display: block;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .print-brand-kicker {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #555;
+  }
+
+  .print-brand h2 {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .print-brand p {
+    font-size: 0.9rem;
+    color: #555;
+    max-width: 70ch;
+  }
+}
 @media print {
   .site-header, .cta-row, .reflect-actions, .answers, .m-scale, .site-footer, .hero-meta, .stance, .progress-line, .icon-btn, .toast { display: none !important; }
   .section:not(#reflection-section) { display: none !important; }

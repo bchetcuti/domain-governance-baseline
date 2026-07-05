@@ -282,30 +282,68 @@ function renderFinding(q, stateId) {
 /* ---------- EXPORT (copy + print) ---------- */
 function buildTextReport() {
   const lines = [];
-  lines.push("DOMAIN GOVERNANCE BASELINE - SELF-ASSESSMENT REFLECTION");
-  lines.push("Based on the essay: Domain Governance as a Trust Surface (Bryan Chetcuti)");
-  lines.push(`Generated: ${new Date().toLocaleString()}`);
-  lines.push("This is a reflection, not a score. Observation, not judgement.");
-  lines.push("=".repeat(64));
+
+  const generatedAt = new Date().toLocaleString();
+
+  lines.push("DOMAIN GOVERNANCE BASELINE");
+  lines.push("Reflection Summary / Conversation Brief");
   lines.push("");
+  lines.push("Created by Bryan Chetcuti");
+  lines.push("https://baseline.bryanchetcuti.com/");
+  lines.push("");
+  lines.push("Based on the essay:");
+  lines.push("Domain Governance as a Trust Surface");
+  lines.push("https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/");
+  lines.push("");
+  lines.push(`Generated locally: ${generatedAt}`);
+  lines.push("");
+  lines.push("Purpose:");
+  lines.push("Use this summary to support a governance conversation about domain ownership,");
+  lines.push("DNS, email authority, public signals, accountability and review.");
+  lines.push("");
+  lines.push("Boundary:");
+  lines.push("This is a reflection aid, not an assurance report, compliance instrument,");
+  lines.push("maturity score or rating. Observation is not judgement.");
+  lines.push("");
+  lines.push("Privacy:");
+  lines.push("This summary was generated in the browser. No answers were sent to a backend");
+  lines.push("or stored by the tool.");
+  lines.push("");
+  lines.push("=".repeat(72));
+  lines.push("");
+
   lines.push("SECTION 1 - THE BASELINE");
+  lines.push("");
+
   BASELINE_QUESTIONS.forEach((q, i) => {
     const a = state.baseline[q.id];
     const label = a ? STATE_META[a].label : "Not answered";
-    const visLbl = q.visibility === "external" ? "[externally observable]" : "[internal only]";
-    lines.push(`${String(i + 1).padStart(2, "0")}. ${q.question} ${visLbl}`);
+    const visLbl = q.visibility === "external" ? "Externally observable" : "Internal only";
+
+    lines.push(`${String(i + 1).padStart(2, "0")}. ${q.question}`);
+    lines.push(`    Visibility: ${visLbl}`);
     lines.push(`    Response: ${label}`);
-    if (a && a !== "in_place") lines.push(`    Board/risk: ${q.board}`);
+
+    if (a && a !== "in_place") {
+      lines.push(`    Governance prompt: ${q.board}`);
+    }
+
+    lines.push("");
   });
+
+  lines.push("=".repeat(72));
   lines.push("");
   lines.push("SECTION 2 - THE MATURITY GUIDE");
+  lines.push("");
   lines.push("Beyond the baseline: six themes for governing the domain layer over time.");
   lines.push("Each theme includes where your organisation currently sits, if considered.");
   lines.push("");
+
   const wrap = (text, indent = "    ", width = 76) => {
     const words = String(text).split(/\s+/);
     const out = [];
     let line = indent;
+
     words.forEach((w) => {
       if ((line + w).length > width && line.trim().length) {
         out.push(line);
@@ -314,48 +352,59 @@ function buildTextReport() {
         line += w + " ";
       }
     });
+
     if (line.trim().length) out.push(line.replace(/\s+$/, ""));
     return out;
   };
+
   MATURITY_THEMES.forEach((m, i) => {
     const s = state.maturity[m.id];
     const label = s ? MATURITY_STATES.find((x) => x.id === s).label : "Not considered";
+
     lines.push(`THEME ${String(i + 1).padStart(2, "0")} - ${m.theme.toUpperCase()}`);
     lines.push(`  Where we sit today: ${label}`);
     lines.push("");
+
     lines.push("  What it means:");
     lines.push(...wrap(m.meaning));
     lines.push("");
+
     lines.push("  Why it matters:");
     lines.push(...wrap(m.why));
     lines.push("");
+
     lines.push("  What good looks like:");
     lines.push(...wrap(m.good));
     lines.push("");
+
     lines.push("  Common failure modes:");
-    m.failures.forEach((f) => lines.push(...wrap(f, "    - ").map((l, idx) => idx === 0 ? l : "      " + l.trimStart())));
+    m.failures.forEach((f) => {
+      lines.push(...wrap(f, "    - ").map((l, idx) => idx === 0 ? l : "      " + l.trimStart()));
+    });
     lines.push("");
+
     lines.push("  Connects to:");
     lines.push(...wrap(m.connects));
     lines.push("");
-    lines.push("-".repeat(64));
+
+    lines.push("-".repeat(72));
     lines.push("");
   });
-  lines.push("Remember: visible signals should not be over-interpreted. A missing");
-  lines.push("signal does not mean an organisation is irresponsible; a passing signal");
-  lines.push("does not mean everything behind it is well managed. The goal is to make");
-  lines.push("domain governance visible, discussable and improvable.");
+
+  lines.push("FINAL NOTE");
+  lines.push("");
+  lines.push("Visible signals should not be over-interpreted.");
+  lines.push("A missing signal does not mean an organisation is irresponsible.");
+  lines.push("A passing signal does not mean everything behind it is well managed.");
+  lines.push("");
+  lines.push("The goal is to make domain governance visible, discussable and improvable.");
+  lines.push("");
+  lines.push("Generated with Domain Governance Baseline");
+  lines.push("https://baseline.bryanchetcuti.com/");
+  lines.push("");
+
   return lines.join("\n");
 }
-
-function showToast(msg) {
-  const t = $("#toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.classList.remove("show"), 2400);
-}
-
 /* ---------- THEME TOGGLE ---------- */
 (function () {
   const t = $("[data-theme-toggle]"), r = document.documentElement;
