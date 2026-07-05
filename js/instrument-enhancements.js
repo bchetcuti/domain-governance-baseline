@@ -30,9 +30,9 @@
     return questionsInLayers(openQuestions(), layers).length > 0;
   }
 
-  function allAnsweredInLayerAreInPlace(layer) {
-    const answered = answeredQuestions().filter((question) => question.layer === layer);
-    return answered.length > 0 && answered.every((question) => state.baseline[question.id] === "in_place");
+  function entireLayerIsAnsweredAndInPlace(layer) {
+    const layerQuestions = BASELINE_QUESTIONS.filter((question) => question.layer === layer);
+    return layerQuestions.length > 0 && layerQuestions.every((question) => state.baseline[question.id] === "in_place");
   }
 
   function enhanceBaselineLayers() {
@@ -99,7 +99,7 @@
       });
     }
 
-    if (allAnsweredInLayerAreInPlace("registration") && !hasOpenInLayers(["registration"])) {
+    if (entireLayerIsAnsweredAndInPlace("registration") && !hasOpenInLayers(["registration"])) {
       pathways.push({
         label: "Broader context",
         title: "Compare strong internal hygiene with public domain-layer observation",
