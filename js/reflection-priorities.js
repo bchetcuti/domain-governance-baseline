@@ -161,11 +161,31 @@
       lines.push("");
     };
 
-    lines.push("DOMAIN GOVERNANCE BASELINE - REFLECTION SUMMARY");
-    lines.push("Based on the essay: Domain Governance as a Trust Surface (Bryan Chetcuti)");
-    lines.push(`Generated: ${new Date().toLocaleString()}`);
-    lines.push("This is a reflection summary, not a score, report, rating or assurance instrument.");
-    lines.push("=".repeat(64));
+    lines.push("DOMAIN GOVERNANCE BASELINE");
+    lines.push("Reflection Summary / Conversation Brief");
+    lines.push("");
+    lines.push("Created by Bryan Chetcuti");
+    lines.push("https://baseline.bryanchetcuti.com/");
+    lines.push("");
+    lines.push("Based on the essay:");
+    lines.push("Domain Governance as a Trust Surface");
+    lines.push("https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/");
+    lines.push("");
+    lines.push(`Generated locally: ${new Date().toLocaleString()}`);
+    lines.push("");
+    lines.push("Purpose:");
+    lines.push("Use this summary to support a governance conversation about domain ownership,");
+    lines.push("DNS, email authority, public signals, accountability and review.");
+    lines.push("");
+    lines.push("Boundary:");
+    lines.push("This is a reflection aid, not an assurance report, compliance instrument,");
+    lines.push("maturity score or rating. Observation is not judgement.");
+    lines.push("");
+    lines.push("Privacy:");
+    lines.push("This summary was generated in the browser. No answers were sent to a backend");
+    lines.push("or stored by the tool.");
+    lines.push("");
+    lines.push("=".repeat(72));
     lines.push("");
 
     lines.push("CONVERSATION PRIORITIES");
@@ -205,7 +225,17 @@
       lines.push("");
     });
 
-    lines.push("Remember: visible signals should not be over-interpreted. A missing signal does not mean an organisation is irresponsible; a passing signal does not mean everything behind it is well managed.");
+    lines.push("FINAL NOTE");
+    lines.push("");
+    lines.push("Visible signals should not be over-interpreted.");
+    lines.push("A missing signal does not mean an organisation is irresponsible.");
+    lines.push("A passing signal does not mean everything behind it is well managed.");
+    lines.push("");
+    lines.push("The goal is to make domain governance visible, discussable and improvable.");
+    lines.push("");
+    lines.push("Generated with Domain Governance Baseline");
+    lines.push("https://baseline.bryanchetcuti.com/");
+    lines.push("");
     return lines.join("\n");
   }
 
@@ -227,7 +257,7 @@
       event.stopImmediatePropagation();
       try {
         await navigator.clipboard.writeText(buildConversationBriefText());
-        showToast("Reflection summary copied to clipboard");
+        showToast("Conversation brief copied to clipboard");
       } catch (_error) {
         showToast("Copy not available - use Print / Save instead");
       }
