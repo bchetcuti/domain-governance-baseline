@@ -61,30 +61,37 @@ without placing those answers into another external assessment system.
 The intended outcome is governance-ready narrative and questions that can be moved into the
 organisation's existing board papers, incident reviews, supplier notes and recurring reports.
 
-## Reflection resources
+## Domain Governance Conversation Kit
 
-The `/resources/` section contains printable companion templates designed to be used after a
-reflection, not as a separate product surface. They do not populate data, score maturity or
-certify control effectiveness. They provide a structured place to transcribe useful answers,
-notes, observations, ownership details, evidence sources and review actions.
+The `/resources/` section contains one focused companion resource rather than a template pack.
+The Domain Governance Conversation Kit helps a user take the baseline reflection into a real
+meeting and leave with decisions, accountable owners, actions and a revisit point.
 
 Resource pages:
 
-- `resources/index.html` - resource pack landing page.
-- `resources/executive-reflection-template.html` - one-page executive reflection panel.
-- `resources/governance-dashboard-panel.html` - governance status panel across baseline areas.
-- `resources/portfolio-rationalisation-worksheet.html` - domain keep / consolidate / retire / investigate worksheet.
-- `resources/public-signal-review-sheet.html` - public-signal observation and interpretation boundary sheet.
-- `resources/quarterly-domain-governance-report.html` - recurring quarterly report shell.
+- `resources/index.html` - explains the 30-minute conversation method.
+- `resources/domain-governance-conversation-kit.html` - locally editable, two-page preparation and outcome kit.
+- `js/resources-kit.js` - print and clear controls only; no storage or submission.
+
+The kit is designed to support four existing governance moments:
+
+- board, executive or risk updates;
+- domain, DNS or email incident reviews;
+- supplier assurance or provider reviews; and
+- quarterly or biannual domain-governance check-ins.
 
 Design principles:
 
-- blank templates only;
-- governance-grade language;
-- clear ownership, evidence and escalation fields;
-- no scoring, rating, maturity number or assurance framing;
-- printable, shareable and storable;
-- static HTML and external CSS only.
+- one obvious companion resource;
+- locally editable without an account or backend;
+- no retained content after refresh or close;
+- two-page A4 print target;
+- no horizontally compressed tables;
+- decisions, owners, actions and dates over status reporting;
+- no scoring, rating, certification or assurance framing.
+
+The five earlier blank-template pages were retired because they duplicated each other, created
+transcription work and implied a broader reporting product. Their URLs redirect to the Conversation Kit.
 
 ## Guided interaction model
 
@@ -114,12 +121,14 @@ Key files:
 
 - `index.html` - page structure and static content sections.
 - `css/style.css` - visual system, layout, responsive behaviour and print styling.
-- `css/resources.css` - resource pack and printable template styling.
+- `css/resources.css` - Conversation Kit landing, editable fields and two-page print styling.
 - `js/data.js` - checklist questions, optional themes, answer states and signal metadata.
 - `js/app.js` - base rendering, state, progress, theme toggle and default reflection logic.
 - `js/reflection-priorities.js` - guided-pass interaction, conversation-first reflection output,
   skipped-item handling and copied conversation brief override.
-- `js/instrument-enhancements.js` - governance-layer labels, suggested pathways and resource references.
+- `js/instrument-enhancements.js` - governance-layer labels, suggested pathways and Conversation Kit references.
+- `js/resources-kit.js` - local print and clear behaviour for the kit.
+- `_redirects` - permanent redirects from retired resource-template URLs.
 
 ## Guardrails
 
@@ -133,7 +142,7 @@ Acceptable changes are narrow improvements to:
 - the clarity and accuracy of the ten questions and optional guidance;
 - accessibility, responsive behaviour and print quality;
 - the usefulness of copied or printed reflection notes;
-- the relationship between the checklist, source essay and companion templates; and
+- the relationship between the checklist, source essay and Conversation Kit; and
 - transparent versioning of substantive content changes.
 
 The following are out of scope unless the positioning is deliberately reconsidered:
@@ -141,5 +150,6 @@ The following are out of scope unless the positioning is deliberately reconsider
 - user accounts or retained assessment histories;
 - comparative scoring, benchmarking or maturity ratings;
 - automated assurance or compliance claims;
-- mandatory integrations with ThreatScope Check or other services; and
-- workflow, case-management or reporting-platform capabilities.
+- mandatory integrations with ThreatScope Check or other services;
+- workflow, case-management or reporting-platform capabilities; and
+- additional templates without a clearly evidenced governance event they improve.
