@@ -9,15 +9,15 @@ Published: `https://baseline.bryanchetcuti.com/`.
 ## Positioning
 
 The Domain Governance Baseline exists to make the essay's checklist easier to use in an
-existing governance conversation. It is intentionally small. It is not intended to become
+existing governance process. It is intentionally small. It is not intended to become
 another assessment platform, governance system or product workflow.
 
-It is designed for technology, risk and governance leaders who need a practical prompt before:
+It is designed for technology, risk and governance leaders who need a practical review aid before:
 
 - a board, executive or risk update;
 - a domain, DNS or email incident review;
 - registrar, DNS, email or digital supplier assurance; or
-- a quarterly or biannual domain-governance check-in.
+- a recurring domain-governance review.
 
 Core stance:
 
@@ -29,7 +29,7 @@ Core stance:
 ## What it is
 
 A single-page checklist that reproduces the essay's ten starting-point questions and turns
-answers into a local reflection summary or conversation brief.
+answers into a local baseline review summary.
 
 The checklist is deliberately **not a score**. It follows the essay's position that observation
 is not judgement.
@@ -38,18 +38,18 @@ is not judgement.
   DNS, dependencies, email authority, email authentication, change control and incident readiness.
 - **Optional follow-on themes:** portfolio rationalisation, supplier assurance, change control,
   continuous monitoring, public signal review and executive reporting.
-- **Reflection Summary / Conversation Brief:** a structured output that leads with conversation
-  priorities rather than counts. Findings are framed for board / exec / risk, technical, and
-  public trust / service impact audiences.
+- **Baseline Review Summary:** a structured output that leads with priorities for follow-up
+  rather than counts. Findings are framed for board / exec / risk, technical, and public trust /
+  service impact audiences.
 
-The output is a reflection summary or conversation brief, not an assurance report, compliance
-instrument, maturity score or rating.
+The output is a baseline review summary, not an assurance report, compliance instrument,
+maturity score or rating.
 
 ## Why it stays local
 
 The absence of a backend is a deliberate benefit, not only a technical constraint.
 
-Organisations can reflect on ownership gaps, supplier dependencies and incident readiness
+Organisations can review ownership gaps, supplier dependencies and incident readiness
 without placing those answers into another external assessment system.
 
 - no account;
@@ -58,8 +58,9 @@ without placing those answers into another external assessment system.
 - no analytics or telemetry;
 - copied and printed outputs generated locally in the browser.
 
-The intended outcome is governance-ready narrative and questions that can be moved into the
-organisation's existing board papers, incident reviews, supplier notes and recurring reports.
+The intended outcome is governance-ready priorities, evidence needs and next actions that can
+be moved into the organisation's existing board papers, incident reviews, supplier notes,
+work systems and recurring governance records.
 
 ## From baseline to practice
 
@@ -215,10 +216,10 @@ Skipping is intentionally separate from uncertainty:
 - **Not sure** means uncertainty itself is the finding.
 - **Skip for now** means the user is choosing not to answer that item in this pass.
 
-Skipped checklist questions are included separately in the reflection output and are not treated
+Skipped checklist questions are included separately in the review summary and are not treated
 as findings or gaps.
 
-Suggested pathways route unresolved questions to the matching guide. Internal guide links remain
+Practical next steps route unresolved questions to the matching guide. Internal guide links remain
 in the current tab; external references such as ThreatScope Check and .au Domain Observatory (.auDO)
 open separately.
 
@@ -236,10 +237,10 @@ Key files:
 - `css/resources.css` - practical guide layout and responsive / print styling.
 - `js/data.js` - checklist questions, optional themes, answer states and signal metadata.
 - `js/app.js` - base rendering, state, progress, theme toggle and default reflection logic.
-- `js/reflection-priorities.js` - guided-pass interaction, conversation-first reflection output,
-  skipped-item handling and copied conversation brief override.
-- `js/instrument-enhancements.js` - governance-layer labels, suggested pathways and links from
-  reflection findings to the matching practical guide.
+- `js/reflection-priorities.js` - guided-pass interaction, priority-first review output,
+  skipped-item handling and copied review-summary override.
+- `js/instrument-enhancements.js` - governance-layer labels, practical next steps and links from
+  review findings to the matching practical guide.
 - `resources/index.html` - complete five-guide From baseline to practice landing page.
 - `resources/domain-register/index.html` - domain-register implementation guide.
 - `resources/registrar-dns-authority/index.html` - registrar and DNS authority implementation guide.
@@ -252,13 +253,13 @@ Key files:
 The baseline should remain a precise companion to the essay rather than grow into a general
 assessment product.
 
-> The baseline should support a governance conversation, not become another system to operate.
+> The baseline should support governance work, not become another system to operate.
 
 Acceptable changes are narrow improvements to:
 
 - the clarity and accuracy of the ten questions and optional guidance;
 - accessibility, responsive behaviour and print quality;
-- the usefulness of copied or printed reflection notes;
+- the usefulness of copied or printed review notes;
 - substantive maintenance of the five bounded practice guides;
 - portable starter files that can be adopted into existing organisational systems; and
 - transparent versioning of substantive content changes.
