@@ -1,6 +1,6 @@
 /* ============================================================
    Instrument identity enhancements: governance layers + pathways.
-   Keeps the baseline as a local reflection instrument, not a score.
+   Keeps the baseline as a local review instrument, not a score.
    ============================================================ */
 (function () {
   const openStates = new Set(["partial", "not_in_place", "unsure"]);
@@ -125,7 +125,7 @@
       pathways.push({
         label: "Supporting public evidence",
         title: "Review externally visible DNS and domain signals",
-        summary: "Authoritative DNS uncertainty may be informed by what is publicly observable. Use current signals as evidence for a governance conversation, not as a scorecard or substitute for internal authority records.",
+        summary: "Authoritative DNS uncertainty may be informed by what is publicly observable. Use current signals as evidence for a governance review, not as a scorecard or substitute for internal authority records.",
         action: "Run a point-in-time public-signal check, then decide which observations need ownership, provider evidence or escalation.",
         href: THREATSCOPE_URL,
         cta: "Open ThreatScope Check",
@@ -179,8 +179,8 @@
 
   function buildPathwayText() {
     const lines = [];
-    lines.push("SUGGESTED NEXT PATHWAYS");
-    lines.push("Guidance paths only. These are not scores, findings of fault or automated recommendations.");
+    lines.push("PRACTICAL NEXT STEPS");
+    lines.push("Guide links based on the questions that need follow-up. These are not scores, findings of fault or automated assurance recommendations.");
     lines.push("");
 
     buildPathways().forEach((pathway) => {
@@ -235,7 +235,7 @@
 
     try {
       await navigator.clipboard.writeText(enhancedTextReport());
-      showToast("Conversation brief copied to clipboard");
+      showToast("Review summary copied to clipboard");
     } catch (_error) {
       showToast("Copy not available - use Print / Save instead");
     }
