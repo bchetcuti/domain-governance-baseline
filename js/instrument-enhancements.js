@@ -94,8 +94,8 @@
         title: "Turn domain dependency and incident answers into an operating path",
         summary: "Delivery and operational uncertainty points to the practical side of domain governance: which systems depend on the domain layer, who is called during failure and what can be recovered.",
         action: "Map dependent services, escalation contacts and recovery steps before the next incident tests them.",
-        href: "https://bryanchetcuti.com/",
-        cta: "Discuss a Domain Governance Review",
+        href: "/resources/",
+        cta: "Open reflection resources",
       });
     }
 
