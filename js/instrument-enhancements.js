@@ -93,9 +93,9 @@
         label: "Operational clarity",
         title: "Turn domain dependency and incident answers into an operating path",
         summary: "Delivery and operational uncertainty points to the practical side of domain governance: which systems depend on the domain layer, who is called during failure and what can be recovered.",
-        action: "Map dependent services, escalation contacts and recovery steps before the next incident tests them.",
-        href: "/resources/",
-        cta: "Open reflection resources",
+        action: "Use the Conversation Kit to resolve the priority questions and assign decisions, owners and follow-up dates.",
+        href: "/resources/domain-governance-conversation-kit.html",
+        cta: "Open the Conversation Kit",
       });
     }
 
@@ -158,9 +158,9 @@
       lines.push("");
     });
 
-    lines.push("REFLECTION RESOURCES");
-    lines.push("Use the printable companion resources to transcribe useful notes into an existing board update, supplier assurance note, incident review or recurring governance report.");
-    lines.push("Link: https://baseline.bryanchetcuti.com/resources/");
+    lines.push("CONVERSATION KIT");
+    lines.push("Use the two-page Conversation Kit to prepare a governance discussion and record what was confirmed, what remains unclear, decisions, accountable owners and follow-up dates.");
+    lines.push("Link: https://baseline.bryanchetcuti.com/resources/domain-governance-conversation-kit.html");
     lines.push("");
 
     return lines.join("\n");
