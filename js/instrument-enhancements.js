@@ -51,31 +51,6 @@
     });
   }
 
-  function alignPracticeReferences() {
-    document.querySelectorAll('a[href="/resources/"]').forEach((link) => {
-      const text = link.textContent.trim();
-      if (text === "Reflection resources") link.textContent = "From baseline to practice";
-      if (text === "Domain Governance Reflection Resources") link.textContent = "Establish a domain register";
-    });
-
-    const disclaimers = Array.from(document.querySelectorAll("#reflection-section .disclaimer"));
-    const resourceDisclaimer = disclaimers.find((block) => block.textContent.includes("Turn this reflection into a governance artefact"));
-    if (resourceDisclaimer) {
-      resourceDisclaimer.innerHTML = `
-        <strong>Move from reflection to practice.</strong>
-        Start with the <a href="/resources/domain-register/">Establish a domain register guide</a>
-        to create the foundational inventory and ownership record behind the first baseline questions.
-      `;
-    }
-
-    document.querySelectorAll(".m-guide-block").forEach((block) => {
-      const label = block.querySelector(".m-guide-label");
-      const paragraph = block.querySelector("p");
-      if (label?.textContent.trim() !== "Use existing governance" || !paragraph) return;
-      paragraph.textContent = "Use the practical guidance to establish missing practices, then maintain the resulting records in the organisational systems you already operate.";
-    });
-  }
-
   function buildPathways() {
     const pathways = [];
     const externalOpen = openQuestions().filter((question) => question.visibility === "external");
@@ -210,7 +185,6 @@
   }
 
   enhanceBaselineLayers();
-  alignPracticeReferences();
 
   document.addEventListener("click", (event) => {
     if (event.target.closest("#generate-btn")) {
