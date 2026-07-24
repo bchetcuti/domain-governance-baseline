@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>From baseline to practice - Domain Governance Baseline</title>
-  <meta name="description" content="Practical guidance for establishing the basic domain-governance practices behind the Domain Governance Baseline, beginning with a usable domain register." />
+  <meta name="description" content="Practical guidance for establishing the basic domain-governance practices behind the Domain Governance Baseline: domain visibility, ownership, registrar access and authoritative DNS control." />
   <link rel="canonical" href="https://baseline.bryanchetcuti.com/resources/" />
   <meta name="author" content="Bryan Chetcuti" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230d5b5f' stroke-width='2.5'/%3E%3Cpath d='M16 3v26M3 16h26' stroke='%230d5b5f' stroke-width='1.5' opacity='.5'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%230d5b5f'/%3E%3C/svg%3E" />
@@ -50,9 +50,9 @@
         </div>
         <div class="stance">
           <p>
-            <strong>Start with visibility and ownership.</strong>
-            Before an organisation can govern registrar access, DNS authority, renewal, email use or incident readiness,
-            it needs a dependable record of which domains matter, why they exist and who is accountable.
+            <strong>Build in sequence.</strong>
+            First establish which domains matter and who is accountable. Then control the registrar and DNS authority
+            that can renew, transfer, delegate, alter or recover them.
           </p>
         </div>
       </div>
@@ -61,17 +61,17 @@
     <section class="section">
       <div class="wrap">
         <div class="section-head">
-          <span class="section-index">Start here</span>
+          <span class="section-index">Practice guide 01 · Foundation</span>
           <h2>Establish a domain register</h2>
           <p>
-            A practical guide for building the foundational inventory and ownership record behind the first baseline questions.
-            It is written for technology, cyber, risk, digital and infrastructure generalists—not domain specialists.
+            Build the foundational inventory and ownership record behind the first baseline questions.
+            Start here when the organisation cannot confidently state which domains matter, why they exist or who owns renewal and dependencies.
           </p>
         </div>
 
         <article class="guide-feature">
           <div class="guide-feature-copy">
-            <span class="guide-label">Practice guide 01</span>
+            <span class="guide-label">Visibility and ownership</span>
             <h3>Know which domains matter and who is accountable</h3>
             <p>
               Learn what belongs in a governance register, how to assemble an initial view from several imperfect sources,
@@ -84,11 +84,11 @@
               <li>Includes a blank CSV and worked example.</li>
             </ul>
             <div class="cta-row">
-              <a class="btn btn-primary btn-lg" href="./domain-register/">Open the guide</a>
-              <a class="btn btn-ghost btn-lg" href="./downloads/domain-register-template.csv" download>Download blank CSV</a>
+              <a class="btn btn-primary btn-lg" href="./domain-register/">Open guide 01</a>
+              <a class="btn btn-ghost btn-lg" href="./downloads/domain-register-template.csv" download>Download domain-register CSV</a>
             </div>
           </div>
-          <aside class="guide-feature-aside" aria-label="Guide outcome">
+          <aside class="guide-feature-aside" aria-label="Guide 01 outcome">
             <p class="aside-title">The outcome</p>
             <p>
               A usable register that names each material domain, its purpose, accountable owner, technical operator,
@@ -103,6 +103,50 @@
     </section>
 
     <section class="section section-offset">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">Practice guide 02 · Authority</span>
+          <h2>Control registrar and DNS authority</h2>
+          <p>
+            Establish named, reviewable and recoverable control over the privileged paths that can renew or transfer domains,
+            change delegation, alter authoritative DNS and regain control during an incident.
+          </p>
+        </div>
+
+        <article class="guide-feature">
+          <div class="guide-feature-copy">
+            <span class="guide-label">Access, change and recovery</span>
+            <h3>Make domain authority attributable and recoverable</h3>
+            <p>
+              Map registrar, reseller, delegation, DNS and recovery authority; replace shared and personal access;
+              enforce MFA and least privilege; protect transfers; and make DNS changes approved, evidenced and reversible.
+            </p>
+            <ul class="guide-benefits">
+              <li>Defines the material authority boundaries.</li>
+              <li>Provides an eight-step control method.</li>
+              <li>Includes a portable authority-review CSV.</li>
+              <li>Includes a DNS change-record template.</li>
+            </ul>
+            <div class="cta-row">
+              <a class="btn btn-primary btn-lg" href="./registrar-dns-authority/">Open guide 02</a>
+              <a class="btn btn-ghost btn-lg" href="./downloads/domain-authority-review-template.csv" download>Download authority-review CSV</a>
+            </div>
+          </div>
+          <aside class="guide-feature-aside" aria-label="Guide 02 outcome">
+            <p class="aside-title">The outcome</p>
+            <p>
+              A current record of who can exercise registrar and DNS authority, how privileged access is protected,
+              how material changes are controlled and how the organisation can recover authority without one person or personal mailbox.
+            </p>
+            <p class="aside-boundary">
+              The guide uses existing identity, access, change and recovery processes. It does not create a new control platform.
+            </p>
+          </aside>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="wrap">
         <div class="section-head">
           <span class="section-index">How the pieces fit</span>
@@ -123,9 +167,9 @@
           </article>
           <article class="relationship-card">
             <span>03</span>
-            <h3>The guide establishes practice</h3>
-            <p>The domain-register guide turns the first set of unanswered questions into a small, concrete implementation path.</p>
-            <a href="./domain-register/">Establish a domain register</a>
+            <h3>The guides establish practice</h3>
+            <p>Each guide turns a specific cluster of unanswered questions into a bounded implementation path and portable organisational record.</p>
+            <a href="./domain-register/">Begin with guide 01</a>
           </article>
         </div>
 
@@ -157,9 +201,10 @@
         <p class="footer-nav-title">Explore</p>
         <div class="footer-links">
           <a href="../">The baseline</a>
-          <a href="./domain-register/">Domain-register guide</a>
-          <a href="./downloads/domain-register-template.csv" download>Blank CSV</a>
-          <a href="./downloads/domain-register-example.csv" download>Worked example</a>
+          <a href="./domain-register/">Guide 01: Domain register</a>
+          <a href="./registrar-dns-authority/">Guide 02: Registrar and DNS</a>
+          <a href="./downloads/domain-register-template.csv" download>Domain-register CSV</a>
+          <a href="./downloads/domain-authority-review-template.csv" download>Authority-review CSV</a>
         </div>
       </nav>
       <nav class="footer-nav" aria-label="Related work">
