@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>From baseline to practice - Domain Governance Baseline</title>
-  <meta name="description" content="Practical guidance for establishing the basic domain-governance practices behind the Domain Governance Baseline: domain visibility, ownership, registrar access and authoritative DNS control." />
+  <meta name="description" content="Practical guidance for establishing the domain-governance practices behind the Domain Governance Baseline: domain visibility, privileged authority and email trust." />
   <link rel="canonical" href="https://baseline.bryanchetcuti.com/resources/" />
   <meta name="author" content="Bryan Chetcuti" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230d5b5f' stroke-width='2.5'/%3E%3Cpath d='M16 3v26M3 16h26' stroke='%230d5b5f' stroke-width='1.5' opacity='.5'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%230d5b5f'/%3E%3C/svg%3E" />
@@ -51,8 +51,8 @@
         <div class="stance">
           <p>
             <strong>Build in sequence.</strong>
-            First establish which domains matter and who is accountable. Then control the registrar and DNS authority
-            that can renew, transfer, delegate, alter or recover them.
+            Establish which domains matter, control the privileged authority that can alter them,
+            then govern who may send in the organisation's name and whether public evidence matches that authority.
           </p>
         </div>
       </div>
@@ -149,6 +149,50 @@
     <section class="section">
       <div class="wrap">
         <div class="section-head">
+          <span class="section-index">Practice guide 03 · Email trust</span>
+          <h2>Govern email authority and public signals</h2>
+          <p>
+            Establish who may send using organisational domains, how that authority is authenticated and whether
+            publicly observable mail signals match the systems and suppliers the organisation has actually approved.
+          </p>
+        </div>
+
+        <article class="guide-feature">
+          <div class="guide-feature-copy">
+            <span class="guide-label">Authorised senders and evidence</span>
+            <h3>Connect internal sending authority to SPF, DKIM and DMARC</h3>
+            <p>
+              Record approved sending platforms and identity paths, govern domains that should not send,
+              review DMARC reporting, reconcile public signals and remove obsolete supplier authority.
+            </p>
+            <ul class="guide-benefits">
+              <li>Separates approved authority from public observation.</li>
+              <li>Provides an eight-step governance method.</li>
+              <li>Includes an authorised-sender CSV.</li>
+              <li>Includes a public-signal review record.</li>
+            </ul>
+            <div class="cta-row">
+              <a class="btn btn-primary btn-lg" href="./email-authority-public-signals/">Open guide 03</a>
+              <a class="btn btn-ghost btn-lg" href="./downloads/authorised-sender-register-template.csv" download>Download sender-register CSV</a>
+            </div>
+          </div>
+          <aside class="guide-feature-aside" aria-label="Guide 03 outcome">
+            <p class="aside-title">The outcome</p>
+            <p>
+              A dependable record of approved sending domains and providers, the identities they use,
+              the authentication and reporting that supports them, and the action required where public evidence differs.
+            </p>
+            <p class="aside-boundary">
+              Public signals support governance evidence. They do not prove internal approval, deliverability or complete control effectiveness.
+            </p>
+          </aside>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-offset">
+      <div class="wrap">
+        <div class="section-head">
           <span class="section-index">How the pieces fit</span>
           <h2>One argument, one diagnostic starting point, practical follow-through</h2>
         </div>
@@ -203,15 +247,15 @@
           <a href="../">The baseline</a>
           <a href="./domain-register/">Guide 01: Domain register</a>
           <a href="./registrar-dns-authority/">Guide 02: Registrar and DNS</a>
-          <a href="./downloads/domain-register-template.csv" download>Domain-register CSV</a>
-          <a href="./downloads/domain-authority-review-template.csv" download>Authority-review CSV</a>
+          <a href="./email-authority-public-signals/">Guide 03: Email authority</a>
+          <a href="./downloads/authorised-sender-register-template.csv" download>Authorised-sender CSV</a>
         </div>
       </nav>
       <nav class="footer-nav" aria-label="Related work">
         <p class="footer-nav-title">Related work</p>
         <div class="footer-links">
           <a href="https://bryanchetcuti.com/" target="_blank" rel="noopener">Bryan Chetcuti</a>
-          <a href="https://audo.bryanchetcuti.com/" target="_blank" rel="noopener">.auDO</a>
+          <a href="https://audo.bryanchetcuti.com/" target="_blank" rel="noopener">.au Domain Observatory (.auDO)</a>
           <a href="https://threatscopecheck.com/" target="_blank" rel="noopener">ThreatScope Check</a>
         </div>
       </nav>
