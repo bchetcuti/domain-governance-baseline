@@ -1,6 +1,6 @@
 /* ============================================================
    Instrument identity enhancements: governance layers + pathways.
-   Keeps the baseline as a local reflection instrument, not a score.
+   Keeps the baseline as a local review instrument, not a score.
    ============================================================ */
 (function () {
   const openStates = new Set(["partial", "not_in_place", "unsure"]);
@@ -39,6 +39,14 @@
     return layerQuestions.length > 0 && layerQuestions.every((question) => state.baseline[question.id] === "in_place");
   }
 
+  function hasCompleteBaselineWithoutOpenFindings() {
+    return answeredQuestions().length === BASELINE_QUESTIONS.length && openQuestions().length === 0;
+  }
+
+  function isExternalHref(href) {
+    return /^https?:\/\//i.test(href);
+  }
+
   function enhanceBaselineLayers() {
     BASELINE_QUESTIONS.forEach((question) => {
       const layer = layerFor(question);
@@ -57,28 +65,6 @@
 
   function buildPathways() {
     const pathways = [];
-
-    if (hasOpenQuestionIds(["b5"])) {
-      pathways.push({
-        label: "Public signal review",
-        title: "Review externally visible DNS and domain signals",
-        summary: "Authoritative DNS uncertainty may be informed by what is publicly observable. Use current signals as evidence for a governance conversation, not as a scorecard or substitute for internal authority records.",
-        action: "Run a public-signal check, then decide which observations need ownership, provider evidence or escalation.",
-        href: THREATSCOPE_URL,
-        cta: "Open ThreatScope Check",
-      });
-    }
-
-    if (hasOpenInLayers(["email"])) {
-      pathways.push({
-        label: "Email authority and public signals",
-        title: "Govern authorised senders and mail posture",
-        summary: "Email trust uncertainty usually means the organisation cannot yet connect approved sending systems with visible From, return-path and DKIM identities, SPF authorisation, DMARC policy and reporting.",
-        action: "Build an authorised-sender register, reconcile it with public SPF, DKIM and DMARC evidence, and remove obsolete or unowned supplier authority.",
-        href: "/resources/email-authority-public-signals/",
-        cta: "Govern email authority and public signals",
-      });
-    }
 
     if (hasOpenQuestionIds(["b1", "b2", "b4", "b6"])) {
       pathways.push({
@@ -102,22 +88,55 @@
       });
     }
 
-    if (hasOpenInLayers(["delivery", "operational"])) {
+    if (hasOpenInLayers(["email"])) {
       pathways.push({
-        label: "Operational clarity",
-        title: "Turn domain dependency and incident answers into an operating path",
-        summary: "Delivery and operational uncertainty points to the practical side of domain governance: which systems depend on the domain layer, who is called during failure and what can be recovered.",
-        action: "Map dependent services, escalation contacts and recovery steps before the next incident tests them.",
-        href: "/resources/",
-        cta: "Open practical guidance",
+        label: "Email authority and public signals",
+        title: "Govern authorised senders and mail posture",
+        summary: "Email trust uncertainty usually means the organisation cannot yet connect approved sending systems with visible From, return-path and DKIM identities, SPF authorisation, DMARC policy and reporting.",
+        action: "Build an authorised-sender register, reconcile it with public SPF, DKIM and DMARC evidence, and remove obsolete or unowned supplier authority.",
+        href: "/resources/email-authority-public-signals/",
+        cta: "Govern email authority and public signals",
+      });
+    }
+
+    if (hasOpenQuestionIds(["b10"])) {
+      pathways.push({
+        label: "Domain incident readiness",
+        title: "Prepare the domain incident path",
+        summary: "Incident-path uncertainty means the organisation cannot yet demonstrate who leads, who can act, which services matter, how provider authority is recovered or how changes will be validated under pressure.",
+        action: "Extend the existing incident process with domain-layer triggers, roles, provider contacts, dependencies, known-good evidence, recovery steps and a tested exercise path.",
+        href: "/resources/domain-incident-readiness/",
+        cta: "Establish domain incident readiness",
+      });
+    }
+
+    if (hasCompleteBaselineWithoutOpenFindings()) {
+      pathways.push({
+        label: "Recurring domain governance",
+        title: "Keep the baseline true over time",
+        summary: "The starting questions are currently clear. The next useful move is to keep ownership, authority, email trust, incident readiness and unresolved actions current through an existing governance forum.",
+        action: "Adopt a proportionate recurring review with a named owner, repeatable evidence set, explicit decisions and an action trail maintained in existing systems.",
+        href: "/resources/recurring-domain-governance-review/",
+        cta: "Run a recurring governance review",
+      });
+    }
+
+    if (hasOpenQuestionIds(["b5"])) {
+      pathways.push({
+        label: "Supporting public evidence",
+        title: "Review externally visible DNS and domain signals",
+        summary: "Authoritative DNS uncertainty may be informed by what is publicly observable. Use current signals as evidence for a governance review, not as a scorecard or substitute for internal authority records.",
+        action: "Run a point-in-time public-signal check, then decide which observations need ownership, provider evidence or escalation.",
+        href: THREATSCOPE_URL,
+        cta: "Open ThreatScope Check",
       });
     }
 
     if (entireLayerIsAnsweredAndInPlace("registration") && !hasOpenInLayers(["registration"])) {
       pathways.push({
         label: "Broader context",
-        title: "Compare strong internal hygiene with public domain-layer observation",
-        summary: "Your registration hygiene answers are currently clear. The next useful move is to keep that internal clarity connected to how public domain-layer signals are observed over time.",
+        title: "Connect internal hygiene with repeated public observation",
+        summary: "Your registration hygiene answers are currently clear. Repeated public observation can help retain context about how domain-layer signals change over time.",
         action: "Use .au Domain Observatory (.auDO) as a public observatory reference for repeated observation and sector-level context.",
         href: "https://audo.bryanchetcuti.com/",
         cta: "Explore .au Domain Observatory (.auDO)",
@@ -126,12 +145,12 @@
 
     if (!pathways.length) {
       pathways.push({
-        label: "Next governance conversation",
-        title: "Use the summary to keep the baseline true",
-        summary: "No specific pathway is being elevated from this pass. That does not mean the domain layer is finished; it means the next conversation is cadence, ownership and evidence.",
-        action: "Use the optional follow-on themes to decide what belongs in recurring governance reporting.",
-        href: "#maturity-section",
-        cta: "Review optional follow-on themes",
+        label: "Recurring domain governance",
+        title: "Use an existing forum to keep the baseline true",
+        summary: "No single implementation guide is being elevated from this pass. The practical next step is to maintain cadence, ownership, evidence and action through an existing governance forum.",
+        action: "Review changes, unknowns, exceptions, incidents and overdue actions using the bounded recurring-review method.",
+        href: "/resources/recurring-domain-governance-review/",
+        cta: "Run a recurring governance review",
       });
     }
 
@@ -144,13 +163,14 @@
 
     block.innerHTML = "";
     buildPathways().forEach((pathway) => {
+      const externalAttributes = isExternalHref(pathway.href) ? ' target="_blank" rel="noopener"' : "";
       const card = create("article", "pathway-card", `
         <span class="pathway-label">${pathway.label}</span>
         <h4 class="pathway-title">${pathway.title}</h4>
         <p class="pathway-summary">${pathway.summary}</p>
         <p class="pathway-action"><strong>Suggested action:</strong> ${pathway.action}</p>
         <div class="q-linkout-wrap">
-          <a class="q-linkout" href="${pathway.href}"${pathway.href.startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${pathway.cta}</a>
+          <a class="q-linkout" href="${pathway.href}"${externalAttributes}>${pathway.cta}</a>
         </div>
       `);
       block.appendChild(card);
@@ -159,8 +179,8 @@
 
   function buildPathwayText() {
     const lines = [];
-    lines.push("SUGGESTED NEXT PATHWAYS");
-    lines.push("Guidance paths only. These are not scores, findings of fault or automated recommendations.");
+    lines.push("PRACTICAL NEXT STEPS");
+    lines.push("Guide links based on the questions that need follow-up. These are not scores, findings of fault or automated assurance recommendations.");
     lines.push("");
 
     buildPathways().forEach((pathway) => {
@@ -173,7 +193,7 @@
     });
 
     lines.push("FROM BASELINE TO PRACTICE");
-    lines.push("Use the practical guide that matches the unresolved questions: establish a domain register for inventory and ownership; control registrar and DNS authority for privileged access and recoverable change; govern email authority and public signals for approved senders, SPF, DKIM, DMARC and reporting.");
+    lines.push("Use the guide that matches the unresolved questions: establish a domain register; control registrar and DNS authority; govern email authority and public signals; establish domain incident readiness; then use a recurring review to keep the practices current.");
     lines.push("Guides: https://baseline.bryanchetcuti.com/resources/");
     lines.push("");
 
@@ -215,7 +235,7 @@
 
     try {
       await navigator.clipboard.writeText(enhancedTextReport());
-      showToast("Conversation brief copied to clipboard");
+      showToast("Review summary copied to clipboard");
     } catch (_error) {
       showToast("Copy not available - use Print / Save instead");
     }

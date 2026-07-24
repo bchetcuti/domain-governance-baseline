@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Establish domain incident readiness - Domain Governance Baseline</title>
+  <meta name="description" content="A practical guide to preparing for domain expiry, registrar compromise, DNS failure, email-control incidents and provider loss using existing incident processes." />
+  <link rel="canonical" href="https://baseline.bryanchetcuti.com/resources/domain-incident-readiness/" />
+  <meta name="author" content="Bryan Chetcuti" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230d5b5f' stroke-width='2.5'/%3E%3Cpath d='M16 3v26M3 16h26' stroke='%230d5b5f' stroke-width='1.5' opacity='.5'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%230d5b5f'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/resources-tokens.css" />
+  <link rel="stylesheet" href="../../css/resources.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap wrap-wide">
+      <a class="brand" href="../../" aria-label="Domain Governance Baseline home">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" />
+          <path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" />
+          <circle cx="16" cy="16" r="4.4" fill="currentColor" />
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Domain Governance Baseline</span>
+          <span class="brand-sub">Practice guide 04 · Domain incident readiness</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero guide-hero">
+      <div class="wrap">
+        <span class="eyebrow">From baseline to practice · Guide 04</span>
+        <p class="hero-note">Know who acts, what must be recovered and how decisions are made before domain authority or trust controls fail.</p>
+        <h1>Establish domain incident readiness.</h1>
+        <p class="lede">
+          Extend the organisation's existing incident process with the contacts, authority, dependencies, evidence and recovery steps
+          needed for domain expiry, registrar compromise, DNS failure, email-control incidents and provider loss.
+        </p>
+        <div class="hero-meta">
+          <span class="pill">For technology and incident leaders</span>
+          <span class="pill">Eight practical steps</span>
+          <span class="pill">Runbook template</span>
+          <span class="pill">Exercise record</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="../downloads/domain-incident-runbook-template.md" download>Download incident runbook</a>
+          <a class="btn btn-ghost btn-lg" href="../downloads/domain-incident-exercise-record-template.md" download>Download exercise record</a>
+          <a class="btn btn-ghost btn-lg" href="../../">Open the baseline</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section guide-summary">
+      <div class="wrap">
+        <div class="summary-panel">
+          <div>
+            <span class="guide-label">Outcome</span>
+            <h2>A response path that remains usable under pressure</h2>
+            <p>
+              The organisation should be able to identify the affected authority and services, contact the right provider,
+              contain harmful change, restore a known-good state, communicate impact and preserve a decision trail without depending on one unavailable person.
+            </p>
+          </div>
+          <aside>
+            <p class="aside-title">Minimum credible state</p>
+            <ul class="compact-list">
+              <li>Domain-layer incident triggers and severity considerations are defined.</li>
+              <li>Incident, business, registrar, DNS, email and communications roles are named.</li>
+              <li>Provider account identifiers and emergency contacts are available outside the failed system.</li>
+              <li>Critical dependencies and recovery priorities are known.</li>
+              <li>Known-good configuration and recovery evidence are accessible.</li>
+              <li>The runbook has been exercised and updated from what was learned.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-offset">
+      <div class="wrap guide-content">
+        <article class="guide-section" id="incident-scope">
+          <div class="guide-section-head">
+            <span class="guide-step">Scope</span>
+            <h2>Prepare for failures of authority, routing and public trust</h2>
+          </div>
+          <p>
+            A domain incident may begin as an access problem, configuration error, supplier outage or suspicious public signal.
+            The response should focus on the authority and services at risk rather than waiting for a perfect incident label.
+          </p>
+          <div class="comparison-grid">
+            <div class="comparison-card"><h3>Expiry or renewal failure</h3><p>A domain expires, enters a grace state or is at risk because notices, payment or ownership failed.</p></div>
+            <div class="comparison-card"><h3>Registrar or account compromise</h3><p>Unauthorised access, transfer, contact change, unlock or recovery activity affects registration authority.</p></div>
+            <div class="comparison-card"><h3>Delegation or DNS failure</h3><p>Nameservers or records are changed, deleted, unavailable or route users and systems incorrectly.</p></div>
+            <div class="comparison-card"><h3>Email-control incident</h3><p>Authorised sending breaks, unexpected authority appears, authentication fails or impersonation activity requires action.</p></div>
+            <div class="comparison-card"><h3>Supplier or platform loss</h3><p>A registrar, DNS, email, hosting or identity provider becomes unavailable or cannot support recovery.</p></div>
+            <div class="comparison-card"><h3>Unexplained public change</h3><p>External observation reveals an unexpected registration, DNS, certificate or mail-posture change requiring internal verification.</p></div>
+          </div>
+          <div class="callout">
+            <strong>Do not wait for a domain-specific incident process.</strong>
+            Use the organisation's existing incident framework and add the domain-layer evidence, provider authority and recovery steps it otherwise lacks.
+          </div>
+        </article>
+
+        <article class="guide-section" id="establish">
+          <div class="guide-section-head">
+            <span class="guide-step">Method</span>
+            <h2>Establish readiness in eight practical steps</h2>
+          </div>
+          <ol class="implementation-steps">
+            <li><div class="step-number">1</div><div><h3>Define triggers and escalation thresholds</h3><p>Name the events that require incident activation: expiry risk, unexpected registrar or nameserver change, DNS outage, loss of administrative access, material mail-authentication failure or provider compromise. Use service impact, authority loss and public harm to guide severity.</p></div></li>
+            <li><div class="step-number">2</div><div><h3>Name roles and decision authority</h3><p>Identify the incident lead, accountable business owner, registrar and DNS operators, messaging specialist, service owners, cyber or risk lead and communications contact. State who may approve emergency changes, transfers, lock changes and public communication.</p></div></li>
+            <li><div class="step-number">3</div><div><h3>Assemble provider and recovery information</h3><p>Record provider account identifiers, emergency support paths, monitored contacts, recovery identities, vault locations and escalation references. Keep enough information accessible if email, identity or the primary provider console is unavailable.</p></div></li>
+            <li><div class="step-number">4</div><div><h3>Map impact and recovery priorities</h3><p>Use the domain register to identify websites, email, identity, APIs, integrations and suppliers that depend on the affected domain. Prioritise public safety, essential service, identity and communication dependencies rather than restoring records without context.</p></div></li>
+            <li><div class="step-number">5</div><div><h3>Define containment and recovery actions</h3><p>Document the first safe actions for each material scenario: preserve access, apply locks, suspend compromised credentials, restore known-good DNS, reduce TTL only when useful, withdraw obsolete email authority and engage provider escalation.</p></div></li>
+            <li><div class="step-number">6</div><div><h3>Preserve evidence and a decision trail</h3><p>Capture timestamps, screenshots or exports, observed records, audit logs, provider case numbers, approvals and changes. Record what was known at each decision point without delaying urgent containment.</p></div></li>
+            <li><div class="step-number">7</div><div><h3>Plan communications and external obligations</h3><p>Identify who must be informed internally and externally, what public trust or service impact must be explained, and whether legal, privacy, regulatory, insurer, supplier or law-enforcement obligations apply.</p></div></li>
+            <li><div class="step-number">8</div><div><h3>Exercise and maintain the path</h3><p>Run at least one scenario annually and after material provider, ownership or platform change. Test contactability, access recovery, known-good evidence, decision authority and the ability to implement and validate a safe change.</p></div></li>
+          </ol>
+        </article>
+
+        <article class="guide-section" id="runbook">
+          <div class="guide-section-head">
+            <span class="guide-step">Operational record</span>
+            <h2>Keep the runbook short enough to use during the incident</h2>
+          </div>
+          <p>
+            The starter runbook is intended to sit inside an approved incident, continuity or knowledge system.
+            It links to authoritative records instead of copying passwords, complete zone files or fragile contact lists into another document.
+          </p>
+          <dl class="field-guide">
+            <div><dt>Activation and severity</dt><dd>Triggers, initial impact questions and escalation thresholds.</dd></div>
+            <div><dt>Roles and authority</dt><dd>Incident lead, accountable owner, technical roles and emergency decision rights.</dd></div>
+            <div><dt>Provider escalation</dt><dd>Account identifiers, support paths, case references and recovery prerequisites.</dd></div>
+            <div><dt>Dependencies</dt><dd>Critical services, audiences, suppliers and communication channels affected.</dd></div>
+            <div><dt>Known-good evidence</dt><dd>Approved locations for zone state, access records, sender records and recovery materials.</dd></div>
+            <div><dt>Scenario actions</dt><dd>Containment, recovery, validation and rollback prompts for common incident types.</dd></div>
+            <div><dt>Evidence log</dt><dd>Observation times, public signals, audit events, provider responses and decisions.</dd></div>
+            <div><dt>Communications</dt><dd>Internal, customer, stakeholder, regulatory and public communication responsibilities.</dd></div>
+            <div><dt>Completion</dt><dd>Recovery confirmation, residual risk, follow-up actions and record updates.</dd></div>
+            <div><dt>Exercise history</dt><dd>Last scenario tested, outcome, lessons and next exercise date.</dd></div>
+          </dl>
+          <div class="download-panel">
+            <div>
+              <span class="guide-label">Portable incident record</span>
+              <h3>Domain incident runbook template</h3>
+              <p>A plain Markdown runbook that can be pasted into an incident platform, continuity plan, wiki or controlled knowledge repository.</p>
+            </div>
+            <div class="download-actions"><a class="btn btn-primary" href="../downloads/domain-incident-runbook-template.md" download>Download runbook</a></div>
+          </div>
+        </article>
+
+        <article class="guide-section" id="exercise">
+          <div class="guide-section-head">
+            <span class="guide-step">Exercise and learning</span>
+            <h2>Test the path, not only the document</h2>
+          </div>
+          <p>
+            A short tabletop or controlled recovery exercise should prove that people can find the records, reach providers,
+            recover access, make decisions and validate changes. The exercise record captures evidence and follow-up without becoming a separate assurance programme.
+          </p>
+          <div class="download-panel">
+            <div>
+              <span class="guide-label">Portable exercise record</span>
+              <h3>Domain incident exercise template</h3>
+              <p>Use it for a registrar lockout, DNS misrouting, domain expiry or email-authority scenario, then transfer actions into the organisation's existing action system.</p>
+            </div>
+            <div class="download-actions"><a class="btn btn-primary" href="../downloads/domain-incident-exercise-record-template.md" download>Download exercise record</a></div>
+          </div>
+        </article>
+
+        <article class="guide-section" id="evidence">
+          <div class="guide-section-head">
+            <span class="guide-step">Evidence and cadence</span>
+            <h2>Know when readiness genuinely exists</h2>
+          </div>
+          <div class="evidence-grid">
+            <section><h3>Evidence of practice</h3><ul>
+              <li>A current runbook is stored in an approved, accessible location.</li>
+              <li>Incident and provider roles can be reached through monitored organisational channels.</li>
+              <li>Provider account identifiers and recovery paths are current.</li>
+              <li>Critical domain dependencies and recovery priorities are documented.</li>
+              <li>Known-good DNS, authority and sender evidence can be retrieved.</li>
+              <li>A recent exercise demonstrated access, decision and recovery capability.</li>
+              <li>Exercise and incident actions were assigned and closed or accepted.</li>
+            </ul></section>
+            <section><h3>Review it when</h3><ul>
+              <li>The annual exercise or scheduled review falls due.</li>
+              <li>A registrar, DNS, email, identity or hosting provider changes.</li>
+              <li>An accountable owner, administrator or emergency contact changes.</li>
+              <li>A material domain, service or supplier is launched or retired.</li>
+              <li>A domain-layer incident or near miss occurs.</li>
+              <li>Recovery evidence, vault arrangements or support paths change.</li>
+            </ul></section>
+          </div>
+        </article>
+
+        <article class="guide-section" id="failure-modes">
+          <div class="guide-section-head"><span class="guide-step">Common failure modes</span><h2>A runbook can exist and still fail during the incident</h2></div>
+          <div class="failure-grid">
+            <article><h3>Contacts live in the failed mailbox</h3><p>The response depends on email or identity services that the domain incident has already disrupted.</p></article>
+            <article><h3>The provider account cannot be identified</h3><p>Support cannot verify or escalate the case because customer, reseller, registry or zone identifiers are missing.</p></article>
+            <article><h3>One specialist holds the recovery knowledge</h3><p>The organisation has a document but cannot act when the usual administrator is unavailable.</p></article>
+            <article><h3>Records are restored without service context</h3><p>DNS is changed quickly but identity, email, application and supplier dependencies are not validated in sequence.</p></article>
+            <article><h3>Evidence is overwritten during containment</h3><p>Urgent changes remove the state needed to understand compromise, support investigation or explain decisions.</p></article>
+            <article><h3>Emergency authority is unclear</h3><p>People know the technical action but not who can approve a transfer, lock change, rollback or public statement.</p></article>
+            <article><h3>The runbook is never exercised</h3><p>Stale contacts, inaccessible vaults and provider limitations are discovered only during a real incident.</p></article>
+            <article><h3>Post-incident actions disappear</h3><p>The service is restored, but registers, access controls, sender records and recurring governance are not corrected.</p></article>
+          </div>
+        </article>
+
+        <article class="guide-section closing-section">
+          <div class="closing-panel">
+            <div>
+              <span class="guide-label">Return to the baseline</span>
+              <h2>Readiness should make the incident-path answer demonstrable</h2>
+              <p>Revisit the question about what happens when a domain, DNS record or email control fails. The organisation should now be able to name who leads, who can act, what services matter, how authority is recovered and when the path was last tested.</p>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="../../">Return to the baseline</a>
+              <a class="btn btn-ghost" href="../email-authority-public-signals/">Review guide 03</a>
+              <a class="btn btn-ghost" href="../recurring-domain-governance-review/">Continue to guide 05</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand-block"><a class="footer-brand" href="../../" aria-label="Domain Governance Baseline home"><svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" /><path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" /><circle cx="16" cy="16" r="4.4" fill="currentColor" /></svg><span><span class="footer-brand-title">Domain Governance Baseline</span><span class="footer-brand-sub">Practice guide 04</span></span></a><p>Practical guidance for domain-layer incident readiness using existing response processes.</p></div>
+      <nav class="footer-nav" aria-label="Guide links"><p class="footer-nav-title">This guide</p><div class="footer-links"><a href="#incident-scope">Incident scope</a><a href="#establish">Eight-step method</a><a href="#runbook">Runbook</a><a href="#exercise">Exercise</a><a href="#evidence">Evidence and cadence</a><a href="#failure-modes">Common failures</a></div></nav>
+      <nav class="footer-nav" aria-label="Downloads"><p class="footer-nav-title">Downloads</p><div class="footer-links"><a href="../downloads/domain-incident-runbook-template.md" download>Incident runbook</a><a href="../downloads/domain-incident-exercise-record-template.md" download>Exercise record</a><a href="../email-authority-public-signals/">Guide 03: Email authority</a><a href="../recurring-domain-governance-review/">Guide 05: Recurring review</a></div></nav>
+      <div class="footer-note"><p class="footer-note-title">Boundary</p><ul class="trust-list"><li>Extends existing incident processes</li><li>No new response platform</li><li>No assurance or recovery guarantee</li><li>Adapt to organisational and provider context</li></ul></div>
+    </div>
+    <div class="wrap footer-legal"><p>&copy; 2026 Bryan Chetcuti. Practical governance guidance. Adapt to organisational context, incident obligations and provider capability.</p></div>
+  </footer>
+</body>
+</html>

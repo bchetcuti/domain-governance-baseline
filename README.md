@@ -9,15 +9,15 @@ Published: `https://baseline.bryanchetcuti.com/`.
 ## Positioning
 
 The Domain Governance Baseline exists to make the essay's checklist easier to use in an
-existing governance conversation. It is intentionally small. It is not intended to become
+existing governance process. It is intentionally small. It is not intended to become
 another assessment platform, governance system or product workflow.
 
-It is designed for technology, risk and governance leaders who need a practical prompt before:
+It is designed for technology, risk and governance leaders who need a practical review aid before:
 
 - a board, executive or risk update;
 - a domain, DNS or email incident review;
 - registrar, DNS, email or digital supplier assurance; or
-- a quarterly or biannual domain-governance check-in.
+- a recurring domain-governance review.
 
 Core stance:
 
@@ -29,7 +29,7 @@ Core stance:
 ## What it is
 
 A single-page checklist that reproduces the essay's ten starting-point questions and turns
-answers into a local reflection summary or conversation brief.
+answers into a local baseline review summary.
 
 The checklist is deliberately **not a score**. It follows the essay's position that observation
 is not judgement.
@@ -38,18 +38,18 @@ is not judgement.
   DNS, dependencies, email authority, email authentication, change control and incident readiness.
 - **Optional follow-on themes:** portfolio rationalisation, supplier assurance, change control,
   continuous monitoring, public signal review and executive reporting.
-- **Reflection Summary / Conversation Brief:** a structured output that leads with conversation
-  priorities rather than counts. Findings are framed for board / exec / risk, technical, and
-  public trust / service impact audiences.
+- **Baseline Review Summary:** a structured output that leads with priorities for follow-up
+  rather than counts. Findings are framed for board / exec / risk, technical, and public trust /
+  service impact audiences.
 
-The output is a reflection summary or conversation brief, not an assurance report, compliance
-instrument, maturity score or rating.
+The output is a baseline review summary, not an assurance report, compliance instrument,
+maturity score or rating.
 
 ## Why it stays local
 
 The absence of a backend is a deliberate benefit, not only a technical constraint.
 
-Organisations can reflect on ownership gaps, supplier dependencies and incident readiness
+Organisations can review ownership gaps, supplier dependencies and incident readiness
 without placing those answers into another external assessment system.
 
 - no account;
@@ -58,28 +58,36 @@ without placing those answers into another external assessment system.
 - no analytics or telemetry;
 - copied and printed outputs generated locally in the browser.
 
-The intended outcome is governance-ready narrative and questions that can be moved into the
-organisation's existing board papers, incident reviews, supplier notes and recurring reports.
+The intended outcome is governance-ready priorities, evidence needs and next actions that can
+be moved into the organisation's existing board papers, incident reviews, supplier notes,
+work systems and recurring governance records.
 
 ## From baseline to practice
 
-The `/resources/` section provides practical guidance for establishing the basic governance
-practices behind the ten questions.
+The `/resources/` section provides five practical guides for establishing and sustaining the
+basic governance practices behind the ten questions.
 
 The relationship is deliberately simple:
 
 - the essay explains **why** domain governance matters;
 - the baseline reveals **what is unclear**;
-- the practical guides explain **what to establish next**.
+- the practical guides explain **what to establish and maintain next**.
 
 This is not a maturity model, resource catalogue or separate product surface. Each guide carries
 the substantive expertise. Starter files are portable artefacts for use in systems the
 organisation already operates.
 
+The five-guide sequence is intentionally complete and bounded:
+
+1. know which domains matter and who is accountable;
+2. control the privileged authority that can alter or recover them;
+3. govern who may send using organisational domains and reconcile public evidence;
+4. prepare the response and recovery path for domain-layer incidents;
+5. use an existing forum to keep the practices current.
+
 ### Practice guide 01: Establish a domain register
 
-The first guide is intentionally foundational and narrow. It explains how to create a minimum
-credible register of registrable domains and material subdomain governance boundaries.
+Creates a minimum credible register of registrable domains and material subdomain governance boundaries.
 
 It covers:
 
@@ -96,12 +104,12 @@ Starter files:
 - `resources/downloads/domain-register-template.csv` - blank Excel-compatible CSV;
 - `resources/downloads/domain-register-example.csv` - worked example using reserved example domains.
 
-The public route is `https://baseline.bryanchetcuti.com/resources/domain-register/`.
+Public route: `https://baseline.bryanchetcuti.com/resources/domain-register/`.
 
 ### Practice guide 02: Control registrar and DNS authority
 
-The second guide establishes control over the privileged paths that can renew or transfer domains,
-change delegation, alter authoritative DNS and recover authority during an incident.
+Establishes control over the privileged paths that can renew or transfer domains, change delegation,
+alter authoritative DNS and recover authority during an incident.
 
 It covers:
 
@@ -120,12 +128,12 @@ Starter files:
 - `resources/downloads/domain-authority-review-example.csv` - worked registrar, DNS and delegated-zone example;
 - `resources/downloads/dns-change-record-template.md` - portable DNS change record for existing ITSM or engineering workflows.
 
-The public route is `https://baseline.bryanchetcuti.com/resources/registrar-dns-authority/`.
+Public route: `https://baseline.bryanchetcuti.com/resources/registrar-dns-authority/`.
 
 ### Practice guide 03: Govern email authority and public signals
 
-The third guide connects approved sending authority with the public SPF, DKIM and DMARC evidence
-that recipients and external systems can observe.
+Connects approved sending authority with the public SPF, DKIM and DMARC evidence that recipients
+and external systems can observe.
 
 It covers:
 
@@ -144,13 +152,54 @@ Starter files:
 - `resources/downloads/authorised-sender-register-example.csv` - worked staff, campaign and non-sending example;
 - `resources/downloads/email-public-signal-review-template.md` - portable public-signal review record.
 
-The public route is `https://baseline.bryanchetcuti.com/resources/email-authority-public-signals/`.
+Public route: `https://baseline.bryanchetcuti.com/resources/email-authority-public-signals/`.
 
-Potential later guides are not promised or published as placeholders. Each requires a separate,
-validated decision. The likely sequence, if evidence supports it, is:
+### Practice guide 04: Establish domain incident readiness
 
-1. domain incident readiness;
-2. recurring domain-governance review.
+Extends existing incident and continuity processes with the domain-layer authority, provider,
+dependency, evidence, recovery and communication information needed under pressure.
+
+It covers:
+
+- expiry, registrar compromise, delegation or DNS failure, email-control incidents and provider loss;
+- activation triggers, severity considerations and emergency decision authority;
+- registrar, DNS, email and service-response roles;
+- provider identifiers, independent contacts and recovery-material locations;
+- service dependencies and recovery priorities;
+- containment, restoration, validation and evidence preservation;
+- communications and external obligations;
+- exercises, maintenance, evidence and common failure modes.
+
+Starter files:
+
+- `resources/downloads/domain-incident-runbook-template.md` - portable domain incident runbook;
+- `resources/downloads/domain-incident-exercise-record-template.md` - tabletop and controlled-recovery exercise record.
+
+Public route: `https://baseline.bryanchetcuti.com/resources/domain-incident-readiness/`.
+
+### Practice guide 05: Run a recurring domain governance review
+
+Provides the maintenance mechanism for the earlier practices through an existing technology,
+cyber, risk, supplier, continuity or service-governance forum.
+
+It covers:
+
+- selection of an existing forum and proportionate cadence;
+- accountable review ownership and participants;
+- a minimum evidence set drawn from authoritative source records;
+- portfolio, privileged authority, email trust, incidents and supplier change;
+- unknowns, exceptions, overdue actions and upcoming decisions;
+- explicit retain, retire, remediate, test, accept, escalate and close decisions;
+- action routing into existing organisational systems;
+- record updates, evidence, review cadence and common failure modes.
+
+Starter files:
+
+- `resources/downloads/domain-governance-review-agenda-template.md` - portable recurring-review agenda;
+- `resources/downloads/domain-governance-action-log-template.csv` - blank decision and action log;
+- `resources/downloads/domain-governance-action-log-example.csv` - worked cross-practice example.
+
+Public route: `https://baseline.bryanchetcuti.com/resources/recurring-domain-governance-review/`.
 
 ## Guided interaction model
 
@@ -167,8 +216,12 @@ Skipping is intentionally separate from uncertainty:
 - **Not sure** means uncertainty itself is the finding.
 - **Skip for now** means the user is choosing not to answer that item in this pass.
 
-Skipped checklist questions are included separately in the reflection output and are not treated
+Skipped checklist questions are included separately in the review summary and are not treated
 as findings or gaps.
+
+Practical next steps route unresolved questions to the matching guide. Internal guide links remain
+in the current tab; external references such as ThreatScope Check and .au Domain Observatory (.auDO)
+open separately.
 
 ## Tech
 
@@ -184,28 +237,30 @@ Key files:
 - `css/resources.css` - practical guide layout and responsive / print styling.
 - `js/data.js` - checklist questions, optional themes, answer states and signal metadata.
 - `js/app.js` - base rendering, state, progress, theme toggle and default reflection logic.
-- `js/reflection-priorities.js` - guided-pass interaction, conversation-first reflection output,
-  skipped-item handling and copied conversation brief override.
-- `js/instrument-enhancements.js` - governance-layer labels, suggested pathways and links from
-  reflection findings to the matching practical guide.
-- `resources/index.html` - From baseline to practice landing page.
+- `js/reflection-priorities.js` - guided-pass interaction, priority-first review output,
+  skipped-item handling and copied review-summary override.
+- `js/instrument-enhancements.js` - governance-layer labels, practical next steps and links from
+  review findings to the matching practical guide.
+- `resources/index.html` - complete five-guide From baseline to practice landing page.
 - `resources/domain-register/index.html` - domain-register implementation guide.
 - `resources/registrar-dns-authority/index.html` - registrar and DNS authority implementation guide.
 - `resources/email-authority-public-signals/index.html` - email authority and public-signals implementation guide.
+- `resources/domain-incident-readiness/index.html` - domain incident-readiness implementation guide.
+- `resources/recurring-domain-governance-review/index.html` - recurring-review implementation guide.
 
 ## Guardrails
 
 The baseline should remain a precise companion to the essay rather than grow into a general
 assessment product.
 
-> The baseline should support a governance conversation, not become another system to operate.
+> The baseline should support governance work, not become another system to operate.
 
 Acceptable changes are narrow improvements to:
 
 - the clarity and accuracy of the ten questions and optional guidance;
 - accessibility, responsive behaviour and print quality;
-- the usefulness of copied or printed reflection notes;
-- substantive implementation guidance for a validated governance problem;
+- the usefulness of copied or printed review notes;
+- substantive maintenance of the five bounded practice guides;
 - portable starter files that can be adopted into existing organisational systems; and
 - transparent versioning of substantive content changes.
 
@@ -217,9 +272,9 @@ The following are out of scope unless the positioning is deliberately reconsider
 - mandatory integrations with ThreatScope Check or other services;
 - workflow, case-management or reporting-platform capabilities;
 - generic blank-template catalogues;
-- browser-based imitation forms where a portable standard file is more useful; and
-- publishing placeholder guides or a promised suite before each practice has been validated.
+- browser-based imitation forms where a portable standard file is more useful;
+- provider-specific operating procedures presented as universal controls; and
+- expansion beyond the five-guide sequence without a distinct, validated governance problem.
 
-A new guide should be added only when it can name the specific governance problem it solves,
-explain the minimum credible practice, identify evidence and review cadence, and provide a
-starter artefact that improves real-world adoption.
+The five guides close this implementation spike. Future changes should improve accuracy,
+clarity, accessibility or real-world usability rather than extend the site by default.

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>From baseline to practice - Domain Governance Baseline</title>
-  <meta name="description" content="Practical guidance for establishing the domain-governance practices behind the Domain Governance Baseline: domain visibility, privileged authority and email trust." />
+  <meta name="description" content="Five practical guides for establishing domain visibility, privileged authority, email trust, incident readiness and recurring domain governance." />
   <link rel="canonical" href="https://baseline.bryanchetcuti.com/resources/" />
   <meta name="author" content="Bryan Chetcuti" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230d5b5f' stroke-width='2.5'/%3E%3Cpath d='M16 3v26M3 16h26' stroke='%230d5b5f' stroke-width='1.5' opacity='.5'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%230d5b5f'/%3E%3C/svg%3E" />
@@ -36,23 +36,23 @@
     <section class="hero practice-hero">
       <div class="wrap">
         <span class="eyebrow">From baseline to practice</span>
-        <p class="hero-note">Practical guidance, not another maturity model or template library.</p>
+        <p class="hero-note">Practical guidance, not another maturity model or governance platform.</p>
         <h1>Establish the basic practices behind the ten questions.</h1>
         <p class="lede">
-          The baseline helps reveal what is unclear. These guides explain what to put in place next,
+          The baseline helps reveal what is unclear. These five guides explain what to put in place next,
           using the governance systems, records and forums your organisation already operates.
         </p>
         <div class="hero-meta">
-          <span class="pill">Implementation guidance</span>
+          <span class="pill">Five bounded practice guides</span>
           <span class="pill">Minimum credible practice</span>
           <span class="pill">Portable starter files</span>
           <span class="pill">No scoring or platform</span>
         </div>
         <div class="stance">
           <p>
-            <strong>Build in sequence.</strong>
-            Establish which domains matter, control the privileged authority that can alter them,
-            then govern who may send in the organisation's name and whether public evidence matches that authority.
+            <strong>Build and maintain in sequence.</strong>
+            Know which domains matter. Control who can alter them. Govern who may send.
+            Prepare for failure. Then use an existing forum to keep those answers true.
           </p>
         </div>
       </div>
@@ -63,41 +63,17 @@
         <div class="section-head">
           <span class="section-index">Practice guide 01 · Foundation</span>
           <h2>Establish a domain register</h2>
-          <p>
-            Build the foundational inventory and ownership record behind the first baseline questions.
-            Start here when the organisation cannot confidently state which domains matter, why they exist or who owns renewal and dependencies.
-          </p>
+          <p>Build the foundational inventory and ownership record behind the first baseline questions. Start here when the organisation cannot confidently state which domains matter, why they exist or who owns renewal and dependencies.</p>
         </div>
-
         <article class="guide-feature">
           <div class="guide-feature-copy">
             <span class="guide-label">Visibility and ownership</span>
             <h3>Know which domains matter and who is accountable</h3>
-            <p>
-              Learn what belongs in a governance register, how to assemble an initial view from several imperfect sources,
-              how to assign ownership and renewal responsibility, and how to keep unknowns visible rather than forcing false certainty.
-            </p>
-            <ul class="guide-benefits">
-              <li>Defines the minimum credible register.</li>
-              <li>Distinguishes domains from ordinary hostnames.</li>
-              <li>Provides an eight-step establishment method.</li>
-              <li>Includes a blank CSV and worked example.</li>
-            </ul>
-            <div class="cta-row">
-              <a class="btn btn-primary btn-lg" href="./domain-register/">Open guide 01</a>
-              <a class="btn btn-ghost btn-lg" href="./downloads/domain-register-template.csv" download>Download domain-register CSV</a>
-            </div>
+            <p>Learn what belongs in a governance register, assemble an initial view from several imperfect sources, assign ownership and renewal responsibility, and keep unknowns visible.</p>
+            <ul class="guide-benefits"><li>Defines the minimum credible register.</li><li>Distinguishes domains from ordinary hostnames.</li><li>Provides an eight-step establishment method.</li><li>Includes a blank CSV and worked example.</li></ul>
+            <div class="cta-row"><a class="btn btn-primary btn-lg" href="./domain-register/">Open guide 01</a><a class="btn btn-ghost btn-lg" href="./downloads/domain-register-template.csv" download>Download domain-register CSV</a></div>
           </div>
-          <aside class="guide-feature-aside" aria-label="Guide 01 outcome">
-            <p class="aside-title">The outcome</p>
-            <p>
-              A usable register that names each material domain, its purpose, accountable owner, technical operator,
-              registrar, DNS provider, renewal responsibility, email use, dependencies and unresolved next action.
-            </p>
-            <p class="aside-boundary">
-              The register is not a complete technical inventory, CMDB replacement, risk score or control assessment.
-            </p>
-          </aside>
+          <aside class="guide-feature-aside" aria-label="Guide 01 outcome"><p class="aside-title">The outcome</p><p>A usable register that names each material domain, its purpose, accountable owner, technical operator, registrar, DNS provider, renewal responsibility, email use, dependencies and unresolved next action.</p><p class="aside-boundary">The register is not a complete technical inventory, CMDB replacement, risk score or control assessment.</p></aside>
         </article>
       </div>
     </section>
@@ -107,41 +83,17 @@
         <div class="section-head">
           <span class="section-index">Practice guide 02 · Authority</span>
           <h2>Control registrar and DNS authority</h2>
-          <p>
-            Establish named, reviewable and recoverable control over the privileged paths that can renew or transfer domains,
-            change delegation, alter authoritative DNS and regain control during an incident.
-          </p>
+          <p>Establish named, reviewable and recoverable control over the privileged paths that can renew or transfer domains, change delegation, alter authoritative DNS and regain control during an incident.</p>
         </div>
-
         <article class="guide-feature">
           <div class="guide-feature-copy">
             <span class="guide-label">Access, change and recovery</span>
             <h3>Make domain authority attributable and recoverable</h3>
-            <p>
-              Map registrar, reseller, delegation, DNS and recovery authority; replace shared and personal access;
-              enforce MFA and least privilege; protect transfers; and make DNS changes approved, evidenced and reversible.
-            </p>
-            <ul class="guide-benefits">
-              <li>Defines the material authority boundaries.</li>
-              <li>Provides an eight-step control method.</li>
-              <li>Includes a portable authority-review CSV.</li>
-              <li>Includes a DNS change-record template.</li>
-            </ul>
-            <div class="cta-row">
-              <a class="btn btn-primary btn-lg" href="./registrar-dns-authority/">Open guide 02</a>
-              <a class="btn btn-ghost btn-lg" href="./downloads/domain-authority-review-template.csv" download>Download authority-review CSV</a>
-            </div>
+            <p>Map registrar, reseller, delegation, DNS and recovery authority; replace shared and personal access; enforce MFA and least privilege; protect transfers; and make DNS changes approved, evidenced and reversible.</p>
+            <ul class="guide-benefits"><li>Defines the material authority boundaries.</li><li>Provides an eight-step control method.</li><li>Includes a portable authority-review CSV.</li><li>Includes a DNS change-record template.</li></ul>
+            <div class="cta-row"><a class="btn btn-primary btn-lg" href="./registrar-dns-authority/">Open guide 02</a><a class="btn btn-ghost btn-lg" href="./downloads/domain-authority-review-template.csv" download>Download authority-review CSV</a></div>
           </div>
-          <aside class="guide-feature-aside" aria-label="Guide 02 outcome">
-            <p class="aside-title">The outcome</p>
-            <p>
-              A current record of who can exercise registrar and DNS authority, how privileged access is protected,
-              how material changes are controlled and how the organisation can recover authority without one person or personal mailbox.
-            </p>
-            <p class="aside-boundary">
-              The guide uses existing identity, access, change and recovery processes. It does not create a new control platform.
-            </p>
-          </aside>
+          <aside class="guide-feature-aside" aria-label="Guide 02 outcome"><p class="aside-title">The outcome</p><p>A current record of who can exercise registrar and DNS authority, how privileged access is protected, how material changes are controlled and how authority can be recovered without one person or personal mailbox.</p><p class="aside-boundary">The guide uses existing identity, access, change and recovery processes. It does not create a new control platform.</p></aside>
         </article>
       </div>
     </section>
@@ -151,41 +103,17 @@
         <div class="section-head">
           <span class="section-index">Practice guide 03 · Email trust</span>
           <h2>Govern email authority and public signals</h2>
-          <p>
-            Establish who may send using organisational domains, how that authority is authenticated and whether
-            publicly observable mail signals match the systems and suppliers the organisation has actually approved.
-          </p>
+          <p>Establish who may send using organisational domains, how that authority is authenticated and whether publicly observable mail signals match the systems and suppliers the organisation has actually approved.</p>
         </div>
-
         <article class="guide-feature">
           <div class="guide-feature-copy">
             <span class="guide-label">Authorised senders and evidence</span>
             <h3>Connect internal sending authority to SPF, DKIM and DMARC</h3>
-            <p>
-              Record approved sending platforms and identity paths, govern domains that should not send,
-              review DMARC reporting, reconcile public signals and remove obsolete supplier authority.
-            </p>
-            <ul class="guide-benefits">
-              <li>Separates approved authority from public observation.</li>
-              <li>Provides an eight-step governance method.</li>
-              <li>Includes an authorised-sender CSV.</li>
-              <li>Includes a public-signal review record.</li>
-            </ul>
-            <div class="cta-row">
-              <a class="btn btn-primary btn-lg" href="./email-authority-public-signals/">Open guide 03</a>
-              <a class="btn btn-ghost btn-lg" href="./downloads/authorised-sender-register-template.csv" download>Download sender-register CSV</a>
-            </div>
+            <p>Record approved sending platforms and identity paths, govern domains that should not send, review DMARC reporting, reconcile public signals and remove obsolete supplier authority.</p>
+            <ul class="guide-benefits"><li>Separates approved authority from public observation.</li><li>Provides an eight-step governance method.</li><li>Includes an authorised-sender CSV.</li><li>Includes a public-signal review record.</li></ul>
+            <div class="cta-row"><a class="btn btn-primary btn-lg" href="./email-authority-public-signals/">Open guide 03</a><a class="btn btn-ghost btn-lg" href="./downloads/authorised-sender-register-template.csv" download>Download sender-register CSV</a></div>
           </div>
-          <aside class="guide-feature-aside" aria-label="Guide 03 outcome">
-            <p class="aside-title">The outcome</p>
-            <p>
-              A dependable record of approved sending domains and providers, the identities they use,
-              the authentication and reporting that supports them, and the action required where public evidence differs.
-            </p>
-            <p class="aside-boundary">
-              Public signals support governance evidence. They do not prove internal approval, deliverability or complete control effectiveness.
-            </p>
-          </aside>
+          <aside class="guide-feature-aside" aria-label="Guide 03 outcome"><p class="aside-title">The outcome</p><p>A dependable record of approved sending domains and providers, the identities they use, the authentication and reporting that supports them, and the action required where public evidence differs.</p><p class="aside-boundary">Public signals support governance evidence. They do not prove internal approval, deliverability or complete control effectiveness.</p></aside>
         </article>
       </div>
     </section>
@@ -193,85 +121,64 @@
     <section class="section section-offset">
       <div class="wrap">
         <div class="section-head">
-          <span class="section-index">How the pieces fit</span>
-          <h2>One argument, one diagnostic starting point, practical follow-through</h2>
+          <span class="section-index">Practice guide 04 · Incident readiness</span>
+          <h2>Establish domain incident readiness</h2>
+          <p>Extend the organisation's existing incident process with the authority, provider, dependency, evidence and recovery information needed when a domain, DNS or email control fails.</p>
         </div>
-        <div class="relationship-grid">
-          <article class="relationship-card">
-            <span>01</span>
-            <h3>The essay explains why</h3>
-            <p><em>Domain Governance as a Trust Surface</em> makes the case that domains carry identity, authority, service continuity and public trust.</p>
-            <a href="https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/" target="_blank" rel="noopener">Read the source essay</a>
-          </article>
-          <article class="relationship-card">
-            <span>02</span>
-            <h3>The baseline reveals uncertainty</h3>
-            <p>The ten questions help an organisation identify where ownership, evidence, access, dependency or escalation is unclear.</p>
-            <a href="../">Work through the baseline</a>
-          </article>
-          <article class="relationship-card">
-            <span>03</span>
-            <h3>The guides establish practice</h3>
-            <p>Each guide turns a specific cluster of unanswered questions into a bounded implementation path and portable organisational record.</p>
-            <a href="./domain-register/">Begin with guide 01</a>
-          </article>
-        </div>
+        <article class="guide-feature">
+          <div class="guide-feature-copy">
+            <span class="guide-label">Response and recovery</span>
+            <h3>Make the domain incident path usable under pressure</h3>
+            <p>Define triggers, roles, emergency decisions, provider escalation, recovery priorities, evidence handling and communications for expiry, compromise, DNS failure, email-control incidents and provider loss.</p>
+            <ul class="guide-benefits"><li>Defines six material incident classes.</li><li>Provides an eight-step readiness method.</li><li>Includes a portable incident runbook.</li><li>Includes a tabletop and recovery exercise record.</li></ul>
+            <div class="cta-row"><a class="btn btn-primary btn-lg" href="./domain-incident-readiness/">Open guide 04</a><a class="btn btn-ghost btn-lg" href="./downloads/domain-incident-runbook-template.md" download>Download incident runbook</a></div>
+          </div>
+          <aside class="guide-feature-aside" aria-label="Guide 04 outcome"><p class="aside-title">The outcome</p><p>A tested response path that can identify affected authority and services, reach the right provider, contain harmful change, restore known-good state and preserve a decision trail.</p><p class="aside-boundary">The guide extends existing incident and continuity processes. It does not create a separate response system or guarantee recovery.</p></aside>
+        </article>
+      </div>
+    </section>
 
-        <p class="practice-note">
-          Additional guidance will be published only where it addresses a specific, validated implementation problem.
-          This page does not promise an unfinished suite or ask organisations to adopt a new governance system.
-        </p>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">Practice guide 05 · Sustainment</span>
+          <h2>Run a recurring domain governance review</h2>
+          <p>Add a short, evidence-based domain-layer item to an existing technology, cyber, risk, supplier or service forum so changes, unknowns, exceptions and overdue actions remain visible.</p>
+        </div>
+        <article class="guide-feature">
+          <div class="guide-feature-copy">
+            <span class="guide-label">Cadence, decisions and closure</span>
+            <h3>Keep the five practices true over time</h3>
+            <p>Review source records together, focus on change and uncertainty, make explicit decisions, route actions into existing systems and feed outcomes back into the registers and runbook.</p>
+            <ul class="guide-benefits"><li>Uses an existing governance forum.</li><li>Provides an eight-step review method.</li><li>Includes a 30–45 minute agenda.</li><li>Includes a portable action log and example.</li></ul>
+            <div class="cta-row"><a class="btn btn-primary btn-lg" href="./recurring-domain-governance-review/">Open guide 05</a><a class="btn btn-ghost btn-lg" href="./downloads/domain-governance-review-agenda-template.md" download>Download review agenda</a></div>
+          </div>
+          <aside class="guide-feature-aside" aria-label="Guide 05 outcome"><p class="aside-title">The outcome</p><p>A named existing forum, accountable owner, defined cadence and repeatable evidence set that can confirm what changed, decide what matters, assign action and escalate unresolved domain-layer risk.</p><p class="aside-boundary">The review maintains authoritative records in existing systems. It is not a new committee, scorecard or reporting platform.</p></aside>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-offset">
+      <div class="wrap">
+        <div class="section-head"><span class="section-index">How the pieces fit</span><h2>One argument, one diagnostic starting point, five bounded practices</h2></div>
+        <div class="relationship-grid">
+          <article class="relationship-card"><span>01</span><h3>The essay explains why</h3><p><em>Domain Governance as a Trust Surface</em> makes the case that domains carry identity, authority, service continuity and public trust.</p><a href="https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/" target="_blank" rel="noopener">Read the source essay</a></article>
+          <article class="relationship-card"><span>02</span><h3>The baseline reveals uncertainty</h3><p>The ten questions identify where ownership, evidence, access, dependency or escalation is unclear.</p><a href="../">Work through the baseline</a></article>
+          <article class="relationship-card"><span>03</span><h3>The guides establish and sustain practice</h3><p>Each guide turns a specific cluster of unanswered questions into a bounded implementation path and portable organisational record.</p><a href="./domain-register/">Begin with guide 01</a></article>
+        </div>
+        <p class="practice-note"><strong>This sequence is intentionally complete and bounded.</strong> It provides a practical path from visibility through authority, email trust, incident readiness and recurring review without turning the baseline into another governance system.</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap footer-grid">
-      <div class="footer-brand-block">
-        <a class="footer-brand" href="../" aria-label="Domain Governance Baseline home">
-          <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" />
-            <path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" />
-            <circle cx="16" cy="16" r="4.4" fill="currentColor" />
-          </svg>
-          <span>
-            <span class="footer-brand-title">Domain Governance Baseline</span>
-            <span class="footer-brand-sub">From baseline to practice</span>
-          </span>
-        </a>
-        <p>Practical guidance for establishing the basic practices behind the ten-question checklist.</p>
-      </div>
-      <nav class="footer-nav" aria-label="Explore">
-        <p class="footer-nav-title">Explore</p>
-        <div class="footer-links">
-          <a href="../">The baseline</a>
-          <a href="./domain-register/">Guide 01: Domain register</a>
-          <a href="./registrar-dns-authority/">Guide 02: Registrar and DNS</a>
-          <a href="./email-authority-public-signals/">Guide 03: Email authority</a>
-          <a href="./downloads/authorised-sender-register-template.csv" download>Authorised-sender CSV</a>
-        </div>
-      </nav>
-      <nav class="footer-nav" aria-label="Related work">
-        <p class="footer-nav-title">Related work</p>
-        <div class="footer-links">
-          <a href="https://bryanchetcuti.com/" target="_blank" rel="noopener">Bryan Chetcuti</a>
-          <a href="https://audo.bryanchetcuti.com/" target="_blank" rel="noopener">.au Domain Observatory (.auDO)</a>
-          <a href="https://threatscopecheck.com/" target="_blank" rel="noopener">ThreatScope Check</a>
-        </div>
-      </nav>
-      <div class="footer-note">
-        <p class="footer-note-title">Boundary</p>
-        <ul class="trust-list">
-          <li>No account or retained data</li>
-          <li>No score, rating or certification</li>
-          <li>No requirement to use a new platform</li>
-          <li>Starter files designed for existing systems</li>
-        </ul>
-      </div>
+      <div class="footer-brand-block"><a class="footer-brand" href="../" aria-label="Domain Governance Baseline home"><svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" /><path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" /><circle cx="16" cy="16" r="4.4" fill="currentColor" /></svg><span><span class="footer-brand-title">Domain Governance Baseline</span><span class="footer-brand-sub">From baseline to practice</span></span></a><p>Five practical guides for establishing and sustaining the practices behind the ten-question checklist.</p></div>
+      <nav class="footer-nav" aria-label="Explore"><p class="footer-nav-title">Practice guides</p><div class="footer-links"><a href="./domain-register/">01 · Domain register</a><a href="./registrar-dns-authority/">02 · Registrar and DNS</a><a href="./email-authority-public-signals/">03 · Email authority</a><a href="./domain-incident-readiness/">04 · Incident readiness</a><a href="./recurring-domain-governance-review/">05 · Recurring review</a></div></nav>
+      <nav class="footer-nav" aria-label="Related work"><p class="footer-nav-title">Related work</p><div class="footer-links"><a href="https://bryanchetcuti.com/" target="_blank" rel="noopener">Bryan Chetcuti</a><a href="https://audo.bryanchetcuti.com/" target="_blank" rel="noopener">.au Domain Observatory (.auDO)</a><a href="https://threatscopecheck.com/" target="_blank" rel="noopener">ThreatScope Check</a></div></nav>
+      <div class="footer-note"><p class="footer-note-title">Boundary</p><ul class="trust-list"><li>No account or retained data</li><li>No score, rating or certification</li><li>No requirement to use a new platform</li><li>Starter files designed for existing systems</li></ul></div>
     </div>
-    <div class="wrap footer-legal">
-      <p>&copy; 2026 Bryan Chetcuti. Practical governance guidance. Not an assurance report, compliance instrument, maturity score or rating.</p>
-    </div>
+    <div class="wrap footer-legal"><p>&copy; 2026 Bryan Chetcuti. Practical governance guidance. Not an assurance report, compliance instrument, maturity score or rating.</p></div>
   </footer>
 </body>
 </html>
