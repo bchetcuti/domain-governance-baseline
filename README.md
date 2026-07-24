@@ -63,23 +63,30 @@ organisation's existing board papers, incident reviews, supplier notes and recur
 
 ## From baseline to practice
 
-The `/resources/` section provides practical guidance for establishing the basic governance
-practices behind the ten questions.
+The `/resources/` section provides five practical guides for establishing and sustaining the
+basic governance practices behind the ten questions.
 
 The relationship is deliberately simple:
 
 - the essay explains **why** domain governance matters;
 - the baseline reveals **what is unclear**;
-- the practical guides explain **what to establish next**.
+- the practical guides explain **what to establish and maintain next**.
 
 This is not a maturity model, resource catalogue or separate product surface. Each guide carries
 the substantive expertise. Starter files are portable artefacts for use in systems the
 organisation already operates.
 
+The five-guide sequence is intentionally complete and bounded:
+
+1. know which domains matter and who is accountable;
+2. control the privileged authority that can alter or recover them;
+3. govern who may send using organisational domains and reconcile public evidence;
+4. prepare the response and recovery path for domain-layer incidents;
+5. use an existing forum to keep the practices current.
+
 ### Practice guide 01: Establish a domain register
 
-The first guide is intentionally foundational and narrow. It explains how to create a minimum
-credible register of registrable domains and material subdomain governance boundaries.
+Creates a minimum credible register of registrable domains and material subdomain governance boundaries.
 
 It covers:
 
@@ -96,12 +103,12 @@ Starter files:
 - `resources/downloads/domain-register-template.csv` - blank Excel-compatible CSV;
 - `resources/downloads/domain-register-example.csv` - worked example using reserved example domains.
 
-The public route is `https://baseline.bryanchetcuti.com/resources/domain-register/`.
+Public route: `https://baseline.bryanchetcuti.com/resources/domain-register/`.
 
 ### Practice guide 02: Control registrar and DNS authority
 
-The second guide establishes control over the privileged paths that can renew or transfer domains,
-change delegation, alter authoritative DNS and recover authority during an incident.
+Establishes control over the privileged paths that can renew or transfer domains, change delegation,
+alter authoritative DNS and recover authority during an incident.
 
 It covers:
 
@@ -120,12 +127,12 @@ Starter files:
 - `resources/downloads/domain-authority-review-example.csv` - worked registrar, DNS and delegated-zone example;
 - `resources/downloads/dns-change-record-template.md` - portable DNS change record for existing ITSM or engineering workflows.
 
-The public route is `https://baseline.bryanchetcuti.com/resources/registrar-dns-authority/`.
+Public route: `https://baseline.bryanchetcuti.com/resources/registrar-dns-authority/`.
 
 ### Practice guide 03: Govern email authority and public signals
 
-The third guide connects approved sending authority with the public SPF, DKIM and DMARC evidence
-that recipients and external systems can observe.
+Connects approved sending authority with the public SPF, DKIM and DMARC evidence that recipients
+and external systems can observe.
 
 It covers:
 
@@ -144,13 +151,54 @@ Starter files:
 - `resources/downloads/authorised-sender-register-example.csv` - worked staff, campaign and non-sending example;
 - `resources/downloads/email-public-signal-review-template.md` - portable public-signal review record.
 
-The public route is `https://baseline.bryanchetcuti.com/resources/email-authority-public-signals/`.
+Public route: `https://baseline.bryanchetcuti.com/resources/email-authority-public-signals/`.
 
-Potential later guides are not promised or published as placeholders. Each requires a separate,
-validated decision. The likely sequence, if evidence supports it, is:
+### Practice guide 04: Establish domain incident readiness
 
-1. domain incident readiness;
-2. recurring domain-governance review.
+Extends existing incident and continuity processes with the domain-layer authority, provider,
+dependency, evidence, recovery and communication information needed under pressure.
+
+It covers:
+
+- expiry, registrar compromise, delegation or DNS failure, email-control incidents and provider loss;
+- activation triggers, severity considerations and emergency decision authority;
+- registrar, DNS, email and service-response roles;
+- provider identifiers, independent contacts and recovery-material locations;
+- service dependencies and recovery priorities;
+- containment, restoration, validation and evidence preservation;
+- communications and external obligations;
+- exercises, maintenance, evidence and common failure modes.
+
+Starter files:
+
+- `resources/downloads/domain-incident-runbook-template.md` - portable domain incident runbook;
+- `resources/downloads/domain-incident-exercise-record-template.md` - tabletop and controlled-recovery exercise record.
+
+Public route: `https://baseline.bryanchetcuti.com/resources/domain-incident-readiness/`.
+
+### Practice guide 05: Run a recurring domain governance review
+
+Provides the maintenance mechanism for the earlier practices through an existing technology,
+cyber, risk, supplier, continuity or service-governance forum.
+
+It covers:
+
+- selection of an existing forum and proportionate cadence;
+- accountable review ownership and participants;
+- a minimum evidence set drawn from authoritative source records;
+- portfolio, privileged authority, email trust, incidents and supplier change;
+- unknowns, exceptions, overdue actions and upcoming decisions;
+- explicit retain, retire, remediate, test, accept, escalate and close decisions;
+- action routing into existing organisational systems;
+- record updates, evidence, review cadence and common failure modes.
+
+Starter files:
+
+- `resources/downloads/domain-governance-review-agenda-template.md` - portable recurring-review agenda;
+- `resources/downloads/domain-governance-action-log-template.csv` - blank decision and action log;
+- `resources/downloads/domain-governance-action-log-example.csv` - worked cross-practice example.
+
+Public route: `https://baseline.bryanchetcuti.com/resources/recurring-domain-governance-review/`.
 
 ## Guided interaction model
 
@@ -170,6 +218,10 @@ Skipping is intentionally separate from uncertainty:
 Skipped checklist questions are included separately in the reflection output and are not treated
 as findings or gaps.
 
+Suggested pathways route unresolved questions to the matching guide. Internal guide links remain
+in the current tab; external references such as ThreatScope Check and .au Domain Observatory (.auDO)
+open separately.
+
 ## Tech
 
 Plain HTML, CSS and vanilla JavaScript.
@@ -188,10 +240,12 @@ Key files:
   skipped-item handling and copied conversation brief override.
 - `js/instrument-enhancements.js` - governance-layer labels, suggested pathways and links from
   reflection findings to the matching practical guide.
-- `resources/index.html` - From baseline to practice landing page.
+- `resources/index.html` - complete five-guide From baseline to practice landing page.
 - `resources/domain-register/index.html` - domain-register implementation guide.
 - `resources/registrar-dns-authority/index.html` - registrar and DNS authority implementation guide.
 - `resources/email-authority-public-signals/index.html` - email authority and public-signals implementation guide.
+- `resources/domain-incident-readiness/index.html` - domain incident-readiness implementation guide.
+- `resources/recurring-domain-governance-review/index.html` - recurring-review implementation guide.
 
 ## Guardrails
 
@@ -205,7 +259,7 @@ Acceptable changes are narrow improvements to:
 - the clarity and accuracy of the ten questions and optional guidance;
 - accessibility, responsive behaviour and print quality;
 - the usefulness of copied or printed reflection notes;
-- substantive implementation guidance for a validated governance problem;
+- substantive maintenance of the five bounded practice guides;
 - portable starter files that can be adopted into existing organisational systems; and
 - transparent versioning of substantive content changes.
 
@@ -217,9 +271,9 @@ The following are out of scope unless the positioning is deliberately reconsider
 - mandatory integrations with ThreatScope Check or other services;
 - workflow, case-management or reporting-platform capabilities;
 - generic blank-template catalogues;
-- browser-based imitation forms where a portable standard file is more useful; and
-- publishing placeholder guides or a promised suite before each practice has been validated.
+- browser-based imitation forms where a portable standard file is more useful;
+- provider-specific operating procedures presented as universal controls; and
+- expansion beyond the five-guide sequence without a distinct, validated governance problem.
 
-A new guide should be added only when it can name the specific governance problem it solves,
-explain the minimum credible practice, identify evidence and review cadence, and provide a
-starter artefact that improves real-world adoption.
+The five guides close this implementation spike. Future changes should improve accuracy,
+clarity, accessibility or real-world usability rather than extend the site by default.
