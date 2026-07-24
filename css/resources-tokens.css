@@ -1,0 +1,5 @@
+/* Resource-page spacing tokens that sit between the shared base scale values. */
+:root {
+  --space-7: 1.75rem;
+  --space-9: 2.25rem;
+}
