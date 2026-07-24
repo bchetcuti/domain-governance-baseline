@@ -30,6 +30,10 @@
     return questionsInLayers(openQuestions(), layers).length > 0;
   }
 
+  function hasOpenQuestionIds(ids) {
+    return openQuestions().some((question) => ids.includes(question.id));
+  }
+
   function entireLayerIsAnsweredAndInPlace(layer) {
     const layerQuestions = BASELINE_QUESTIONS.filter((question) => question.layer === layer);
     return layerQuestions.length > 0 && layerQuestions.every((question) => state.baseline[question.id] === "in_place");
@@ -55,7 +59,7 @@
     const pathways = [];
     const externalOpen = openQuestions().filter((question) => question.visibility === "external");
 
-    if (externalOpen.length || hasOpenInLayers(["dns"])) {
+    if (externalOpen.length) {
       pathways.push({
         label: "Public signal review",
         title: "Review externally visible DNS and domain signals",
@@ -77,14 +81,25 @@
       });
     }
 
-    if (hasOpenInLayers(["registration"])) {
+    if (hasOpenQuestionIds(["b1", "b2", "b4", "b6"])) {
       pathways.push({
-        label: "Registration hygiene",
+        label: "Visibility and ownership",
         title: "Establish a dependable domain register",
-        summary: "Registration uncertainty usually means the organisation lacks a complete view of which domains matter, why they exist and who is accountable for ownership and renewal.",
+        summary: "Inventory, ownership, renewal or dependency uncertainty usually means the organisation lacks a complete view of which domains matter, why they exist and who is accountable for them.",
         action: "Build a minimum credible register covering purpose, accountable ownership, technical operation, registrar, DNS, renewal, email use, dependencies and unresolved questions.",
         href: "/resources/domain-register/",
         cta: "Establish a domain register",
+      });
+    }
+
+    if (hasOpenQuestionIds(["b3", "b5", "b9"])) {
+      pathways.push({
+        label: "Registrar and DNS authority",
+        title: "Control privileged domain authority",
+        summary: "Registrar access, authoritative DNS or recoverable change uncertainty means the organisation cannot yet demonstrate who can alter public identity and service routing or how control would be regained.",
+        action: "Map registrar, reseller, delegation, DNS and recovery authority; replace shared access; enforce MFA; and make material DNS changes approved, evidenced and reversible.",
+        href: "/resources/registrar-dns-authority/",
+        cta: "Control registrar and DNS authority",
       });
     }
 
@@ -159,8 +174,8 @@
     });
 
     lines.push("FROM BASELINE TO PRACTICE");
-    lines.push("Practical guidance explains how to establish the basic practices behind the checklist. Begin with a dependable domain register covering purpose, accountability, renewal, email use and critical dependencies.");
-    lines.push("Guide: https://baseline.bryanchetcuti.com/resources/domain-register/");
+    lines.push("Use the practical guide that matches the unresolved questions: establish a domain register for inventory, ownership, renewal and dependencies; control registrar and DNS authority for privileged access, delegation, change and recovery.");
+    lines.push("Guides: https://baseline.bryanchetcuti.com/resources/");
     lines.push("");
 
     return lines.join("\n");
