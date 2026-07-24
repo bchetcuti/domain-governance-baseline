@@ -1,6 +1,6 @@
 # Recurring domain-governance review
 
-Use this agenda inside an existing technology, cyber, risk, supplier, continuity or service-governance forum. The purpose is to review change, uncertainty, exceptions and decisions—not to reproduce every source register.
+Use this agenda inside an existing technology, cyber, risk, supplier, continuity or service-governance forum. The purpose is to review change, uncertainty, exceptions and decisions - not to reproduce every source register.
 
 ## Review details
 
