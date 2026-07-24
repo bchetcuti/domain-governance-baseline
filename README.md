@@ -61,30 +61,50 @@ without placing those answers into another external assessment system.
 The intended outcome is governance-ready narrative and questions that can be moved into the
 organisation's existing board papers, incident reviews, supplier notes and recurring reports.
 
-## Reflection resources
+## From baseline to practice
 
-The `/resources/` section contains printable companion templates designed to be used after a
-reflection, not as a separate product surface. They do not populate data, score maturity or
-certify control effectiveness. They provide a structured place to transcribe useful answers,
-notes, observations, ownership details, evidence sources and review actions.
+The `/resources/` section provides practical guidance for establishing the basic governance
+practices behind the ten questions.
 
-Resource pages:
+The relationship is deliberately simple:
 
-- `resources/index.html` - resource pack landing page.
-- `resources/executive-reflection-template.html` - one-page executive reflection panel.
-- `resources/governance-dashboard-panel.html` - governance status panel across baseline areas.
-- `resources/portfolio-rationalisation-worksheet.html` - domain keep / consolidate / retire / investigate worksheet.
-- `resources/public-signal-review-sheet.html` - public-signal observation and interpretation boundary sheet.
-- `resources/quarterly-domain-governance-report.html` - recurring quarterly report shell.
+- the essay explains **why** domain governance matters;
+- the baseline reveals **what is unclear**;
+- the practical guides explain **what to establish next**.
 
-Design principles:
+This is not a maturity model, resource catalogue or separate product surface. The guide carries
+the substantive expertise. Starter files are portable artefacts for use in systems the
+organisation already operates.
 
-- blank templates only;
-- governance-grade language;
-- clear ownership, evidence and escalation fields;
-- no scoring, rating, maturity number or assurance framing;
-- printable, shareable and storable;
-- static HTML and external CSS only.
+### Practice guide 01: Establish a domain register
+
+The first guide is intentionally foundational and narrow. It explains how to create a minimum
+credible register of registrable domains and material subdomain governance boundaries.
+
+It covers:
+
+- what belongs in scope and why every hostname should not be registered;
+- evidence sources beyond a single registrar account;
+- business purpose, accountable ownership and technical operation;
+- registrar, authoritative DNS and renewal responsibility;
+- email use and critical service or supplier dependencies;
+- explicit unknowns, next actions and review triggers;
+- evidence that the practice exists and common failure modes.
+
+Starter files:
+
+- `resources/downloads/domain-register-template.csv` - blank Excel-compatible CSV;
+- `resources/downloads/domain-register-example.csv` - worked example using reserved example domains.
+
+The public route is `https://baseline.bryanchetcuti.com/resources/domain-register/`.
+
+Potential later guides are not promised or published as placeholders. Each requires a separate,
+validated decision. The likely sequence, if evidence supports it, is:
+
+1. registrar and DNS authority;
+2. email authority and public signals;
+3. domain incident readiness;
+4. recurring domain-governance review.
 
 ## Guided interaction model
 
@@ -114,12 +134,15 @@ Key files:
 
 - `index.html` - page structure and static content sections.
 - `css/style.css` - visual system, layout, responsive behaviour and print styling.
-- `css/resources.css` - resource pack and printable template styling.
+- `css/resources.css` - practical guide layout and responsive / print styling.
 - `js/data.js` - checklist questions, optional themes, answer states and signal metadata.
 - `js/app.js` - base rendering, state, progress, theme toggle and default reflection logic.
 - `js/reflection-priorities.js` - guided-pass interaction, conversation-first reflection output,
   skipped-item handling and copied conversation brief override.
-- `js/instrument-enhancements.js` - governance-layer labels, suggested pathways and resource references.
+- `js/instrument-enhancements.js` - governance-layer labels, suggested pathways and links from
+  reflection findings to practical guidance.
+- `resources/index.html` - From baseline to practice landing page.
+- `resources/domain-register/index.html` - domain-register implementation guide.
 
 ## Guardrails
 
@@ -133,7 +156,8 @@ Acceptable changes are narrow improvements to:
 - the clarity and accuracy of the ten questions and optional guidance;
 - accessibility, responsive behaviour and print quality;
 - the usefulness of copied or printed reflection notes;
-- the relationship between the checklist, source essay and companion templates; and
+- substantive implementation guidance for a validated governance problem;
+- portable starter files that can be adopted into existing organisational systems; and
 - transparent versioning of substantive content changes.
 
 The following are out of scope unless the positioning is deliberately reconsidered:
@@ -141,5 +165,12 @@ The following are out of scope unless the positioning is deliberately reconsider
 - user accounts or retained assessment histories;
 - comparative scoring, benchmarking or maturity ratings;
 - automated assurance or compliance claims;
-- mandatory integrations with ThreatScope Check or other services; and
-- workflow, case-management or reporting-platform capabilities.
+- mandatory integrations with ThreatScope Check or other services;
+- workflow, case-management or reporting-platform capabilities;
+- generic blank-template catalogues;
+- browser-based imitation forms where a portable standard file is more useful; and
+- publishing placeholder guides or a promised suite before each practice has been validated.
+
+A new guide should be added only when it can name the specific governance problem it solves,
+explain the minimum credible practice, identify evidence and review cadence, and provide a
+starter artefact that improves real-world adoption.

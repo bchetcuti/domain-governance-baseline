@@ -80,11 +80,11 @@
     if (hasOpenInLayers(["registration"])) {
       pathways.push({
         label: "Registration hygiene",
-        title: "Clarify ownership, access and renewal accountability",
-        summary: "Registration hygiene gaps are usually governance gaps before they are technical gaps. The important next step is clarity over who owns the domain, who can change it and who is accountable if it fails.",
-        action: "Use the reflection summary as an agenda for a domain ownership and registrar-access review.",
-        href: "https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/",
-        cta: "Read the source essay",
+        title: "Establish a dependable domain register",
+        summary: "Registration uncertainty usually means the organisation lacks a complete view of which domains matter, why they exist and who is accountable for ownership and renewal.",
+        action: "Build a minimum credible register covering purpose, accountable ownership, technical operation, registrar, DNS, renewal, email use, dependencies and unresolved questions.",
+        href: "/resources/domain-register/",
+        cta: "Establish a domain register",
       });
     }
 
@@ -95,7 +95,7 @@
         summary: "Delivery and operational uncertainty points to the practical side of domain governance: which systems depend on the domain layer, who is called during failure and what can be recovered.",
         action: "Map dependent services, escalation contacts and recovery steps before the next incident tests them.",
         href: "/resources/",
-        cta: "Open reflection resources",
+        cta: "Open practical guidance",
       });
     }
 
@@ -158,9 +158,9 @@
       lines.push("");
     });
 
-    lines.push("REFLECTION RESOURCES");
-    lines.push("Use the printable companion resources to transcribe useful notes into an existing board update, supplier assurance note, incident review or recurring governance report.");
-    lines.push("Link: https://baseline.bryanchetcuti.com/resources/");
+    lines.push("FROM BASELINE TO PRACTICE");
+    lines.push("Practical guidance explains how to establish the basic practices behind the checklist. Begin with a dependable domain register covering purpose, accountability, renewal, email use and critical dependencies.");
+    lines.push("Guide: https://baseline.bryanchetcuti.com/resources/domain-register/");
     lines.push("");
 
     return lines.join("\n");

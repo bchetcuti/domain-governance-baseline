@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Establish a domain register - Domain Governance Baseline</title>
+  <meta name="description" content="A practical guide to establishing a minimum credible domain register: scope, ownership, renewal, providers, email use, dependencies, evidence and review." />
+  <link rel="canonical" href="https://baseline.bryanchetcuti.com/resources/domain-register/" />
+  <meta name="author" content="Bryan Chetcuti" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230d5b5f' stroke-width='2.5'/%3E%3Cpath d='M16 3v26M3 16h26' stroke='%230d5b5f' stroke-width='1.5' opacity='.5'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%230d5b5f'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/resources-tokens.css" />
+  <link rel="stylesheet" href="../../css/resources.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap wrap-wide">
+      <a class="brand" href="../../" aria-label="Domain Governance Baseline home">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" />
+          <path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" />
+          <circle cx="16" cy="16" r="4.4" fill="currentColor" />
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Domain Governance Baseline</span>
+          <span class="brand-sub">Practice guide 01 · Establish a domain register</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero guide-hero">
+      <div class="wrap">
+        <span class="eyebrow">From baseline to practice · Guide 01</span>
+        <p class="hero-note">The foundational record behind ownership, renewal, DNS, email and incident readiness.</p>
+        <h1>Establish a domain register.</h1>
+        <p class="lede">
+          Build a dependable governance view of the domains that matter to the organisation: why they exist,
+          who is accountable, who operates them, how they renew and which services depend on them.
+        </p>
+        <div class="hero-meta">
+          <span class="pill">For technology and risk generalists</span>
+          <span class="pill">Eight practical steps</span>
+          <span class="pill">Blank CSV included</span>
+          <span class="pill">No specialist tooling required</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="../downloads/domain-register-template.csv" download>Download blank CSV</a>
+          <a class="btn btn-ghost btn-lg" href="../downloads/domain-register-example.csv" download>Download worked example</a>
+          <a class="btn btn-ghost btn-lg" href="../../">Open the baseline</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section guide-summary">
+      <div class="wrap">
+        <div class="summary-panel">
+          <div>
+            <span class="guide-label">Outcome</span>
+            <h2>A register the organisation can actually govern from</h2>
+            <p>
+              At the end of this exercise, each material domain should have a stated purpose, an accountable owner,
+              a technical operator, known registrar and DNS arrangements, named renewal responsibility, recorded email use,
+              visible service dependencies and an explicit next action where information remains incomplete.
+            </p>
+          </div>
+          <aside>
+            <p class="aside-title">Minimum credible state</p>
+            <ul class="compact-list">
+              <li>The register covers more than one registrar account.</li>
+              <li>Ownership is organisational, not just technical.</li>
+              <li>Unknown information remains visible.</li>
+              <li>Renewal has a person or function accountable for it.</li>
+              <li>The record has a review date and a trigger for change.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-offset">
+      <div class="wrap guide-content">
+        <article class="guide-section" id="scope">
+          <div class="guide-section-head">
+            <span class="guide-step">Scope</span>
+            <h2>Register governance boundaries, not every hostname</h2>
+          </div>
+          <p>
+            The default unit is the registrable domain—the name the organisation registers or controls through a registrar,
+            such as <code>example.org</code> or <code>example.com.au</code>. A complete list of technical hostnames is a different artefact.
+          </p>
+          <div class="comparison-grid">
+            <div class="comparison-card include-card">
+              <h3>Include by default</h3>
+              <ul>
+                <li>Active public and internal-facing registered domains.</li>
+                <li>Defensive, redirect, campaign and legacy domains.</li>
+                <li>Domains held through subsidiaries, agencies or suppliers.</li>
+                <li>Domains used only for email or identity.</li>
+                <li>Domains marked for retirement but not yet allowed to lapse.</li>
+              </ul>
+            </div>
+            <div class="comparison-card boundary-card">
+              <h3>Add a subdomain only when it matters as a boundary</h3>
+              <ul>
+                <li>It is separately delegated.</li>
+                <li>A different supplier or team operates it.</li>
+                <li>It represents a distinct public identity or critical service.</li>
+                <li>It has separate access, recovery or lifecycle arrangements.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout">
+            <strong>Avoid the hostname trap.</strong>
+            Trying to register every web, mail, application and infrastructure hostname produces an unmaintainable technical inventory.
+            Record subdomains only where they change accountability, operation, supplier dependency or recovery.
+          </div>
+        </article>
+
+        <article class="guide-section" id="establish">
+          <div class="guide-section-head">
+            <span class="guide-step">Method</span>
+            <h2>Establish the register in eight practical steps</h2>
+          </div>
+          <ol class="implementation-steps">
+            <li>
+              <div class="step-number">1</div>
+              <div>
+                <h3>Collect the obvious sources</h3>
+                <p>Start with registrar and reseller accounts, authoritative DNS providers, existing asset records and known brand or campaign lists. Export rather than retype where possible.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">2</div>
+              <div>
+                <h3>Look beyond the registrar</h3>
+                <p>Check Microsoft 365 or Google Workspace verified domains, cloud and CDN platforms, web hosting, email services, certificate-transparency evidence, procurement records and supplier contracts. No single source should be treated as complete.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">3</div>
+              <div>
+                <h3>State why each domain exists</h3>
+                <p>Describe the business purpose in plain language. “Website” is rarely enough. Name the service, audience, brand, identity or defensive purpose that justifies continued control.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">4</div>
+              <div>
+                <h3>Name accountability and operation separately</h3>
+                <p>Assign an accountable business owner or function and record the technical operator. They may be the same in a small organisation, but the distinction should remain visible.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">5</div>
+              <div>
+                <h3>Confirm registrar, DNS and renewal responsibility</h3>
+                <p>Record where the domain is registered, who provides authoritative DNS, who receives renewal notices and who is accountable if payment, access or recovery fails.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">6</div>
+              <div>
+                <h3>Record email use and critical dependencies</h3>
+                <p>State whether the domain sends, receives, does both or should do neither. Identify critical websites, identity services, APIs, suppliers and customer-facing services that depend on it.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">7</div>
+              <div>
+                <h3>Keep unknowns explicit</h3>
+                <p>Do not invent certainty to complete the spreadsheet. Use “unknown” and write the next action needed to resolve the gap, including who should investigate it.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">8</div>
+              <div>
+                <h3>Set a review cadence and change triggers</h3>
+                <p>Review the register at least annually, and after acquisitions, divestments, brand changes, supplier transitions, major incidents, platform migrations or material staff changes.</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="guide-section" id="fields">
+          <div class="guide-section-head">
+            <span class="guide-step">Starter record</span>
+            <h2>Use only the fields needed to create governance visibility</h2>
+          </div>
+          <p>
+            The CSV deliberately avoids risk scores, control ratings and detailed technical metadata. It is a starting register that can be imported into the organisation's existing spreadsheet, CMDB, asset register or governance system.
+          </p>
+          <dl class="field-guide">
+            <div><dt>Domain</dt><dd>The registered domain or material subdomain being governed.</dd></div>
+            <div><dt>Purpose</dt><dd>The business, service, identity, campaign, defensive or legacy reason it exists.</dd></div>
+            <div><dt>Lifecycle status</dt><dd>Active, defensive, redirect, campaign, legacy, retirement candidate or unknown.</dd></div>
+            <div><dt>Accountable owner</dt><dd>The business role or function answerable for continued use and governance.</dd></div>
+            <div><dt>Technical operator</dt><dd>The internal team or supplier that performs technical administration.</dd></div>
+            <div><dt>Registrar or reseller</dt><dd>The organisation through which the domain is registered and renewed.</dd></div>
+            <div><dt>Authoritative DNS provider</dt><dd>The provider hosting the authoritative DNS zone.</dd></div>
+            <div><dt>Renewal owner</dt><dd>The person or function accountable for renewal continuity.</dd></div>
+            <div><dt>Renewal date</dt><dd>The known expiry or renewal date, or “unknown” where it needs confirmation.</dd></div>
+            <div><dt>Email use</dt><dd>Sends, receives, both, none or unknown.</dd></div>
+            <div><dt>Critical services or supplier dependencies</dt><dd>The important services, platforms and suppliers that rely on the domain.</dd></div>
+            <div><dt>Last reviewed</dt><dd>The date the record was last confirmed by an appropriate owner or operator.</dd></div>
+            <div><dt>Next action or unresolved question</dt><dd>The specific work needed to close a gap or make a decision.</dd></div>
+          </dl>
+          <div class="download-panel">
+            <div>
+              <span class="guide-label">Portable starter files</span>
+              <h3>Take the register into the system you already use</h3>
+              <p>The files contain no macros, formulas, scoring or external connections. The worked example uses reserved example domains and illustrates a registered domain, defensive holding and material subdomain.</p>
+            </div>
+            <div class="download-actions">
+              <a class="btn btn-primary" href="../downloads/domain-register-template.csv" download>Blank CSV</a>
+              <a class="btn btn-ghost" href="../downloads/domain-register-example.csv" download>Worked example CSV</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="guide-section" id="evidence">
+          <div class="guide-section-head">
+            <span class="guide-step">Evidence and cadence</span>
+            <h2>Know when the practice genuinely exists</h2>
+          </div>
+          <div class="evidence-grid">
+            <section>
+              <h3>Evidence of practice</h3>
+              <ul>
+                <li>A current register exists in an approved organisational location.</li>
+                <li>Material domains have accountable owners and technical operators.</li>
+                <li>Registrar, DNS and renewal responsibilities are recorded.</li>
+                <li>Email use and critical dependencies are visible.</li>
+                <li>Unknowns have owners or explicit next actions.</li>
+                <li>A review date and change-trigger process are documented.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Review it when</h3>
+              <ul>
+                <li>The scheduled annual or more frequent review falls due.</li>
+                <li>A domain, DNS or email incident occurs.</li>
+                <li>A supplier, registrar, DNS or email platform changes.</li>
+                <li>A brand, campaign, service or product is launched or retired.</li>
+                <li>The organisation acquires, divests or restructures a business area.</li>
+                <li>An accountable owner or privileged operator leaves or changes role.</li>
+              </ul>
+            </section>
+          </div>
+        </article>
+
+        <article class="guide-section" id="failure-modes">
+          <div class="guide-section-head">
+            <span class="guide-step">Common failure modes</span>
+            <h2>A register can exist and still fail as governance</h2>
+          </div>
+          <div class="failure-grid">
+            <article><h3>Using one registrar as the inventory</h3><p>Domains may be distributed across resellers, suppliers, subsidiaries and legacy accounts. Treat registrar exports as evidence, not the whole answer.</p></article>
+            <article><h3>Naming only the technical contact</h3><p>A person who can edit DNS is not automatically accountable for the business purpose, renewal decision or risk acceptance.</p></article>
+            <article><h3>Recording domains without purpose</h3><p>A list of names cannot support lifecycle decisions if no one can explain why each domain remains necessary.</p></article>
+            <article><h3>Ignoring defensive and redirect domains</h3><p>Domains that host little content may still protect identity, traffic, email or public trust and require deliberate renewal decisions.</p></article>
+            <article><h3>Capturing renewal dates without ownership</h3><p>A calendar date does not prevent expiry when notices go to an inactive mailbox or no one is accountable for payment and escalation.</p></article>
+            <article><h3>Attempting to catalogue every hostname</h3><p>Unbounded technical discovery overwhelms the governance objective and makes the register difficult to maintain.</p></article>
+            <article><h3>Hiding unknowns to complete the sheet</h3><p>Unknown ownership or provider information is itself a governance finding. Make it visible and assign the next action.</p></article>
+            <article><h3>Creating the register once</h3><p>A static spreadsheet becomes misleading. Link updates to procurement, change, incident, project closure and supplier-transition processes.</p></article>
+          </div>
+        </article>
+
+        <article class="guide-section closing-section">
+          <div class="closing-panel">
+            <div>
+              <span class="guide-label">Return to the baseline</span>
+              <h2>The register should improve the answers, not replace the questions</h2>
+              <p>
+                Once the initial register exists, work through the baseline again. The organisation should be better able to answer which domains it controls, why they exist, who is accountable, who renews them and which services depend on them.
+              </p>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="../../">Return to the baseline</a>
+              <a class="btn btn-ghost" href="../">Back to practical guidance</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand-block">
+        <a class="footer-brand" href="../../" aria-label="Domain Governance Baseline home">
+          <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" />
+            <path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" />
+            <circle cx="16" cy="16" r="4.4" fill="currentColor" />
+          </svg>
+          <span>
+            <span class="footer-brand-title">Domain Governance Baseline</span>
+            <span class="footer-brand-sub">Practice guide 01</span>
+          </span>
+        </a>
+        <p>Practical guidance for establishing a minimum credible domain register.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Guide links">
+        <p class="footer-nav-title">This guide</p>
+        <div class="footer-links">
+          <a href="#scope">What belongs in scope</a>
+          <a href="#establish">Eight-step method</a>
+          <a href="#fields">Starter fields</a>
+          <a href="#evidence">Evidence and cadence</a>
+          <a href="#failure-modes">Common failures</a>
+        </div>
+      </nav>
+      <nav class="footer-nav" aria-label="Downloads">
+        <p class="footer-nav-title">Downloads</p>
+        <div class="footer-links">
+          <a href="../downloads/domain-register-template.csv" download>Blank CSV</a>
+          <a href="../downloads/domain-register-example.csv" download>Worked example</a>
+          <a href="../../">The baseline</a>
+          <a href="../">From baseline to practice</a>
+        </div>
+      </nav>
+      <div class="footer-note">
+        <p class="footer-note-title">Boundary</p>
+        <ul class="trust-list">
+          <li>Starter guidance, not assurance</li>
+          <li>No score or maturity rating</li>
+          <li>No requirement for specialist tooling</li>
+          <li>Designed for existing organisational systems</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-legal">
+      <p>&copy; 2026 Bryan Chetcuti. Practical governance guidance. Adapt to organisational context and existing control requirements.</p>
+    </div>
+  </footer>
+</body>
+</html>
