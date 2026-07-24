@@ -122,12 +122,35 @@ Starter files:
 
 The public route is `https://baseline.bryanchetcuti.com/resources/registrar-dns-authority/`.
 
+### Practice guide 03: Govern email authority and public signals
+
+The third guide connects approved sending authority with the public SPF, DKIM and DMARC evidence
+that recipients and external systems can observe.
+
+It covers:
+
+- organisational, sending-system, authentication and public-evidence boundaries;
+- approved sending domains, systems, suppliers and business owners;
+- visible From, envelope-from / return-path and DKIM signing identities;
+- connected governance of SPF, DKIM, DMARC policy and aggregate reporting;
+- deliberate treatment of domains that should not send;
+- reconciliation of expected authority with observed public mail signals;
+- supplier offboarding, temporary exceptions and review triggers;
+- evidence that the practice exists and common failure modes.
+
+Starter files:
+
+- `resources/downloads/authorised-sender-register-template.csv` - blank authorised-sender CSV;
+- `resources/downloads/authorised-sender-register-example.csv` - worked staff, campaign and non-sending example;
+- `resources/downloads/email-public-signal-review-template.md` - portable public-signal review record.
+
+The public route is `https://baseline.bryanchetcuti.com/resources/email-authority-public-signals/`.
+
 Potential later guides are not promised or published as placeholders. Each requires a separate,
 validated decision. The likely sequence, if evidence supports it, is:
 
-1. email authority and public signals;
-2. domain incident readiness;
-3. recurring domain-governance review.
+1. domain incident readiness;
+2. recurring domain-governance review.
 
 ## Guided interaction model
 
@@ -168,6 +191,7 @@ Key files:
 - `resources/index.html` - From baseline to practice landing page.
 - `resources/domain-register/index.html` - domain-register implementation guide.
 - `resources/registrar-dns-authority/index.html` - registrar and DNS authority implementation guide.
+- `resources/email-authority-public-signals/index.html` - email authority and public-signals implementation guide.
 
 ## Guardrails
 

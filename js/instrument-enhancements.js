@@ -57,14 +57,13 @@
 
   function buildPathways() {
     const pathways = [];
-    const externalOpen = openQuestions().filter((question) => question.visibility === "external");
 
-    if (externalOpen.length) {
+    if (hasOpenQuestionIds(["b5"])) {
       pathways.push({
         label: "Public signal review",
         title: "Review externally visible DNS and domain signals",
-        summary: "Your answers suggest that externally visible DNS or public trust-surface signals may be worth reviewing. Use this as evidence for a governance conversation, not as a scorecard.",
-        action: "Run a public-signal check, then decide which observations need ownership, evidence or escalation.",
+        summary: "Authoritative DNS uncertainty may be informed by what is publicly observable. Use current signals as evidence for a governance conversation, not as a scorecard or substitute for internal authority records.",
+        action: "Run a public-signal check, then decide which observations need ownership, provider evidence or escalation.",
         href: THREATSCOPE_URL,
         cta: "Open ThreatScope Check",
       });
@@ -72,12 +71,12 @@
 
     if (hasOpenInLayers(["email"])) {
       pathways.push({
-        label: "Email trust",
-        title: "Review mail authority and DMARC alignment",
-        summary: "Email trust answers that are partial, absent or uncertain usually need a clean view of sending authority, SPF, DKIM and DMARC policy.",
-        action: "Confirm which domains are allowed to send mail, then review whether authentication policy and reporting are being actively governed.",
-        href: THREATSCOPE_URL,
-        cta: "Check email-facing signals",
+        label: "Email authority and public signals",
+        title: "Govern authorised senders and mail posture",
+        summary: "Email trust uncertainty usually means the organisation cannot yet connect approved sending systems with visible From, return-path and DKIM identities, SPF authorisation, DMARC policy and reporting.",
+        action: "Build an authorised-sender register, reconcile it with public SPF, DKIM and DMARC evidence, and remove obsolete or unowned supplier authority.",
+        href: "/resources/email-authority-public-signals/",
+        cta: "Govern email authority and public signals",
       });
     }
 
@@ -119,9 +118,9 @@
         label: "Broader context",
         title: "Compare strong internal hygiene with public domain-layer observation",
         summary: "Your registration hygiene answers are currently clear. The next useful move is to keep that internal clarity connected to how public domain-layer signals are observed over time.",
-        action: "Use .auDO as a public observatory reference for repeated observation and sector-level context.",
+        action: "Use .au Domain Observatory (.auDO) as a public observatory reference for repeated observation and sector-level context.",
         href: "https://audo.bryanchetcuti.com/",
-        cta: "Explore .auDO",
+        cta: "Explore .au Domain Observatory (.auDO)",
       });
     }
 
@@ -174,7 +173,7 @@
     });
 
     lines.push("FROM BASELINE TO PRACTICE");
-    lines.push("Use the practical guide that matches the unresolved questions: establish a domain register for inventory, ownership, renewal and dependencies; control registrar and DNS authority for privileged access, delegation, change and recovery.");
+    lines.push("Use the practical guide that matches the unresolved questions: establish a domain register for inventory and ownership; control registrar and DNS authority for privileged access and recoverable change; govern email authority and public signals for approved senders, SPF, DKIM, DMARC and reporting.");
     lines.push("Guides: https://baseline.bryanchetcuti.com/resources/");
     lines.push("");
 

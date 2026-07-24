@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Govern email authority and public signals - Domain Governance Baseline</title>
+  <meta name="description" content="A practical guide to governing authorised email senders, SPF, DKIM, DMARC, supplier authority and public mail signals without creating a new governance platform." />
+  <link rel="canonical" href="https://baseline.bryanchetcuti.com/resources/email-authority-public-signals/" />
+  <meta name="author" content="Bryan Chetcuti" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230d5b5f' stroke-width='2.5'/%3E%3Cpath d='M16 3v26M3 16h26' stroke='%230d5b5f' stroke-width='1.5' opacity='.5'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%230d5b5f'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/resources-tokens.css" />
+  <link rel="stylesheet" href="../../css/resources.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap wrap-wide">
+      <a class="brand" href="../../" aria-label="Domain Governance Baseline home">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" />
+          <path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" />
+          <circle cx="16" cy="16" r="4.4" fill="currentColor" />
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Domain Governance Baseline</span>
+          <span class="brand-sub">Practice guide 03 · Email authority and public signals</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero guide-hero">
+      <div class="wrap">
+        <span class="eyebrow">From baseline to practice · Guide 03</span>
+        <p class="hero-note">Know who may send in the organisation's name and whether the public evidence matches that authority.</p>
+        <h1>Govern email authority and public signals.</h1>
+        <p class="lede">
+          Establish a dependable record of authorised senders, authentication paths and public mail posture—
+          then reconcile SPF, DKIM and DMARC evidence with what the organisation has actually approved.
+        </p>
+        <div class="hero-meta">
+          <span class="pill">For technology and risk generalists</span>
+          <span class="pill">Eight practical steps</span>
+          <span class="pill">Authorised-sender CSV</span>
+          <span class="pill">Public-signal review record</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="../downloads/authorised-sender-register-template.csv" download>Download sender-register CSV</a>
+          <a class="btn btn-ghost btn-lg" href="../downloads/email-public-signal-review-template.md" download>Download signal-review record</a>
+          <a class="btn btn-ghost btn-lg" href="../../">Open the baseline</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section guide-summary">
+      <div class="wrap">
+        <div class="summary-panel">
+          <div>
+            <span class="guide-label">Outcome</span>
+            <h2>Sending authority that can be named, evidenced and withdrawn</h2>
+            <p>
+              The organisation should be able to identify every approved sending domain and provider, explain the identities
+              they use, show how SPF, DKIM and DMARC support that authority, review public evidence and remove authorisation
+              when a service, supplier or campaign ends.
+            </p>
+          </div>
+          <aside>
+            <p class="aside-title">Minimum credible state</p>
+            <ul class="compact-list">
+              <li>Approved sending domains and systems have accountable owners.</li>
+              <li>Visible From, return-path and DKIM identities are recorded.</li>
+              <li>SPF, DKIM and DMARC are reviewed as connected controls, not isolated DNS records.</li>
+              <li>Domains that should not send have a deliberate non-sending posture.</li>
+              <li>DMARC aggregate reporting has an owner and review path.</li>
+              <li>Supplier offboarding removes obsolete mail authority and DNS records.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-offset">
+      <div class="wrap guide-content">
+        <article class="guide-section" id="authority-boundaries">
+          <div class="guide-section-head">
+            <span class="guide-step">Scope</span>
+            <h2>Separate internal authority from public evidence</h2>
+          </div>
+          <p>
+            Email authority spans business approval, sending platforms and published DNS signals. A record that passes a lookup
+            may still authorise an unknown supplier, and a legitimate sender may fail because its identity paths are not aligned.
+          </p>
+          <div class="comparison-grid">
+            <div class="comparison-card">
+              <h3>Organisational authority</h3>
+              <p>Who approved the sender, what business purpose it serves and who is accountable for continuing or withdrawing that authority.</p>
+            </div>
+            <div class="comparison-card">
+              <h3>Sending-system authority</h3>
+              <p>Which productivity, application, marketing, service or supplier platforms may originate mail using the organisation's domains.</p>
+            </div>
+            <div class="comparison-card">
+              <h3>Authentication authority</h3>
+              <p>Which envelope-from and DKIM signing identities support SPF and DKIM alignment with the visible From domain used by recipients.</p>
+            </div>
+            <div class="comparison-card">
+              <h3>Public evidence</h3>
+              <p>What MX, SPF, DKIM, DMARC and related DNS records show, and what DMARC reporting reveals about observed use and failure.</p>
+            </div>
+          </div>
+          <div class="callout">
+            <strong>A passing signal is not the same as approved authority.</strong>
+            Public records can show that a mechanism exists. Only an internal owner and authorised-sender record can establish
+            whether a sending system is expected, accountable and still required.
+          </div>
+        </article>
+
+        <article class="guide-section" id="establish">
+          <div class="guide-section-head">
+            <span class="guide-step">Method</span>
+            <h2>Establish email authority in eight practical steps</h2>
+          </div>
+          <ol class="implementation-steps">
+            <li>
+              <div class="step-number">1</div>
+              <div>
+                <h3>Start from the domain register</h3>
+                <p>For each material domain and subdomain, state whether it sends mail, receives mail, does both or should do neither. Unknown email use should remain visible as a governance gap.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">2</div>
+              <div>
+                <h3>Enumerate every approved sending system</h3>
+                <p>Include staff mail, transactional applications, customer platforms, marketing services, ticketing systems, suppliers and temporary campaigns. Do not assume the primary mail platform is the whole answer.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">3</div>
+              <div>
+                <h3>Record the identities each sender uses</h3>
+                <p>Capture the visible From domain, envelope-from or return-path domain, DKIM signing domain and known selectors. These identities determine whether SPF or DKIM can align for DMARC.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">4</div>
+              <div>
+                <h3>Assign ownership and a withdrawal path</h3>
+                <p>Name an accountable business owner and technical operator for every sender. Record how authority and DNS records will be removed when the supplier, application, campaign or business purpose ends.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">5</div>
+              <div>
+                <h3>Govern SPF, DKIM and DMARC together</h3>
+                <p>Authorise only required sending paths, enable DKIM signing through approved domains, and maintain a DMARC policy and reporting destination. Treat changes as controlled changes to public authority.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">6</div>
+              <div>
+                <h3>Make non-sending intent explicit</h3>
+                <p>For domains that should not send, publish and maintain an explicit non-sending posture appropriate to their receiving requirements. Confirm that no application or supplier relies on hidden or historical use before enforcement.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">7</div>
+              <div>
+                <h3>Reconcile public signals and DMARC reports</h3>
+                <p>Compare observed SPF, known DKIM selectors, DMARC policy and reporting with the authorised-sender record. Investigate unexpected providers, unaligned legitimate traffic, obsolete records and repeated unauthorised use.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">8</div>
+              <div>
+                <h3>Review change, suppliers and exceptions</h3>
+                <p>Review sending authority at least quarterly and after supplier onboarding, offboarding, platform migration, brand change, incident or material DMARC-policy change. Give every exception an owner and expiry.</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="guide-section" id="sender-register">
+          <div class="guide-section-head">
+            <span class="guide-step">Authorised-sender record</span>
+            <h2>Record enough to explain who may send and how</h2>
+          </div>
+          <p>
+            Use one row for each material sending domain, subdomain or distinct provider path. The record is an authority map,
+            not a mail-flow troubleshooting database or replacement for provider configuration.
+          </p>
+          <dl class="field-guide">
+            <div><dt>Sending domain or subdomain</dt><dd>The identity whose authority is being governed.</dd></div>
+            <div><dt>Business purpose</dt><dd>Why sending is required and which organisational outcome it supports.</dd></div>
+            <div><dt>Accountable owner</dt><dd>The role answerable for continued use and approval.</dd></div>
+            <div><dt>Technical operator</dt><dd>The team or supplier that administers the sending path.</dd></div>
+            <div><dt>Sending system or provider</dt><dd>The productivity, application, campaign or supplier platform originating mail.</dd></div>
+            <div><dt>Message type or audience</dt><dd>Staff, transactional, customer, supporter, marketing, security or another material category.</dd></div>
+            <div><dt>Visible From domain</dt><dd>The domain recipients see in the From address.</dd></div>
+            <div><dt>Envelope-from or return-path domain</dt><dd>The domain used for SPF evaluation, bounce handling and alignment.</dd></div>
+            <div><dt>DKIM signing domain and selectors</dt><dd>The approved signing domain and known selectors used to validate the sender.</dd></div>
+            <div><dt>SPF authorisation and alignment</dt><dd>How the sender is authorised and whether the return path aligns with the visible From domain.</dd></div>
+            <div><dt>DMARC policy and report destination</dt><dd>The applicable policy plus the monitored destination for aggregate reporting.</dd></div>
+            <div><dt>Last evidenced</dt><dd>The date configuration and public signals were last confirmed.</dd></div>
+            <div><dt>Next review</dt><dd>The scheduled review date for continuing authority.</dd></div>
+            <div><dt>Exception or next action</dt><dd>The specific gap, exception owner, expiry or remediation required.</dd></div>
+          </dl>
+          <div class="download-panel">
+            <div>
+              <span class="guide-label">Portable authority record</span>
+              <h3>Maintain the sender register where governance already lives</h3>
+              <p>The blank CSV can be used in an approved spreadsheet, messaging register, CMDB, supplier record or control repository. The worked example illustrates staff, campaign and non-sending domains using reserved examples.</p>
+            </div>
+            <div class="download-actions">
+              <a class="btn btn-primary" href="../downloads/authorised-sender-register-template.csv" download>Blank sender CSV</a>
+              <a class="btn btn-ghost" href="../downloads/authorised-sender-register-example.csv" download>Worked example CSV</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="guide-section" id="public-signal-review">
+          <div class="guide-section-head">
+            <span class="guide-step">Public evidence</span>
+            <h2>Review what is observable without overclaiming what it proves</h2>
+          </div>
+          <p>
+            Public observations are useful evidence because they show what recipients and external systems can see. They should
+            be reconciled with approved internal authority, not interpreted as a score or a complete view of provider configuration.
+          </p>
+          <dl class="field-guide">
+            <div><dt>Expected authority</dt><dd>The approved senders, identity domains and non-sending decisions from the internal register.</dd></div>
+            <div><dt>MX posture</dt><dd>The publicly visible receiving route and whether it matches the expected provider or no-receive decision.</dd></div>
+            <div><dt>SPF posture</dt><dd>The published policy, included providers and unexpected or overly broad authorisation paths.</dd></div>
+            <div><dt>Known DKIM selectors</dt><dd>The selectors supplied by approved systems. DKIM cannot be comprehensively assessed without knowing which selectors to query.</dd></div>
+            <div><dt>DMARC posture</dt><dd>The organisational policy, applicable subdomain policy, alignment settings and reporting destinations.</dd></div>
+            <div><dt>Aggregate report themes</dt><dd>Legitimate failure, unauthorised use, alignment gaps and unexpected sources requiring ownership or investigation.</dd></div>
+            <div><dt>Additional transport signals</dt><dd>MTA-STS, TLS-RPT or other public controls where the organisation has chosen to operate them.</dd></div>
+            <div><dt>Difference and decision</dt><dd>The gap between expected and observed authority, plus the owner and action required.</dd></div>
+          </dl>
+          <div class="download-panel">
+            <div>
+              <span class="guide-label">Use with existing review processes</span>
+              <h3>Email public-signal review record</h3>
+              <p>A plain Markdown record for a quarterly review, supplier check, change, incident or DMARC-policy decision. It performs no lookup and contains no workflow logic.</p>
+            </div>
+            <div class="download-actions">
+              <a class="btn btn-primary" href="../downloads/email-public-signal-review-template.md" download>Download review record</a>
+              <a class="btn btn-ghost" href="https://threatscopecheck.com/" target="_blank" rel="noopener">Observe current signals</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="guide-section" id="evidence">
+          <div class="guide-section-head">
+            <span class="guide-step">Evidence and cadence</span>
+            <h2>Know when email authority is genuinely governed</h2>
+          </div>
+          <div class="evidence-grid">
+            <section>
+              <h3>Evidence of practice</h3>
+              <ul>
+                <li>A current sender register covers material sending domains and providers.</li>
+                <li>Every sender has an accountable owner and withdrawal path.</li>
+                <li>Visible From, return-path and DKIM identities are known.</li>
+                <li>SPF, DKIM and DMARC posture matches approved authority.</li>
+                <li>DMARC aggregate reports have a monitored destination and review owner.</li>
+                <li>Non-sending domains have deliberate, evidenced treatment.</li>
+                <li>Recent supplier or platform offboarding removed obsolete authorisation.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Review it when</h3>
+              <ul>
+                <li>The scheduled quarterly or more frequent review falls due.</li>
+                <li>A sender, application, campaign or supplier is introduced or retired.</li>
+                <li>SPF, DKIM, DMARC, MX or related DNS records change.</li>
+                <li>A domain, brand, mail platform or return-path design changes.</li>
+                <li>DMARC reports show new, failing or unauthorised sources.</li>
+                <li>An email impersonation, deliverability or supplier incident occurs.</li>
+                <li>An exception or temporary sender reaches its expiry date.</li>
+              </ul>
+            </section>
+          </div>
+        </article>
+
+        <article class="guide-section" id="failure-modes">
+          <div class="guide-section-head">
+            <span class="guide-step">Common failure modes</span>
+            <h2>Authentication records can exist while authority remains unclear</h2>
+          </div>
+          <div class="failure-grid">
+            <article><h3>Only the primary mail platform is recorded</h3><p>Applications, CRM systems, marketing platforms and suppliers continue to send without appearing in the approved authority view.</p></article>
+            <article><h3>SPF includes have no owner</h3><p>A provider remains authorised because nobody can explain why it is present or whether any active service still depends on it.</p></article>
+            <article><h3>DKIM is marked “enabled” without identity detail</h3><p>The signing domain and selectors are unknown, so alignment and continuing provider authority cannot be evidenced.</p></article>
+            <article><h3>DMARC reporting is collected but not reviewed</h3><p>Reports arrive at a mailbox or service, but no accountable process turns repeated failures or unexpected sources into action.</p></article>
+            <article><h3>Policy remains observational indefinitely</h3><p>Temporary monitoring becomes permanent because legitimate senders were never fully identified or given owners and remediation dates.</p></article>
+            <article><h3>Non-sending domains remain ambiguous</h3><p>Defensive, redirect and legacy domains have no deliberate mail posture and may retain accidental or inherited sending authority.</p></article>
+            <article><h3>Supplier offboarding leaves DNS authority behind</h3><p>SPF includes, DKIM records, return paths and verification records remain after the business relationship has ended.</p></article>
+            <article><h3>A clean lookup is treated as assurance</h3><p>Published records appear healthy, but the organisation cannot show approved senders, owners, reporting review or withdrawal controls.</p></article>
+          </div>
+        </article>
+
+        <article class="guide-section closing-section">
+          <div class="closing-panel">
+            <div>
+              <span class="guide-label">Return to the baseline</span>
+              <h2>Email governance should make two answers demonstrably stronger</h2>
+              <p>
+                Revisit the questions about which domains are authorised to send and whether SPF, DKIM and DMARC are configured
+                and reviewed. The organisation should now be able to name approved senders, evidence alignment and public posture,
+                explain report ownership and withdraw obsolete authority.
+              </p>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="../../">Return to the baseline</a>
+              <a class="btn btn-ghost" href="../registrar-dns-authority/">Review guide 02</a>
+              <a class="btn btn-ghost" href="../">Back to practical guidance</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand-block">
+        <a class="footer-brand" href="../../" aria-label="Domain Governance Baseline home">
+          <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" />
+            <path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" />
+            <circle cx="16" cy="16" r="4.4" fill="currentColor" />
+          </svg>
+          <span>
+            <span class="footer-brand-title">Domain Governance Baseline</span>
+            <span class="footer-brand-sub">Practice guide 03</span>
+          </span>
+        </a>
+        <p>Practical guidance for governing authorised senders, authentication and public mail signals.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Guide links">
+        <p class="footer-nav-title">This guide</p>
+        <div class="footer-links">
+          <a href="#authority-boundaries">Authority boundaries</a>
+          <a href="#establish">Eight-step method</a>
+          <a href="#sender-register">Sender register</a>
+          <a href="#public-signal-review">Public-signal review</a>
+          <a href="#evidence">Evidence and cadence</a>
+          <a href="#failure-modes">Common failures</a>
+        </div>
+      </nav>
+      <nav class="footer-nav" aria-label="Downloads">
+        <p class="footer-nav-title">Downloads</p>
+        <div class="footer-links">
+          <a href="../downloads/authorised-sender-register-template.csv" download>Blank sender CSV</a>
+          <a href="../downloads/authorised-sender-register-example.csv" download>Worked sender example</a>
+          <a href="../downloads/email-public-signal-review-template.md" download>Signal-review record</a>
+          <a href="../registrar-dns-authority/">Guide 02: Registrar and DNS</a>
+        </div>
+      </nav>
+      <div class="footer-note">
+        <p class="footer-note-title">Boundary</p>
+        <ul class="trust-list">
+          <li>Starter guidance, not assurance</li>
+          <li>No deliverability or anti-abuse guarantee</li>
+          <li>No score or maturity rating</li>
+          <li>Adapt to existing messaging and change controls</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-legal">
+      <p>&copy; 2026 Bryan Chetcuti. Practical governance guidance. Adapt to organisational context, provider capability and existing control requirements.</p>
+    </div>
+  </footer>
+</body>
+</html>
