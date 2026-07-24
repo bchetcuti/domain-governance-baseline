@@ -1,6 +1,6 @@
 /* ============================================================
-   Guided-pass interaction and conversation-first reflection output.
-   Keeps the baseline as a reflection summary, not a score.
+   Guided-pass interaction and priority-first review output.
+   Keeps the baseline as a review summary, not a score.
    ============================================================ */
 
 (function () {
@@ -95,8 +95,8 @@
     if (card.querySelector(`[data-guided-skip="${kind}"]`)) return;
     const label = kind === "baseline" ? "Skip for now" : "Skip this theme";
     const note = kind === "baseline"
-      ? "Skipping keeps this out of the reflection priorities. Use Not sure when uncertainty itself is the finding."
-      : "Skipping keeps this theme out of the maturity reflection for this pass.";
+      ? "Skipping keeps this out of the follow-up priorities. Use Not sure when uncertainty itself is the finding."
+      : "Skipping keeps this theme out of the optional review for this pass.";
     const actions = create("div", "cta-row guided-card-actions", `
       <button class="btn btn-ghost" type="button" data-guided-skip="${kind}">${label}</button>
       <p class="m-connects">${note}</p>
@@ -216,7 +216,7 @@
     const answered = countKeys(isBaseline ? state.baseline : state.maturity);
     const skipped = countKeys(isBaseline ? state.skippedBaseline : state.skippedMaturity);
     const remaining = total - answered - skipped;
-    const label = isBaseline ? "baseline" : "maturity guide";
+    const label = isBaseline ? "baseline" : "optional themes";
     const returnLabel = isBaseline ? "Return to skipped questions" : "Return to skipped themes";
 
     complete.hidden = remaining !== 0;
@@ -263,8 +263,8 @@
       btn.disabled = bAnswered === 0;
       if (bAnswered > 0) {
         btn.textContent = bRemaining > 0
-          ? `See your reflection (${bAnswered} answered${bSkipped ? `, ${bSkipped} skipped` : ""})`
-          : "See your reflection";
+          ? `See your summary (${bAnswered} answered${bSkipped ? `, ${bSkipped} skipped` : ""})`
+          : "See your summary";
       } else {
         btn.textContent = "Answer at least one question to continue";
       }
@@ -427,14 +427,14 @@
     if (!skippedBaseline.length) return null;
     const block = create("div", "guided-skipped-reflection");
     block.appendChild(create("h4", "m-theme", "Questions skipped in this pass"));
-    block.appendChild(create("p", "block-intro", "Skipped questions are not treated as findings. Return to them if they are relevant to the governance conversation."));
+    block.appendChild(create("p", "block-intro", "Skipped questions are not treated as findings. Return to them if they are relevant to this review."));
     skippedBaseline.forEach((question) => {
       block.appendChild(create("div", "mat-row", `<span class="mat-name">${question.question}</span><span class="mat-badge">Skipped for now</span>`));
     });
     return block;
   }
 
-  function buildConversationFirstReflection() {
+  function buildPriorityFirstReview() {
     ensureGuidedState();
     const answered = BASELINE_QUESTIONS.filter((question) => state.baseline[question.id]);
     const skippedBaseline = BASELINE_QUESTIONS.filter((question) => state.skippedBaseline[question.id]);
@@ -445,11 +445,11 @@
     const gapCount = counts.not_in_place + counts.unsure + counts.partial;
     const intro = document.querySelector("#reflection-intro-text");
     if (gapCount === 0 && counts.in_place === answered.length) {
-      intro.textContent = "Every attempted baseline question is marked in place. Treat that as a useful starting position, not a score. The next governance conversation is how to keep those answers true over time.";
+      intro.textContent = "Every attempted baseline question is marked in place. Treat that as a useful starting position, not a score. The next step is to keep those answers current through recurring review.";
     } else if (counts.unsure >= 3) {
-      intro.textContent = "Several answers are not sure. That is the most useful finding: uncertainty shows where accountability, evidence or ownership is missing. Start there.";
+      intro.textContent = "Several answers are not sure. That is the most useful finding: uncertainty shows where accountability, evidence or ownership is missing. Resolve those questions first.";
     } else {
-      intro.textContent = "This reflection summary leads with conversation priorities rather than a score. Use it to decide which domain-governance questions need ownership, evidence or escalation.";
+      intro.textContent = "This review summary leads with priorities for follow-up rather than a score. Use it to decide which domain-governance questions need ownership, evidence, remediation or escalation.";
     }
 
     const sorted = priorityItems(answered);
@@ -459,7 +459,7 @@
     const gapsBlock = document.querySelector("#gaps-block");
     gapsBlock.innerHTML = "";
     if (gapItems.length === 0) {
-      gapsBlock.appendChild(create("div", "empty-good", "Every attempted baseline question is in place. Focus the next conversation on the maturity themes: portfolio, suppliers, change control, monitoring, public signals and executive reporting."));
+      gapsBlock.appendChild(create("div", "empty-good", "Every attempted baseline question is in place. Use the recurring-review guide to keep the evidence, ownership and practices current."));
     } else {
       gapItems.forEach((question) => gapsBlock.appendChild(renderPriorityFinding(question, state.baseline[question.id])));
     }
@@ -508,7 +508,7 @@
     matBlock.innerHTML = "";
     const considered = MATURITY_THEMES.filter((theme) => state.maturity[theme.id]);
     if (considered.length === 0 && skippedMaturity.length === 0) {
-      matBlock.appendChild(create("div", "empty-good", "You have not reflected on the maturity themes yet. Once the baseline is visible, these are the deeper conversations - portfolio, suppliers, change control, monitoring, public signals and executive reporting."));
+      matBlock.appendChild(create("div", "empty-good", "You have not considered the optional themes in this pass. Use them only where they help deepen portfolio, supplier, change, monitoring, public-signal or executive-governance work."));
     } else {
       MATURITY_THEMES.forEach((theme) => {
         const chosen = state.maturity[theme.id];
@@ -522,7 +522,7 @@
     document.querySelector("#reflection-section").scrollIntoView({ behavior: "smooth" });
   }
 
-  function buildConversationBriefText() {
+  function buildReviewSummaryText() {
     ensureGuidedState();
     const answered = BASELINE_QUESTIONS.filter((question) => state.baseline[question.id]);
     const skippedBaseline = BASELINE_QUESTIONS.filter((question) => state.skippedBaseline[question.id]);
@@ -564,7 +564,7 @@
     };
 
     lines.push("DOMAIN GOVERNANCE BASELINE");
-    lines.push("Reflection Summary / Conversation Brief");
+    lines.push("Baseline Review Summary");
     lines.push("");
     lines.push("Created by Bryan Chetcuti");
     lines.push("https://baseline.bryanchetcuti.com/");
@@ -576,11 +576,11 @@
     lines.push(`Generated locally: ${new Date().toLocaleString()}`);
     lines.push("");
     lines.push("Purpose:");
-    lines.push("Use this summary to support a governance conversation about domain ownership,");
-    lines.push("DNS, email authority, public signals, accountability and review.");
+    lines.push("Use this summary to identify domain-governance priorities, evidence gaps,");
+    lines.push("accountable owners and practical next actions.");
     lines.push("");
     lines.push("Boundary:");
-    lines.push("This is a reflection aid, not an assurance report, compliance instrument,");
+    lines.push("This is a review aid, not an assurance report, compliance instrument,");
     lines.push("maturity score or rating. Observation is not judgement.");
     lines.push("");
     lines.push("Privacy:");
@@ -590,9 +590,9 @@
     lines.push("=".repeat(72));
     lines.push("");
 
-    lines.push("CONVERSATION PRIORITIES");
+    lines.push("PRIORITIES FOR FOLLOW-UP");
     if (gapItems.length === 0) {
-      lines.push("Every attempted baseline question is marked in place. The next conversation is how to keep those answers true over time.");
+      lines.push("Every attempted baseline question is marked in place. Use recurring review to keep the evidence, ownership and practices current.");
       lines.push("");
     } else {
       gapItems.forEach(addFinding);
@@ -625,7 +625,7 @@
     else goodItems.forEach((question) => lines.push(`- ${question.question}`));
     lines.push("");
 
-    lines.push("MATURITY THEMES");
+    lines.push("OPTIONAL FOLLOW-ON THEMES");
     MATURITY_THEMES.forEach((theme, index) => {
       const chosen = state.maturity[theme.id];
       const skipped = state.skippedMaturity?.[theme.id];
@@ -641,7 +641,7 @@
     lines.push("A missing signal does not mean an organisation is irresponsible.");
     lines.push("A passing signal does not mean everything behind it is well managed.");
     lines.push("");
-    lines.push("The goal is to make domain governance visible, discussable and improvable.");
+    lines.push("The goal is to make domain governance visible, governable and improvable.");
     lines.push("");
     lines.push("Generated with Domain Governance Baseline");
     lines.push("https://baseline.bryanchetcuti.com/");
@@ -649,7 +649,7 @@
     return lines.join("\n");
   }
 
-  window.buildTextReport = buildConversationBriefText;
+  window.buildTextReport = buildReviewSummaryText;
 
   setupGuidedPass();
   document.addEventListener("click", handleGuidedClick, false);
@@ -659,7 +659,7 @@
     generateButton.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopImmediatePropagation();
-      buildConversationFirstReflection();
+      buildPriorityFirstReview();
     }, true);
   }
 
@@ -669,8 +669,8 @@
       event.preventDefault();
       event.stopImmediatePropagation();
       try {
-        await navigator.clipboard.writeText(buildConversationBriefText());
-        showToast("Conversation brief copied to clipboard");
+        await navigator.clipboard.writeText(buildReviewSummaryText());
+        showToast("Review summary copied to clipboard");
       } catch (_error) {
         showToast("Copy not available - use Print / Save instead");
       }
