@@ -72,7 +72,7 @@ The relationship is deliberately simple:
 - the baseline reveals **what is unclear**;
 - the practical guides explain **what to establish next**.
 
-This is not a maturity model, resource catalogue or separate product surface. The guide carries
+This is not a maturity model, resource catalogue or separate product surface. Each guide carries
 the substantive expertise. Starter files are portable artefacts for use in systems the
 organisation already operates.
 
@@ -98,13 +98,36 @@ Starter files:
 
 The public route is `https://baseline.bryanchetcuti.com/resources/domain-register/`.
 
+### Practice guide 02: Control registrar and DNS authority
+
+The second guide establishes control over the privileged paths that can renew or transfer domains,
+change delegation, alter authoritative DNS and recover authority during an incident.
+
+It covers:
+
+- registration, delegation, DNS and recovery authority boundaries;
+- accountable ownership, approval and named privileged administration;
+- replacement of shared and personal access;
+- MFA, least privilege and scoped automation credentials;
+- organisational recovery paths, provider identifiers and emergency contacts;
+- transfer, deletion and proportionate registry-level protections;
+- approved, evidenced, validated and reversible DNS changes;
+- privileged-access review, recovery testing, evidence and common failure modes.
+
+Starter files:
+
+- `resources/downloads/domain-authority-review-template.csv` - blank authority-review CSV;
+- `resources/downloads/domain-authority-review-example.csv` - worked registrar, DNS and delegated-zone example;
+- `resources/downloads/dns-change-record-template.md` - portable DNS change record for existing ITSM or engineering workflows.
+
+The public route is `https://baseline.bryanchetcuti.com/resources/registrar-dns-authority/`.
+
 Potential later guides are not promised or published as placeholders. Each requires a separate,
 validated decision. The likely sequence, if evidence supports it, is:
 
-1. registrar and DNS authority;
-2. email authority and public signals;
-3. domain incident readiness;
-4. recurring domain-governance review.
+1. email authority and public signals;
+2. domain incident readiness;
+3. recurring domain-governance review.
 
 ## Guided interaction model
 
@@ -134,15 +157,17 @@ Key files:
 
 - `index.html` - page structure and static content sections.
 - `css/style.css` - visual system, layout, responsive behaviour and print styling.
+- `css/resources-tokens.css` - intermediate spacing tokens shared by practical-guide pages.
 - `css/resources.css` - practical guide layout and responsive / print styling.
 - `js/data.js` - checklist questions, optional themes, answer states and signal metadata.
 - `js/app.js` - base rendering, state, progress, theme toggle and default reflection logic.
 - `js/reflection-priorities.js` - guided-pass interaction, conversation-first reflection output,
   skipped-item handling and copied conversation brief override.
 - `js/instrument-enhancements.js` - governance-layer labels, suggested pathways and links from
-  reflection findings to practical guidance.
+  reflection findings to the matching practical guide.
 - `resources/index.html` - From baseline to practice landing page.
 - `resources/domain-register/index.html` - domain-register implementation guide.
+- `resources/registrar-dns-authority/index.html` - registrar and DNS authority implementation guide.
 
 ## Guardrails
 
