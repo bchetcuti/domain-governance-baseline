@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Control registrar and DNS authority - Domain Governance Baseline</title>
+  <meta name="description" content="A practical guide to controlling registrar and authoritative DNS access, change, recovery, review and evidence without creating a new governance platform." />
+  <link rel="canonical" href="https://baseline.bryanchetcuti.com/resources/registrar-dns-authority/" />
+  <meta name="author" content="Bryan Chetcuti" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230d5b5f' stroke-width='2.5'/%3E%3Cpath d='M16 3v26M3 16h26' stroke='%230d5b5f' stroke-width='1.5' opacity='.5'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%230d5b5f'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/resources-tokens.css" />
+  <link rel="stylesheet" href="../../css/resources.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap wrap-wide">
+      <a class="brand" href="../../" aria-label="Domain Governance Baseline home">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" />
+          <path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" />
+          <circle cx="16" cy="16" r="4.4" fill="currentColor" />
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Domain Governance Baseline</span>
+          <span class="brand-sub">Practice guide 02 · Registrar and DNS authority</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero guide-hero">
+      <div class="wrap">
+        <span class="eyebrow">From baseline to practice · Guide 02</span>
+        <p class="hero-note">Control the privileged paths that can alter or recover public identity and service routing.</p>
+        <h1>Control registrar and DNS authority.</h1>
+        <p class="lede">
+          Establish named, reviewable and recoverable control over domain registration, delegation and authoritative DNS—
+          without relying on shared credentials, personal mailboxes or undocumented console changes.
+        </p>
+        <div class="hero-meta">
+          <span class="pill">For technology and risk generalists</span>
+          <span class="pill">Eight practical steps</span>
+          <span class="pill">Authority-review CSV</span>
+          <span class="pill">DNS change-record template</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="../downloads/domain-authority-review-template.csv" download>Download authority-review CSV</a>
+          <a class="btn btn-ghost btn-lg" href="../downloads/dns-change-record-template.md" download>Download DNS change record</a>
+          <a class="btn btn-ghost btn-lg" href="../../">Open the baseline</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section guide-summary">
+      <div class="wrap">
+        <div class="summary-panel">
+          <div>
+            <span class="guide-label">Outcome</span>
+            <h2>Authority that is attributable, constrained and recoverable</h2>
+            <p>
+              The organisation should be able to state who can renew or transfer a domain, change delegation,
+              alter authoritative DNS, approve those actions and recover control if normal administrators are unavailable.
+              Those answers should be supported by current access records, provider evidence and a usable change trail.
+            </p>
+          </div>
+          <aside>
+            <p class="aside-title">Minimum credible state</p>
+            <ul class="compact-list">
+              <li>Privileged access uses named accounts wherever the provider permits it.</li>
+              <li>MFA protects every available administrative control path.</li>
+              <li>No personal mailbox is the sole recovery route.</li>
+              <li>At least two viable administrative or recovery paths exist for critical authority.</li>
+              <li>DNS changes are approved, recorded, validated and reversible.</li>
+              <li>Access and recovery arrangements are reviewed on a defined cycle.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-offset">
+      <div class="wrap guide-content">
+        <article class="guide-section" id="authority-boundaries">
+          <div class="guide-section-head">
+            <span class="guide-step">Scope</span>
+            <h2>Map the authority paths, not only the provider names</h2>
+          </div>
+          <p>
+            Registrar and DNS control is usually distributed across several accounts, roles and support paths.
+            A provider name in the domain register is a starting point; this guide records who can exercise authority and how control is recovered.
+          </p>
+          <div class="comparison-grid">
+            <div class="comparison-card">
+              <h3>Registration authority</h3>
+              <p>Can renew, transfer or alter registration details and may expose transfer credentials or lock settings.</p>
+            </div>
+            <div class="comparison-card">
+              <h3>Delegation authority</h3>
+              <p>Can change authoritative nameservers and, where used, DNSSEC delegation information at the registrar or registry boundary.</p>
+            </div>
+            <div class="comparison-card">
+              <h3>DNS authority</h3>
+              <p>Can create, change or delete records that route websites, email, identity, APIs and other services.</p>
+            </div>
+            <div class="comparison-card">
+              <h3>Recovery authority</h3>
+              <p>Can regain control through provider support, recovery contacts, secondary administrators, codes or documented escalation.</p>
+            </div>
+          </div>
+          <div class="callout">
+            <strong>Do not confuse a supplier relationship with an access model.</strong>
+            One account may control many domains, while a single domain may depend on a registrar, reseller, DNS provider,
+            identity provider, API token and emergency support process. Record each material authority boundary.
+          </div>
+        </article>
+
+        <article class="guide-section" id="establish">
+          <div class="guide-section-head">
+            <span class="guide-step">Method</span>
+            <h2>Establish control in eight practical steps</h2>
+          </div>
+          <ol class="implementation-steps">
+            <li>
+              <div class="step-number">1</div>
+              <div>
+                <h3>Start from the domain register</h3>
+                <p>For each material domain, confirm the registrar or reseller, authoritative DNS provider and any separately delegated zones. Group domains that share the same provider account or authority boundary.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">2</div>
+              <div>
+                <h3>Name accountability, approval and administration</h3>
+                <p>Record the accountable owner for the authority boundary, who approves privileged access or material changes, and the named people or supplier identities that perform administration.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">3</div>
+              <div>
+                <h3>Replace shared and personal access</h3>
+                <p>Use named administrator accounts and organisational email identities wherever the provider supports them. Treat a shared login or personal mailbox as an exception requiring an owner, rationale and removal plan.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">4</div>
+              <div>
+                <h3>Enforce MFA and constrain privilege</h3>
+                <p>Enable MFA on every available administrative path, apply the least privilege the platform supports, restrict API tokens to their required scope and avoid giving routine users transfer or account-owner authority.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">5</div>
+              <div>
+                <h3>Make recovery organisational</h3>
+                <p>Use a monitored role mailbox, maintain a second viable administrator or support path, store recovery codes in an approved enterprise vault and record provider account identifiers and emergency contacts.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">6</div>
+              <div>
+                <h3>Apply transfer and deletion protections</h3>
+                <p>Confirm registrar transfer locks and other available protections. Consider stronger registry-level locking for critical domains where proportionate. Protect transfer credentials and require deliberate approval before unlocking or deleting authority.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">7</div>
+              <div>
+                <h3>Make DNS change recoverable</h3>
+                <p>Use the organisation's existing change process to record the current state, exact change, approval, validation and rollback. Preserve provider audit logs and a recoverable copy of material zone state before high-impact changes.</p>
+              </div>
+            </li>
+            <li>
+              <div class="step-number">8</div>
+              <div>
+                <h3>Review, revoke and test</h3>
+                <p>Review privileged authority at least every six months—more frequently for essential services—and immediately after staff, supplier or platform changes. Test a critical recovery path rather than assuming provider support will work under pressure.</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="guide-section" id="authority-record">
+          <div class="guide-section-head">
+            <span class="guide-step">Authority record</span>
+            <h2>Record enough to govern access and recovery</h2>
+          </div>
+          <p>
+            Use one row for each material registrar, reseller, DNS account or separately governed zone boundary.
+            The CSV is an access-governance companion to the domain register, not a duplicate domain inventory.
+          </p>
+          <dl class="field-guide">
+            <div><dt>Authority boundary</dt><dd>A clear name for the provider account, tenant or delegated zone being governed.</dd></div>
+            <div><dt>Authority type</dt><dd>Registrar, reseller, DNS provider, delegated zone or another material control boundary.</dd></div>
+            <div><dt>Domains or zones covered</dt><dd>The material domains and zones controlled through this boundary.</dd></div>
+            <div><dt>Provider and account identifier</dt><dd>The provider plus the tenant, customer or account identifier needed for support and recovery.</dd></div>
+            <div><dt>Accountable owner</dt><dd>The organisational role answerable for continued authority and access governance.</dd></div>
+            <div><dt>Named privileged administrators</dt><dd>The named internal or supplier identities with administrative access.</dd></div>
+            <div><dt>Access model or role</dt><dd>The roles used, privilege boundaries and any shared or supplier-managed exception.</dd></div>
+            <div><dt>MFA status</dt><dd>Enforced, partial, unavailable or unknown, including material limitations.</dd></div>
+            <div><dt>Recovery contact and secondary path</dt><dd>The monitored contact plus the independent administrator, codes or support path available if primary access fails.</dd></div>
+            <div><dt>Lock or protection status</dt><dd>Transfer, registry, deletion or provider protections that materially constrain authority.</dd></div>
+            <div><dt>Audit or change-record location</dt><dd>Where access reviews, provider audit logs and DNS change records are retained.</dd></div>
+            <div><dt>Last reviewed</dt><dd>The date named access, recovery and protection settings were last confirmed.</dd></div>
+            <div><dt>Next review</dt><dd>The scheduled date for the next privileged-access and recovery review.</dd></div>
+            <div><dt>Exception or next action</dt><dd>The specific unresolved gap, exception owner and action required.</dd></div>
+          </dl>
+          <div class="download-panel">
+            <div>
+              <span class="guide-label">Portable authority record</span>
+              <h3>Review access without creating another platform</h3>
+              <p>The blank CSV can be maintained in an approved spreadsheet, access-review system, CMDB or control repository. The worked example illustrates registrar, DNS and supplier-operated boundaries using reserved example domains.</p>
+            </div>
+            <div class="download-actions">
+              <a class="btn btn-primary" href="../downloads/domain-authority-review-template.csv" download>Blank authority CSV</a>
+              <a class="btn btn-ghost" href="../downloads/domain-authority-review-example.csv" download>Worked example CSV</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="guide-section" id="change-record">
+          <div class="guide-section-head">
+            <span class="guide-step">Recoverable change</span>
+            <h2>Use a complete record for material DNS changes</h2>
+          </div>
+          <p>
+            Do not create a separate DNS workflow if the organisation already has an ITSM, engineering or change process.
+            Add the fields below to that process so a change can be attributed, validated and reversed.
+          </p>
+          <dl class="field-guide">
+            <div><dt>Domain, zone and records</dt><dd>The exact authority boundary and records affected.</dd></div>
+            <div><dt>Reason and service impact</dt><dd>Why the change is required and which services or users may be affected.</dd></div>
+            <div><dt>Requester, approver and implementer</dt><dd>Distinct accountable identities where the risk and operating model require separation.</dd></div>
+            <div><dt>Current state captured</dt><dd>The pre-change values, zone export or other evidence needed to restore the prior state.</dd></div>
+            <div><dt>Planned change</dt><dd>The exact additions, removals or modifications, including relevant TTL considerations.</dd></div>
+            <div><dt>Dependencies and risk</dt><dd>Email, identity, application, supplier and sequencing considerations.</dd></div>
+            <div><dt>Validation</dt><dd>How technical resolution and the affected service will be checked after implementation.</dd></div>
+            <div><dt>Rollback</dt><dd>The exact restoration action, responsible person and conditions that trigger reversal.</dd></div>
+            <div><dt>Emergency designation</dt><dd>Whether the normal approval path was shortened and how retrospective review will occur.</dd></div>
+            <div><dt>Completion and outcome</dt><dd>Implementation time, evidence, deviations, incidents and final status.</dd></div>
+          </dl>
+          <div class="download-panel">
+            <div>
+              <span class="guide-label">Copy into existing change control</span>
+              <h3>DNS change-record template</h3>
+              <p>A plain Markdown template that can be pasted into an ITSM ticket, engineering issue, change record or incident follow-up. It contains no workflow logic or external connection.</p>
+            </div>
+            <div class="download-actions">
+              <a class="btn btn-primary" href="../downloads/dns-change-record-template.md" download>Download Markdown template</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="guide-section" id="evidence">
+          <div class="guide-section-head">
+            <span class="guide-step">Evidence and cadence</span>
+            <h2>Know when authority is genuinely controlled</h2>
+          </div>
+          <div class="evidence-grid">
+            <section>
+              <h3>Evidence of practice</h3>
+              <ul>
+                <li>A current authority record covers material registrar, reseller and DNS boundaries.</li>
+                <li>Privileged administrators are named and MFA status is evidenced.</li>
+                <li>Recovery does not depend on one person or a personal mailbox.</li>
+                <li>Transfer, deletion and other material protection settings are known.</li>
+                <li>Recent DNS changes include approval, pre-change state, validation and rollback.</li>
+                <li>Provider audit logs or equivalent evidence can be retrieved.</li>
+                <li>A critical access or recovery path has been tested.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Review it when</h3>
+              <ul>
+                <li>The scheduled six-monthly or more frequent access review falls due.</li>
+                <li>An administrator, owner, supplier or recovery contact changes.</li>
+                <li>A registrar, reseller or DNS migration is planned or completed.</li>
+                <li>A domain, DNS, identity or email incident occurs.</li>
+                <li>API keys, service accounts or automation paths are introduced.</li>
+                <li>A critical domain is unlocked, transferred, delegated or placed into retirement.</li>
+                <li>The annual recovery exercise for essential authority falls due.</li>
+              </ul>
+            </section>
+          </div>
+        </article>
+
+        <article class="guide-section" id="failure-modes">
+          <div class="guide-section-head">
+            <span class="guide-step">Common failure modes</span>
+            <h2>Strong providers do not compensate for weak authority governance</h2>
+          </div>
+          <div class="failure-grid">
+            <article><h3>One shared registrar login</h3><p>Nobody can attribute access, offboarding is unreliable and the credential becomes a single point of failure.</p></article>
+            <article><h3>One administrator can do everything</h3><p>Routine DNS work, account recovery and domain transfer authority sit with one person and one authentication path.</p></article>
+            <article><h3>A personal mailbox controls recovery</h3><p>The organisation may lose authority when a staff member or supplier leaves, changes role or becomes unavailable.</p></article>
+            <article><h3>MFA covers only the obvious console</h3><p>Reseller portals, support resets, API tokens and secondary accounts remain weaker paths to the same authority.</p></article>
+            <article><h3>Locks are assumed, not verified</h3><p>Transfer or deletion protection is believed to exist but is not recorded, reviewed or understood by the accountable owner.</p></article>
+            <article><h3>Service accounts have no owner</h3><p>Automation tokens can alter DNS but are absent from access reviews, over-privileged or never rotated.</p></article>
+            <article><h3>Console changes leave no usable record</h3><p>The provider audit log may show that something changed without capturing why, approval, dependencies or rollback.</p></article>
+            <article><h3>Recovery exists only on paper</h3><p>Support numbers, account identifiers, codes or zone exports are missing or have never been tested during a controlled exercise.</p></article>
+          </div>
+        </article>
+
+        <article class="guide-section closing-section">
+          <div class="closing-panel">
+            <div>
+              <span class="guide-label">Return to the baseline</span>
+              <h2>Authority control should make three answers demonstrably stronger</h2>
+              <p>
+                Revisit the questions about registrar access, authoritative DNS providers and recoverable DNS change.
+                The organisation should now be able to name the authority boundaries, show who holds access, evidence how changes are controlled and demonstrate how control would be recovered.
+              </p>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="../../">Return to the baseline</a>
+              <a class="btn btn-ghost" href="../domain-register/">Review guide 01</a>
+              <a class="btn btn-ghost" href="../">Back to practical guidance</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand-block">
+        <a class="footer-brand" href="../../" aria-label="Domain Governance Baseline home">
+          <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4" />
+            <path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="1.4" opacity="0.5" />
+            <circle cx="16" cy="16" r="4.4" fill="currentColor" />
+          </svg>
+          <span>
+            <span class="footer-brand-title">Domain Governance Baseline</span>
+            <span class="footer-brand-sub">Practice guide 02</span>
+          </span>
+        </a>
+        <p>Practical guidance for controlling registrar and authoritative DNS access, change and recovery.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Guide links">
+        <p class="footer-nav-title">This guide</p>
+        <div class="footer-links">
+          <a href="#authority-boundaries">Authority boundaries</a>
+          <a href="#establish">Eight-step method</a>
+          <a href="#authority-record">Authority record</a>
+          <a href="#change-record">DNS change record</a>
+          <a href="#evidence">Evidence and cadence</a>
+          <a href="#failure-modes">Common failures</a>
+        </div>
+      </nav>
+      <nav class="footer-nav" aria-label="Downloads">
+        <p class="footer-nav-title">Downloads</p>
+        <div class="footer-links">
+          <a href="../downloads/domain-authority-review-template.csv" download>Blank authority CSV</a>
+          <a href="../downloads/domain-authority-review-example.csv" download>Worked authority example</a>
+          <a href="../downloads/dns-change-record-template.md" download>DNS change template</a>
+          <a href="../domain-register/">Guide 01: Domain register</a>
+        </div>
+      </nav>
+      <div class="footer-note">
+        <p class="footer-note-title">Boundary</p>
+        <ul class="trust-list">
+          <li>Starter guidance, not assurance</li>
+          <li>No new access or change platform</li>
+          <li>No score or maturity rating</li>
+          <li>Adapt to existing identity and change controls</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-legal">
+      <p>&copy; 2026 Bryan Chetcuti. Practical governance guidance. Adapt to organisational context, provider capability and existing control requirements.</p>
+    </div>
+  </footer>
+</body>
+</html>
