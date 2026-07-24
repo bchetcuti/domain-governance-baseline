@@ -35,22 +35,6 @@
     return layerQuestions.length > 0 && layerQuestions.every((question) => state.baseline[question.id] === "in_place");
   }
 
-  function addResourceEntryPoints() {
-    const heroActions = document.querySelector(".hero .cta-row");
-    if (heroActions && !heroActions.querySelector('a[href="resources/"]')) {
-      const link = create("a", "btn btn-ghost btn-lg", "Use the governance templates");
-      link.href = "resources/";
-      heroActions.appendChild(link);
-    }
-
-    const footerLinks = document.querySelector('.footer-nav[aria-label="Explore"] .footer-links');
-    if (footerLinks && !footerLinks.querySelector('a[href="/resources/"]')) {
-      const link = create("a", "", "Reflection resources");
-      link.href = "/resources/";
-      footerLinks.appendChild(link);
-    }
-  }
-
   function enhanceBaselineLayers() {
     BASELINE_QUESTIONS.forEach((question) => {
       const layer = layerFor(question);
@@ -110,8 +94,8 @@
         title: "Turn domain dependency and incident answers into an operating path",
         summary: "Delivery and operational uncertainty points to the practical side of domain governance: which systems depend on the domain layer, who is called during failure and what can be recovered.",
         action: "Map dependent services, escalation contacts and recovery steps before the next incident tests them.",
-        href: "https://bryanchetcuti.com/",
-        cta: "Discuss a Domain Governance Review",
+        href: "/resources/",
+        cta: "Open reflection resources",
       });
     }
 
@@ -131,9 +115,9 @@
         label: "Next governance conversation",
         title: "Use the summary to keep the baseline true",
         summary: "No specific pathway is being elevated from this pass. That does not mean the domain layer is finished; it means the next conversation is cadence, ownership and evidence.",
-        action: "Use the maturity themes to decide what belongs in recurring governance reporting.",
+        action: "Use the optional follow-on themes to decide what belongs in recurring governance reporting.",
         href: "#maturity-section",
-        cta: "Return to maturity themes",
+        cta: "Review optional follow-on themes",
       });
     }
 
@@ -174,8 +158,8 @@
       lines.push("");
     });
 
-    lines.push("RESOURCE PACK");
-    lines.push("Use the printable reflection resources to turn this baseline summary into a board update, CIO/CISO briefing, supplier assurance note or quarterly governance report.");
+    lines.push("REFLECTION RESOURCES");
+    lines.push("Use the printable companion resources to transcribe useful notes into an existing board update, supplier assurance note, incident review or recurring governance report.");
     lines.push("Link: https://baseline.bryanchetcuti.com/resources/");
     lines.push("");
 
@@ -200,7 +184,6 @@
     });
   }
 
-  addResourceEntryPoints();
   enhanceBaselineLayers();
 
   document.addEventListener("click", (event) => {

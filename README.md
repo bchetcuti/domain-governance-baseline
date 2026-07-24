@@ -1,6 +1,6 @@
 # Domain Governance Baseline
 
-A public, standalone guide and guided self-assessment built on the essay
+A lightweight, interactive implementation of the ten-question starting-point checklist from
 [Domain Governance as a Trust Surface](https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/)
 by Bryan Chetcuti.
 
@@ -8,14 +8,16 @@ Published: `https://baseline.bryanchetcuti.com/`.
 
 ## Positioning
 
-The Domain Governance Baseline is a public credibility asset first. It is designed for
-technology, risk and governance leaders who need to explain domain governance upwards:
-to executive, board, risk and service-leadership audiences.
+The Domain Governance Baseline exists to make the essay's checklist easier to use in an
+existing governance conversation. It is intentionally small. It is not intended to become
+another assessment platform, governance system or product workflow.
 
-It provides a self-service entry point for domain-governance conversations and can also
-support a facilitated Domain Governance Review. ThreatScope Check can act as a utility
-bridge for externally observable signals, but this baseline remains useful without
-automation.
+It is designed for technology, risk and governance leaders who need a practical prompt before:
+
+- a board, executive or risk update;
+- a domain, DNS or email incident review;
+- registrar, DNS, email or digital supplier assurance; or
+- a quarterly or biannual domain-governance check-in.
 
 Core stance:
 
@@ -26,29 +28,44 @@ Core stance:
 
 ## What it is
 
-A single-page web tool that turns the essay's 10-question baseline checklist and six
-maturity themes into a guided reflection.
+A single-page checklist that reproduces the essay's ten starting-point questions and turns
+answers into a local reflection summary or conversation brief.
 
-The tool is deliberately **not a score**. It follows the essay's position that observation
+The checklist is deliberately **not a score**. It follows the essay's position that observation
 is not judgement.
 
-- **Section 1 - The baseline:** ten baseline questions covering domain ownership,
-  accountability, registrar access, renewal, DNS, dependencies, email authority,
-  email authentication, change control and incident readiness.
-- **Section 2 - Maturity themes:** portfolio rationalisation, supplier assurance,
-  change control, continuous monitoring, public signal review and executive reporting.
-- **Reflection Summary / Conversation Brief:** a structured output that leads with
-  conversation priorities rather than counts. Findings are framed for board / exec / risk,
-  technical, and public trust / service impact audiences.
+- **The ten-question checklist:** domain ownership, accountability, registrar access, renewal,
+  DNS, dependencies, email authority, email authentication, change control and incident readiness.
+- **Optional follow-on themes:** portfolio rationalisation, supplier assurance, change control,
+  continuous monitoring, public signal review and executive reporting.
+- **Reflection Summary / Conversation Brief:** a structured output that leads with conversation
+  priorities rather than counts. Findings are framed for board / exec / risk, technical, and
+  public trust / service impact audiences.
 
-The output is a reflection summary or conversation brief, not an assurance report,
-compliance instrument, maturity score or rating.
+The output is a reflection summary or conversation brief, not an assurance report, compliance
+instrument, maturity score or rating.
+
+## Why it stays local
+
+The absence of a backend is a deliberate benefit, not only a technical constraint.
+
+Organisations can reflect on ownership gaps, supplier dependencies and incident readiness
+without placing those answers into another external assessment system.
+
+- no account;
+- no retained answers;
+- no external assessment processing;
+- no analytics or telemetry;
+- copied and printed outputs generated locally in the browser.
+
+The intended outcome is governance-ready narrative and questions that can be moved into the
+organisation's existing board papers, incident reviews, supplier notes and recurring reports.
 
 ## Reflection resources
 
-The `/resources/` section contains printable companion templates designed to work beside
-the in-browser baseline. They do not populate data, score maturity or certify control
-effectiveness. They provide a structured place to transcribe the user's baseline answers,
+The `/resources/` section contains printable companion templates designed to be used after a
+reflection, not as a separate product surface. They do not populate data, score maturity or
+certify control effectiveness. They provide a structured place to transcribe useful answers,
 notes, observations, ownership details, evidence sources and review actions.
 
 Resource pages:
@@ -71,9 +88,9 @@ Design principles:
 
 ## Guided interaction model
 
-The baseline is designed as a guided pass rather than a long static checklist.
+The checklist is presented as a guided pass rather than a long static form.
 
-- One baseline question or maturity theme is shown at a time.
+- One checklist question or optional follow-on theme is shown at a time.
 - Answered or considered items collapse into short summary rows.
 - Future items are hidden until the current item is answered or skipped.
 - Users can return to earlier items and change their response.
@@ -84,20 +101,8 @@ Skipping is intentionally separate from uncertainty:
 - **Not sure** means uncertainty itself is the finding.
 - **Skip for now** means the user is choosing not to answer that item in this pass.
 
-Skipped baseline questions are included separately in the reflection output and are not
-treated as findings or gaps.
-
-## Privacy
-
-Nothing is sent anywhere.
-
-There is no backend, no analytics and no answer storage. All state lives in the browser
-tab and is gone when the tab closes or reloads.
-
-The copied conversation brief and printed/PDF reflection are generated locally in the
-browser.
-
-The companion resources are static templates. They do not collect, submit or store data.
+Skipped checklist questions are included separately in the reflection output and are not treated
+as findings or gaps.
 
 ## Tech
 
@@ -110,25 +115,31 @@ Key files:
 - `index.html` - page structure and static content sections.
 - `css/style.css` - visual system, layout, responsive behaviour and print styling.
 - `css/resources.css` - resource pack and printable template styling.
-- `js/data.js` - baseline questions, maturity themes, answer states and signal metadata.
+- `js/data.js` - checklist questions, optional themes, answer states and signal metadata.
 - `js/app.js` - base rendering, state, progress, theme toggle and default reflection logic.
-- `js/reflection-priorities.js` - guided-pass interaction, conversation-first reflection
-  output, skipped-item handling and copied conversation brief override.
+- `js/reflection-priorities.js` - guided-pass interaction, conversation-first reflection output,
+  skipped-item handling and copied conversation brief override.
+- `js/instrument-enhancements.js` - governance-layer labels, suggested pathways and resource references.
 
-## Extending later
+## Guardrails
 
-The content model in `js/data.js` is separated from the interaction logic. Each
-externally observable question is already tagged, so a future integration could pre-fill
-or support the observable half of the baseline without changing the baseline's
-self-service value.
+The baseline should remain a precise companion to the essay rather than grow into a general
+assessment product.
 
-Any future automation should preserve the tool's core boundary:
+> The baseline should support a governance conversation, not become another system to operate.
 
-> The baseline should support a governance conversation, not become a scorecard.
+Acceptable changes are narrow improvements to:
 
-Potential future extensions:
+- the clarity and accuracy of the ten questions and optional guidance;
+- accessibility, responsive behaviour and print quality;
+- the usefulness of copied or printed reflection notes;
+- the relationship between the checklist, source essay and companion templates; and
+- transparent versioning of substantive content changes.
 
-- pre-fill externally observable signal checks using ThreatScope Check;
-- add optional local export/import of an in-progress session;
-- improve copy/export mapping between the reflection summary and the resource templates;
-- add a versioned changelog for baseline content changes.
+The following are out of scope unless the positioning is deliberately reconsidered:
+
+- user accounts or retained assessment histories;
+- comparative scoring, benchmarking or maturity ratings;
+- automated assurance or compliance claims;
+- mandatory integrations with ThreatScope Check or other services; and
+- workflow, case-management or reporting-platform capabilities.
