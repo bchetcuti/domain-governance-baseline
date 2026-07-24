@@ -1,5 +1,5 @@
 /* ============================================================
-   App logic - render, state, reflection.
+   App logic - render, state, review.
    No backend, no storage. Everything stays in the browser tab.
    ============================================================ */
 
@@ -68,15 +68,12 @@ function renderBaseline() {
       answers.appendChild(btn);
     });
     card.appendChild(answers);
-    if (linkout) {
-      const lo = el("div", "q-linkout-wrap", linkout);
-      card.appendChild(lo);
-    }
+    if (linkout) card.appendChild(el("div", "q-linkout-wrap", linkout));
     list.appendChild(card);
   });
 }
 
-/* ---------- RENDER: maturity ---------- */
+/* ---------- RENDER: optional themes ---------- */
 function renderMaturity() {
   const list = $("#maturity-list");
   MATURITY_THEMES.forEach((m, idx) => {
@@ -91,18 +88,9 @@ function renderMaturity() {
       <h3 class="m-theme">${m.theme}</h3>
       <p class="m-meaning">${m.meaning}</p>
       <div class="m-guide">
-        <div class="m-guide-block">
-          <span class="m-guide-label">Why it matters</span>
-          <p>${m.why}</p>
-        </div>
-        <div class="m-guide-block">
-          <span class="m-guide-label">What good looks like</span>
-          <p>${m.good}</p>
-        </div>
-        <div class="m-guide-block">
-          <span class="m-guide-label">Common failure modes</span>
-          <ul class="m-failures">${failuresHtml}</ul>
-        </div>
+        <div class="m-guide-block"><span class="m-guide-label">Why it matters</span><p>${m.why}</p></div>
+        <div class="m-guide-block"><span class="m-guide-label">What good looks like</span><p>${m.good}</p></div>
+        <div class="m-guide-block"><span class="m-guide-label">Common failure modes</span><ul class="m-failures">${failuresHtml}</ul></div>
       </div>
       <p class="m-connects">${m.connects}</p>
       <p class="m-prompt"><strong>Where does your organisation sit today?</strong> ${m.prompt}</p>
@@ -142,15 +130,15 @@ function updateProgress() {
   if (bDone > 0) {
     btn.disabled = false;
     btn.textContent = bDone < bTotal
-      ? `See your reflection (${bDone}/${bTotal} answered)`
-      : "See your reflection";
+      ? `See your summary (${bDone}/${bTotal} answered)`
+      : "See your summary";
   } else {
     btn.disabled = true;
     btn.textContent = "Answer at least one question to continue";
   }
 }
 
-/* ---------- REFLECTION ---------- */
+/* ---------- REVIEW SUMMARY FALLBACK ---------- */
 const STATE_META = {
   in_place:     { cls: "good",    stCls: "st-good",    fCls: "f-good",    label: "In place" },
   partial:      { cls: "partial", stCls: "st-partial", fCls: "f-partial", label: "Partial" },
@@ -163,48 +151,39 @@ function buildReflection() {
   const counts = { in_place: 0, partial: 0, not_in_place: 0, unsure: 0 };
   answered.forEach((q) => counts[state.baseline[q.id]]++);
 
-  /* Summary stats */
   const grid = $("#summary-grid");
   grid.innerHTML = "";
-  const statDefs = [
+  [
     { key: "in_place", cls: "stat-good", label: "in place" },
     { key: "partial", cls: "stat-partial", label: "partial" },
     { key: "not_in_place", cls: "stat-absent", label: "not in place" },
     { key: "unsure", cls: "stat-unsure", label: "not sure" },
-  ];
-  statDefs.forEach((s) => {
-    const stat = el("div", `summary-stat ${s.cls}`);
-    stat.innerHTML = `<div class="s-count">${counts[s.key]}</div><div class="s-label">${s.label}</div>`;
-    grid.appendChild(stat);
+  ].forEach((s) => {
+    grid.appendChild(el("div", `summary-stat ${s.cls}`, `<div class="s-count">${counts[s.key]}</div><div class="s-label">${s.label}</div>`));
   });
 
-  /* Intro line adapts to the picture */
   const gaps = counts.not_in_place + counts.unsure + counts.partial;
   let intro;
   if (gaps === 0 && counts.in_place === answered.length) {
-    intro = `You answered every attempted question as "in place." That is a strong baseline. The real value now is keeping it true - which is where the maturity themes below come in. Remember: a passing baseline does not mean everything behind it is well managed.`;
+    intro = `Every attempted question is marked "in place." Treat that as a useful starting position, not a score. The next step is to keep those answers current through recurring review.`;
   } else if (counts.unsure >= 3) {
-    intro = `Several answers were "not sure." That is itself the most useful finding - the questions nobody can confidently answer are exactly the governance conversations worth having first. Uncertainty here is not failure; it is a map of where clarity is missing.`;
+    intro = `Several answers are "not sure." That is the most useful finding: uncertainty shows where accountability, evidence or ownership is missing. Resolve those questions first.`;
   } else {
-    intro = `This is a reflection, not a score. The items below are grouped so you can see where the baseline is solid, where it is partial, and where a conversation is worth starting. None of this is a judgement - it is a starting point for a better discussion about your domain layer.`;
+    intro = `This review summary leads with priorities for follow-up rather than a score. Use it to decide which domain-governance questions need ownership, evidence, remediation or escalation.`;
   }
   $("#reflection-intro-text").textContent = intro;
 
-  /* Priority ordering: not_in_place, unsure, partial, then in_place */
   const order = { not_in_place: 0, unsure: 1, partial: 2, in_place: 3 };
   const sorted = [...answered].sort((a, b) => order[state.baseline[a.id]] - order[state.baseline[b.id]]);
-
-  /* Conversations to have next (everything that isn't fully in place) */
+  const gapItems = sorted.filter((q) => state.baseline[q.id] !== "in_place");
+  const goodItems = sorted.filter((q) => state.baseline[q.id] === "in_place");
   const gapsBlock = $("#gaps-block");
   const goodBlock = $("#good-block");
   gapsBlock.innerHTML = "";
   goodBlock.innerHTML = "";
 
-  const gapItems = sorted.filter((q) => state.baseline[q.id] !== "in_place");
-  const goodItems = sorted.filter((q) => state.baseline[q.id] === "in_place");
-
   if (gapItems.length === 0) {
-    gapsBlock.appendChild(el("div", "empty-good", "Every attempted baseline question is in place. Focus your attention on the maturity themes below."));
+    gapsBlock.appendChild(el("div", "empty-good", "Every attempted baseline question is in place. Use the recurring-review guide to keep the evidence, ownership and practices current."));
   } else {
     gapItems.forEach((q) => gapsBlock.appendChild(renderFinding(q, state.baseline[q.id])));
   }
@@ -215,40 +194,32 @@ function buildReflection() {
     goodItems.forEach((q) => goodBlock.appendChild(renderFinding(q, "in_place")));
   }
 
-  /* Public trust surface callout - externally observable items */
   const extAnswered = answered.filter((q) => q.visibility === "external");
   const extBlock = $("#external-block");
   extBlock.innerHTML = "";
   const extGaps = extAnswered.filter((q) => state.baseline[q.id] !== "in_place");
   const extText = extAnswered.length === 0
-    ? `You didn't answer any of the externally observable questions (authoritative DNS, sending domains, SPF/DKIM/DMARC). These are the parts of your domain layer anyone can inspect from outside - worth revisiting.`
+    ? `You did not answer any externally observable questions. Revisit authoritative DNS, sending domains and email authentication as visible signals.`
     : extGaps.length === 0
-      ? `All ${extAnswered.length} externally observable items you answered are in place. The signals that form your public trust surface - DNS, sending authority, email authentication - currently present coherently to an outside observer.`
-      : `${extGaps.length} of ${extAnswered.length} externally observable items are not fully in place. Because these signals are visible from outside your organisation, they shape how others read your public trust surface - before you ever get to explain the internal reality behind them.`;
+      ? `All ${extAnswered.length} externally observable items you answered are in place. Treat that as a prompt to keep reviewing the public trust surface, not as proof that everything behind it is well governed.`
+      : `${extGaps.length} of ${extAnswered.length} externally observable items are not fully in place. These signals shape how others read the public trust surface before the internal reality is explained.`;
   extBlock.appendChild(el("p", "block-intro", extText));
   extAnswered.forEach((q) => {
     const meta = STATE_META[state.baseline[q.id]];
-    const row = el("div", "mat-row");
-    row.innerHTML = `<span class="mat-name">${q.question}</span><span class="finding-state ${meta.stCls}">${meta.label}</span>`;
-    extBlock.appendChild(row);
+    extBlock.appendChild(el("div", "mat-row", `<span class="mat-name">${q.question}</span><span class="finding-state ${meta.stCls}">${meta.label}</span>`));
   });
-  const extLink = el("div", "q-linkout-wrap",
-    `<a class="q-linkout" href="${THREATSCOPE_URL}" target="_blank" rel="noopener">${ICONS.eye}See these external signals for your own domain with ThreatScope Check</a>`);
-  extBlock.appendChild(extLink);
+  extBlock.appendChild(el("div", "q-linkout-wrap", `<a class="q-linkout" href="${THREATSCOPE_URL}" target="_blank" rel="noopener">${ICONS.eye}See these external signals for your own domain with ThreatScope Check</a>`));
 
-  /* Maturity summary */
   const matBlock = $("#maturity-summary");
   matBlock.innerHTML = "";
   const matDone = MATURITY_THEMES.filter((m) => state.maturity[m.id]);
   if (matDone.length === 0) {
-    matBlock.appendChild(el("div", "empty-good", "You haven't reflected on the maturity themes yet. Once the baseline is visible, these are the deeper conversations - portfolio, suppliers, change control, monitoring, public signals and executive reporting."));
+    matBlock.appendChild(el("div", "empty-good", "You have not considered the optional themes in this pass. Use them only where they help deepen portfolio, supplier, change, monitoring, public-signal or executive-governance work."));
   } else {
     MATURITY_THEMES.forEach((m) => {
       const chosen = state.maturity[m.id];
       const label = chosen ? MATURITY_STATES.find((s) => s.id === chosen).label : "Not considered";
-      const row = el("div", "mat-row");
-      row.innerHTML = `<span class="mat-name">${m.theme}</span><span class="mat-badge ${chosen ? "b-set" : ""}">${label}</span>`;
-      matBlock.appendChild(row);
+      matBlock.appendChild(el("div", "mat-row", `<span class="mat-name">${m.theme}</span><span class="mat-badge ${chosen ? "b-set" : ""}">${label}</span>`));
     });
   }
 
@@ -259,34 +230,25 @@ function buildReflection() {
 function renderFinding(q, stateId) {
   const meta = STATE_META[stateId];
   const vis = VISIBILITY[q.visibility];
-  const node = el("article", `finding ${meta.fCls}`);
   const visTag = q.visibility === "external"
     ? `<span class="tag tag-external">${ICONS.eye}${vis.label}</span>`
     : `<span class="tag tag-internal">${ICONS.lock}${vis.label}</span>`;
-
-  node.innerHTML = `
-    <div class="finding-head">
-      <span class="finding-q">${q.question}</span>
-      <span class="finding-state ${meta.stCls}">${meta.label}</span>
-    </div>
+  return el("article", `finding ${meta.fCls}`, `
+    <div class="finding-head"><span class="finding-q">${q.question}</span><span class="finding-state ${meta.stCls}">${meta.label}</span></div>
     <div class="finding-layers">
       <div class="layer"><span class="layer-label">Board / risk</span><span class="layer-text">${q.board}</span></div>
       <div class="layer"><span class="layer-label">Technical</span><span class="layer-text">${q.tech}</span></div>
       <div class="layer"><span class="layer-label">Public-interest</span><span class="layer-text">${q.publicOrg}</span></div>
     </div>
     <div class="finding-visibility">${visTag}</div>
-  `;
-  return node;
+  `);
 }
 
-/* ---------- EXPORT (copy + print) ---------- */
+/* ---------- EXPORT FALLBACK ---------- */
 function buildTextReport() {
   const lines = [];
-
-  const generatedAt = new Date().toLocaleString();
-
   lines.push("DOMAIN GOVERNANCE BASELINE");
-  lines.push("Reflection Summary / Conversation Brief");
+  lines.push("Baseline Review Summary");
   lines.push("");
   lines.push("Created by Bryan Chetcuti");
   lines.push("https://baseline.bryanchetcuti.com/");
@@ -295,14 +257,14 @@ function buildTextReport() {
   lines.push("Domain Governance as a Trust Surface");
   lines.push("https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/");
   lines.push("");
-  lines.push(`Generated locally: ${generatedAt}`);
+  lines.push(`Generated locally: ${new Date().toLocaleString()}`);
   lines.push("");
   lines.push("Purpose:");
-  lines.push("Use this summary to support a governance conversation about domain ownership,");
-  lines.push("DNS, email authority, public signals, accountability and review.");
+  lines.push("Use this summary to identify domain-governance priorities, evidence gaps,");
+  lines.push("accountable owners and practical next actions.");
   lines.push("");
   lines.push("Boundary:");
-  lines.push("This is a reflection aid, not an assurance report, compliance instrument,");
+  lines.push("This is a review aid, not an assurance report, compliance instrument,");
   lines.push("maturity score or rating. Observation is not judgement.");
   lines.push("");
   lines.push("Privacy:");
@@ -311,83 +273,33 @@ function buildTextReport() {
   lines.push("");
   lines.push("=".repeat(72));
   lines.push("");
-
   lines.push("SECTION 1 - THE BASELINE");
   lines.push("");
 
   BASELINE_QUESTIONS.forEach((q, i) => {
-    const a = state.baseline[q.id];
-    const label = a ? STATE_META[a].label : "Not answered";
-    const visLbl = q.visibility === "external" ? "Externally observable" : "Internal only";
-
+    const answer = state.baseline[q.id];
+    const label = answer ? STATE_META[answer].label : "Not answered";
+    const visibility = q.visibility === "external" ? "Externally observable" : "Internal only";
     lines.push(`${String(i + 1).padStart(2, "0")}. ${q.question}`);
-    lines.push(`    Visibility: ${visLbl}`);
+    lines.push(`    Visibility: ${visibility}`);
     lines.push(`    Response: ${label}`);
-
-    if (a && a !== "in_place") {
-      lines.push(`    Governance prompt: ${q.board}`);
-    }
-
+    if (answer && answer !== "in_place") lines.push(`    Governance prompt: ${q.board}`);
     lines.push("");
   });
 
   lines.push("=".repeat(72));
   lines.push("");
-  lines.push("SECTION 2 - THE MATURITY GUIDE");
+  lines.push("SECTION 2 - OPTIONAL FOLLOW-ON THEMES");
   lines.push("");
-  lines.push("Beyond the baseline: six themes for governing the domain layer over time.");
-  lines.push("Each theme includes where your organisation currently sits, if considered.");
+  lines.push("Six optional themes for broader domain-governance review.");
   lines.push("");
-
-  const wrap = (text, indent = "    ", width = 76) => {
-    const words = String(text).split(/\s+/);
-    const out = [];
-    let line = indent;
-
-    words.forEach((w) => {
-      if ((line + w).length > width && line.trim().length) {
-        out.push(line);
-        line = indent + w + " ";
-      } else {
-        line += w + " ";
-      }
-    });
-
-    if (line.trim().length) out.push(line.replace(/\s+$/, ""));
-    return out;
-  };
 
   MATURITY_THEMES.forEach((m, i) => {
-    const s = state.maturity[m.id];
-    const label = s ? MATURITY_STATES.find((x) => x.id === s).label : "Not considered";
-
+    const selected = state.maturity[m.id];
+    const label = selected ? MATURITY_STATES.find((x) => x.id === selected).label : "Not considered";
     lines.push(`THEME ${String(i + 1).padStart(2, "0")} - ${m.theme.toUpperCase()}`);
     lines.push(`  Where we sit today: ${label}`);
-    lines.push("");
-
-    lines.push("  What it means:");
-    lines.push(...wrap(m.meaning));
-    lines.push("");
-
-    lines.push("  Why it matters:");
-    lines.push(...wrap(m.why));
-    lines.push("");
-
-    lines.push("  What good looks like:");
-    lines.push(...wrap(m.good));
-    lines.push("");
-
-    lines.push("  Common failure modes:");
-    m.failures.forEach((f) => {
-      lines.push(...wrap(f, "    - ").map((l, idx) => idx === 0 ? l : "      " + l.trimStart()));
-    });
-    lines.push("");
-
-    lines.push("  Connects to:");
-    lines.push(...wrap(m.connects));
-    lines.push("");
-
-    lines.push("-".repeat(72));
+    lines.push(`  What good looks like: ${m.good}`);
     lines.push("");
   });
 
@@ -397,14 +309,14 @@ function buildTextReport() {
   lines.push("A missing signal does not mean an organisation is irresponsible.");
   lines.push("A passing signal does not mean everything behind it is well managed.");
   lines.push("");
-  lines.push("The goal is to make domain governance visible, discussable and improvable.");
+  lines.push("The goal is to make domain governance visible, governable and improvable.");
   lines.push("");
   lines.push("Generated with Domain Governance Baseline");
   lines.push("https://baseline.bryanchetcuti.com/");
   lines.push("");
-
   return lines.join("\n");
 }
+
 /* ---------- THEME TOGGLE ---------- */
 (function () {
   const t = $("[data-theme-toggle]"), r = document.documentElement;
@@ -428,7 +340,7 @@ $("#generate-btn").addEventListener("click", buildReflection);
 $("#start-btn").addEventListener("click", () => $("#baseline-section").scrollIntoView({ behavior: "smooth" }));
 
 $("#copy-btn").addEventListener("click", async () => {
-  try { await navigator.clipboard.writeText(buildTextReport()); showToast("Reflection copied to clipboard"); }
+  try { await navigator.clipboard.writeText(buildTextReport()); showToast("Review summary copied to clipboard"); }
   catch { showToast("Copy not available - use Print / Save instead"); }
 });
 $("#print-btn").addEventListener("click", () => window.print());
