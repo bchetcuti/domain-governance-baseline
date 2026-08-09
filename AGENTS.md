@@ -47,7 +47,7 @@ Do not introduce by default:
 - provider-specific operating procedures presented as universal controls; or
 - speculative features that are not supported by evidence from real use.
 
-Related work may inform or contextualise the Baseline, but it is not a normative dependency.
+Related work may inform or contextualise the Baseline, but it is not a normative dependency. Preserve that distinction in website copy, `llms.txt` and cross-project links.
 
 ## Change hierarchy
 
@@ -84,6 +84,7 @@ Key paths:
 - `resources/` - five bounded practice guides and starter records.
 - `citation/` - public citation, reuse and stewardship surface.
 - `reference/v1.0/` - fixed v1.0 reference edition.
+- `llms.txt` - curated website-facing navigation manifest for LLMs. Keep canonical Baseline material first and label wider ecosystem links as contextual rather than normative.
 
 ## Content and style
 
@@ -104,6 +105,7 @@ For all changes:
 - inspect the complete diff and keep unrelated files out of scope;
 - run or emulate `git diff --check` where a local checkout is available;
 - confirm internal and external links introduced by the change are correct;
+- review `llms.txt` when canonical public URLs or material ecosystem relationships change, and keep it curated rather than exhaustive;
 - preserve restrictive security headers unless the change explicitly requires a reviewed policy update; and
 - confirm no credentials, organisation-specific records or private operational data are introduced.
 
