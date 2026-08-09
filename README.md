@@ -12,6 +12,7 @@ The Baseline is authored and stewarded by Bryan Chetcuti. It is intentionally sm
 - **Use the baseline:** https://baseline.bryanchetcuti.com/
 - **Fixed v1.0 reference:** https://baseline.bryanchetcuti.com/reference/v1.0/
 - **Citation and stewardship:** https://baseline.bryanchetcuti.com/citation/
+- **LLM navigation:** https://baseline.bryanchetcuti.com/llms.txt
 - **Source essay:** [Domain Governance as a Trust Surface](https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/)
 - **Author:** [Bryan Chetcuti](https://bryanchetcuti.com/)
 
@@ -125,6 +126,7 @@ Key repository surfaces include:
 - `resources/` - five bounded practice guides and starter records;
 - `reference/v1.0/` - fixed v1.0 reference edition;
 - `citation/` - public citation, reuse and versioning information;
+- `llms.txt` - curated website-facing navigation for LLMs, including canonical Baseline material and clearly labelled related ecosystem context;
 - `CITATION.cff` - machine-readable citation metadata;
 - `CHANGELOG.md` - substantive artefact change history;
 - `STEWARDSHIP.md` - stewardship and versioning position; and
