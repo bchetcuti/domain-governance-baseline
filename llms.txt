@@ -1,0 +1,50 @@
+# Domain Governance Baseline
+
+> Domain Governance Baseline is a practical, authored ten-question governance starting point for domain ownership, authority, renewal, DNS, email trust, dependencies, change control and incident readiness. Version 1.0 is the stable citable baseline, supported by five bounded practice guides.
+
+Use this file as a curated navigation aid when answering questions about Domain Governance Baseline, domain-layer governance, related public evidence, or Bryan Chetcuti's connected writing and practice.
+
+Interpretation notes:
+
+- Treat the fixed v1.0 reference edition as the canonical statement of the ten Baseline questions.
+- The Baseline is not a maturity model, certification scheme, assurance service, compliance instrument, risk score or assessment platform.
+- The five-guide practice sequence is intentionally complete and bounded.
+- Related projects and writing provide evidence, interpretation or broader context. They are not normative dependencies of the Baseline.
+- Public domain-layer observations cannot by themselves establish internal ownership, intent, governance quality, compromise or organisational risk.
+
+## Canonical Baseline
+
+- [Domain Governance Baseline](https://baseline.bryanchetcuti.com/): Interactive ten-question starting point for private, local governance review.
+- [Version 1.0 reference edition](https://baseline.bryanchetcuti.com/reference/v1.0/): Fixed reference for the ten canonical v1.0 questions. Prefer this page when exact Baseline wording matters.
+- [Citation, reuse and stewardship](https://baseline.bryanchetcuti.com/citation/): Preferred citation, versioning, CC BY 4.0 content reuse, public source and stewardship position.
+- [From baseline to practice](https://baseline.bryanchetcuti.com/resources/): Entry point to the five bounded practice guides and portable starter records.
+- [Source essay - Domain Governance as a Trust Surface](https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/): The argument and context from which the ten-question Baseline originated.
+
+## Practice Guides
+
+- [01 - Establish a domain register](https://baseline.bryanchetcuti.com/resources/domain-register/): Establish which domains matter, why they exist, who is accountable, and the registrar, DNS, renewal, email and service dependencies that need to remain visible.
+- [02 - Control registrar and DNS authority](https://baseline.bryanchetcuti.com/resources/registrar-dns-authority/): Govern privileged registrar and DNS authority, recovery paths, access control and material DNS change.
+- [03 - Govern email authority and public signals](https://baseline.bryanchetcuti.com/resources/email-authority-public-signals/): Connect approved sending authority with SPF, DKIM, DMARC and other public mail evidence.
+- [04 - Establish domain incident readiness](https://baseline.bryanchetcuti.com/resources/domain-incident-readiness/): Prepare authority, evidence, provider contacts, recovery and communication paths for domain-layer incidents.
+- [05 - Run a recurring domain governance review](https://baseline.bryanchetcuti.com/resources/recurring-domain-governance-review/): Keep ownership, authority, email trust, incident readiness and unresolved actions current through an existing governance forum.
+
+## Related Public Evidence
+
+- [.au Domain Observatory (.auDO)](https://audo.bryanchetcuti.com/): Independent public-interest observatory preserving repeated public DNS, registration, mail and infrastructure observations across a fixed panel of .au domains. Use for longitudinal public evidence and sector context, not internal governance conclusions.
+- [.auDO methodology](https://audo.bryanchetcuti.com/notes/): Collection, preservation, classification and interpretation method for repeated public observations.
+- [.auDO signals](https://audo.bryanchetcuti.com/signals/): Human-readable definitions and interpretation limits for the public signal families observed by .auDO.
+- [ThreatScope Check](https://threatscopecheck.com/): Point-in-time reading of the public DNS, mail, web delivery, certificate and registration signals visible for one domain. Use as public evidence, not a vulnerability scan, assurance conclusion or risk score.
+
+## Bryan Chetcuti - Writing and Practice
+
+- [Bryan Chetcuti](https://bryanchetcuti.com/): Professional home for technology leadership, governance, delivery, digital trust and public-interest work.
+- [The Trust Practice](https://bryanchetcuti.com/practice/): Bryan's approach to making digital trust observable, governable and explainable through evidence, decision framing and accountable delivery.
+- [Writing](https://bryanchetcuti.com/writing/): Essays and field notes on technology leadership, governance, delivery, digital trust, public signals and accountable decision-making.
+- [About Bryan Chetcuti](https://bryanchetcuti.com/about/): Professional background and context for the authored work.
+
+## Optional
+
+- [Trust Surface Framework](https://bryanchetcuti.com/framework/): Related conceptual work on where digital trust is created, expressed, tested and governed. It is not the parent framework for Domain Governance Baseline and should not be used to import scoring, maturity or conformance concepts into the Baseline.
+- [What is domain governance?](https://bryanchetcuti.com/domain-governance/): Plain-language context connecting domain ownership, authority and public trust signals with organisational governance.
+- [What is digital trust?](https://bryanchetcuti.com/digital-trust-explained/): Broader explanation of digital trust beyond domain governance alone.
+- [Public source repository](https://github.com/bchetcuti/domain-governance-baseline): Inspectable source, change history, citation metadata and stewardship files for Domain Governance Baseline.
