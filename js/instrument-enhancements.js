@@ -5,6 +5,7 @@
 (function () {
   const BASELINE_VERSION = "1.0";
   const CITATION_URL = "https://baseline.bryanchetcuti.com/citation/";
+  const REPOSITORY_URL = "https://github.com/bchetcuti/domain-governance-baseline";
   const openStates = new Set(["partial", "not_in_place", "unsure"]);
 
   const create = (tag, className, html) => {
@@ -49,6 +50,17 @@
     return /^https?:\/\//i.test(href);
   }
 
+  function repositoryIcon() {
+    return `
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="6" cy="5" r="2" stroke="currentColor" stroke-width="1.8" />
+        <circle cx="18" cy="7" r="2" stroke="currentColor" stroke-width="1.8" />
+        <circle cx="6" cy="19" r="2" stroke="currentColor" stroke-width="1.8" />
+        <path d="M6 7v10M8 7h4a6 6 0 0 1 6 6v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    `;
+  }
+
   function enhanceVersionIdentity() {
     const meta = document.querySelector(".instrument-meta dl");
     if (meta && !meta.querySelector("[data-baseline-version]")) {
@@ -61,8 +73,17 @@
 
     const footerExplore = document.querySelector('.footer-nav[aria-label="Explore"] .footer-links');
     if (footerExplore && !footerExplore.querySelector('a[href="/citation/"]')) {
-      footerExplore.appendChild(create("a", "", "Citation and stewardship"));
-      footerExplore.lastElementChild.href = "/citation/";
+      const citationLink = create("a", "", "Citation and stewardship");
+      citationLink.href = "/citation/";
+      footerExplore.appendChild(citationLink);
+    }
+
+    if (footerExplore && !footerExplore.querySelector(`a[href="${REPOSITORY_URL}"]`)) {
+      const repositoryLink = create("a", "repo-link", `${repositoryIcon()}<span>Source on GitHub</span>`);
+      repositoryLink.href = REPOSITORY_URL;
+      repositoryLink.target = "_blank";
+      repositoryLink.rel = "noopener";
+      footerExplore.appendChild(repositoryLink);
     }
 
     const printKicker = document.querySelector(".print-brand-kicker");
