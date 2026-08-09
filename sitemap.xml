@@ -2,9 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://baseline.bryanchetcuti.com/</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://baseline.bryanchetcuti.com/citation/</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://baseline.bryanchetcuti.com/reference/v1.0/</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://baseline.bryanchetcuti.com/resources/</loc>
