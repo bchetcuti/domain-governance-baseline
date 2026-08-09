@@ -106,6 +106,8 @@ Particularly useful contributions include:
 
 The ten questions are canonical for the v1 line and the five-guide sequence is intentionally bounded. A proposal or pull request does not imply that the canonical Baseline will expand.
 
+Coding and review agents should follow [`AGENTS.md`](AGENTS.md), which translates these stewardship boundaries into repository-specific implementation and validation instructions.
+
 ## Repository implementation
 
 The published site is intentionally simple:
@@ -124,8 +126,9 @@ Key repository surfaces include:
 - `reference/v1.0/` - fixed v1.0 reference edition;
 - `citation/` - public citation, reuse and versioning information;
 - `CITATION.cff` - machine-readable citation metadata;
-- `CHANGELOG.md` - substantive artefact change history; and
-- `STEWARDSHIP.md` - stewardship and versioning position.
+- `CHANGELOG.md` - substantive artefact change history;
+- `STEWARDSHIP.md` - stewardship and versioning position; and
+- `AGENTS.md` - repository guidance for coding and review agents.
 
 ## Licence and reuse
 
