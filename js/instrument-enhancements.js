@@ -1,8 +1,10 @@
 /* ============================================================
-   Instrument identity enhancements: governance layers + pathways.
+   Instrument identity enhancements: governance layers + pathways + citation.
    Keeps the baseline as a local review instrument, not a score.
    ============================================================ */
 (function () {
+  const BASELINE_VERSION = "1.0";
+  const CITATION_URL = "https://baseline.bryanchetcuti.com/citation/";
   const openStates = new Set(["partial", "not_in_place", "unsure"]);
 
   const create = (tag, className, html) => {
@@ -45,6 +47,26 @@
 
   function isExternalHref(href) {
     return /^https?:\/\//i.test(href);
+  }
+
+  function enhanceVersionIdentity() {
+    const meta = document.querySelector(".instrument-meta dl");
+    if (meta && !meta.querySelector("[data-baseline-version]")) {
+      const versionRow = create("div", "", `
+        <dt>Version</dt>
+        <dd data-baseline-version>Domain Governance Baseline v${BASELINE_VERSION} - <a href="/citation/">citation and stewardship</a></dd>
+      `);
+      meta.prepend(versionRow);
+    }
+
+    const footerExplore = document.querySelector('.footer-nav[aria-label="Explore"] .footer-links');
+    if (footerExplore && !footerExplore.querySelector('a[href="/citation/"]')) {
+      footerExplore.appendChild(create("a", "", "Citation and stewardship"));
+      footerExplore.lastElementChild.href = "/citation/";
+    }
+
+    const printKicker = document.querySelector(".print-brand-kicker");
+    if (printKicker) printKicker.textContent = `Domain Governance Baseline v${BASELINE_VERSION}`;
   }
 
   function enhanceBaselineLayers() {
@@ -197,6 +219,11 @@
     lines.push("Guides: https://baseline.bryanchetcuti.com/resources/");
     lines.push("");
 
+    lines.push("REFERENCE");
+    lines.push(`Domain Governance Baseline v${BASELINE_VERSION} by Bryan Chetcuti`);
+    lines.push(`Citation and stewardship: ${CITATION_URL}`);
+    lines.push("");
+
     return lines.join("\n");
   }
 
@@ -218,6 +245,7 @@
     });
   }
 
+  enhanceVersionIdentity();
   enhanceBaselineLayers();
 
   document.addEventListener("click", (event) => {
