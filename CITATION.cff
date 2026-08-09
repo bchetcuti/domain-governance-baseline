@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use or adapt the Domain Governance Baseline, please cite it using the metadata below."
 title: "Domain Governance Baseline"
-type: generic
+type: software
 authors:
   - family-names: "Chetcuti"
     given-names: "Bryan"
