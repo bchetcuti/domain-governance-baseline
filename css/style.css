@@ -380,6 +380,24 @@ a, button, [role="button"], input, select {
 .reflect-actions { margin-top: var(--space-10); display: flex; flex-wrap: wrap; gap: var(--space-3); }
 
 /* ---------- FOOTER ---------- */
+
+.brand img,
+.footer-brand img {
+  flex: none;
+}
+
+[data-theme="dark"] .brand img,
+[data-theme="dark"] .footer-brand img {
+  content: url("/assets/img/brand-mark-dark.svg");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .brand img,
+  :root:not([data-theme]) .footer-brand img {
+    content: url("/assets/img/brand-mark-dark.svg");
+  }
+}
+
 .site-footer {
   border-top: 1px solid var(--color-divider);
   padding-block: var(--space-12);
@@ -406,10 +424,6 @@ a, button, [role="button"], input, select {
   text-decoration: none;
 }
 
-.footer-brand svg {
-  color: var(--color-primary);
-  flex: none;
-}
 
 .footer-brand-title {
   display: block;
