@@ -62,7 +62,7 @@ The five-guide sequence is intentionally complete and bounded. Each guide addres
 | [04 - Establish domain incident readiness](https://baseline.bryanchetcuti.com/resources/domain-incident-readiness/) | Prepare the authority, evidence, response and recovery path for domain-layer incidents. |
 | [05 - Run a recurring domain governance review](https://baseline.bryanchetcuti.com/resources/recurring-domain-governance-review/) | Keep ownership, authority, email trust and incident readiness current through an existing forum. |
 
-Portable CSV and Markdown starter records are included with the guides for use in existing organisational systems.
+The [worked walkthrough](https://baseline.bryanchetcuti.com/walkthrough/) shows how one fictional Australian not-for-profit moves from an unchanged Baseline review through these five guides into evidence, decisions, organisational records and recurring review. Portable CSV and Markdown starter records are included with the guides for use in existing organisational systems.
 
 ## Using the interactive baseline
 
@@ -123,6 +123,7 @@ Key repository surfaces include:
 
 - `index.html` - interactive baseline;
 - `js/data.js` - canonical questions and optional follow-on themes;
+- `walkthrough/` - fictional end-to-end worked walkthrough;
 - `resources/` - five bounded practice guides and starter records;
 - `reference/v1.0/` - fixed v1.0 reference edition;
 - `citation/` - public citation, reuse and versioning information;

@@ -17,6 +17,7 @@ Interpretation notes:
 - [Domain Governance Baseline](https://baseline.bryanchetcuti.com/): Interactive ten-question starting point for private, local governance review.
 - [Version 1.0 reference edition](https://baseline.bryanchetcuti.com/reference/v1.0/): Fixed reference for the ten canonical v1.0 questions. Prefer this page when exact Baseline wording matters.
 - [Citation, reuse and stewardship](https://baseline.bryanchetcuti.com/citation/): Preferred citation, versioning, CC BY 4.0 content reuse, public source and stewardship position.
+- [Worked walkthrough](https://baseline.bryanchetcuti.com/walkthrough/): Fictional Australian NFP example connecting an unchanged Baseline review to evidence, decisions, organisational records, accountable follow-up and the five bounded practices.
 - [From baseline to practice](https://baseline.bryanchetcuti.com/resources/): Entry point to the five bounded practice guides and portable starter records.
 - [Source essay - Domain Governance as a Trust Surface](https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/): The argument and context from which the ten-question Baseline originated.
 
