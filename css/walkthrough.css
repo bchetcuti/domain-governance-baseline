@@ -45,4 +45,4 @@
 @media (max-width: 960px) { .scenario-grid { grid-template-columns: 1fr; } }
 @media (max-width: 820px) { .outcome-grid { grid-template-columns: 1fr; } }
 @media (max-width: 680px) { .walkthrough-pattern { grid-template-columns: 1fr; } .walkthrough-step--wide { grid-column: auto; } .table-scroll { margin-inline: calc(var(--space-5) * -1); border-radius: 0; } }
-@media print { .walkthrough-nav, .artefact-links { display: none; } .table-scroll { overflow: visible; } .walkthrough-table { min-width: 0; font-size: 8pt; } .walkthrough-step, .open-item, .scenario-card, .outcome-card { break-inside: avoid; } }
+@media print { .walkthrough-page .section:not(#reflection-section) { display: block !important; } .walkthrough-nav, .artefact-links { display: none; } .table-scroll { overflow: visible; } .walkthrough-table { min-width: 0; font-size: 8pt; } .walkthrough-step, .open-item, .scenario-card, .outcome-card { break-inside: avoid; } }
