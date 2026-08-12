@@ -2,6 +2,12 @@
 
 This change history records substantive changes to the authored governance artefact. Routine styling, accessibility, implementation and maintenance changes do not require an entry unless they alter meaning or use.
 
+## Supporting public surface - 11 August 2026
+
+- added a fictional Australian NFP worked walkthrough connecting the unchanged ten-question Baseline to evidence, governance interpretation, decisions, organisational records, accountable follow-up and recurring review;
+- aligned the existing worked domain register, authority review, authorised-sender register and action log to the walkthrough scenario, and added a concise worked incident-exercise record; and
+- preserved the ten canonical questions, five-guide boundary, no-score position and open uncertainties.
+
 ## Version 1.0 - 9 August 2026
 
 Version 1.0 establishes the current ten-question checklist as the canonical citable baseline.
