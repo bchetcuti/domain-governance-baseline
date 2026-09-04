@@ -41,11 +41,12 @@
   --color-text-faint: #9a9d97;
   --color-text-inverse: #f6f5f1;
 
-  --color-primary: #0d5b5f;
+  --color-primary: #0d5b5f;        /* deep teal - trust / infrastructure */
   --color-primary-hover: #0a474b;
   --color-primary-active: #073437;
   --color-primary-soft: #dceae9;
 
+  /* state accents used sparingly in reflection & tags */
   --color-good: #2f6d3f;
   --color-good-soft: #dbe8dc;
   --color-partial: #9a6a12;
