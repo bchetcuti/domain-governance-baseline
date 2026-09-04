@@ -9,7 +9,8 @@ The Baseline is authored and stewarded by Bryan Chetcuti. It is intentionally sm
 ## Reference
 
 - **Current version:** v1.0
-- **Use the baseline:** https://baseline.bryanchetcuti.com/
+- **Baseline home:** https://baseline.bryanchetcuti.com/
+- **Start a Baseline Review:** https://baseline.bryanchetcuti.com/review/
 - **Fixed v1.0 reference:** https://baseline.bryanchetcuti.com/reference/v1.0/
 - **Citation and stewardship:** https://baseline.bryanchetcuti.com/citation/
 - **LLM navigation:** https://baseline.bryanchetcuti.com/llms.txt
@@ -31,7 +32,7 @@ Most organisations do not govern the domain layer until something breaks. The Ba
 - registrar, DNS, email or digital supplier assurance; and
 - recurring domain-governance reviews.
 
-The interactive Baseline turns responses into a **Baseline Review Summary** focused on priorities, evidence needs and practical next actions. It does not produce a score, rating or assurance conclusion.
+The canonical homepage explains and positions the authored Baseline. The dedicated [Baseline Review](https://baseline.bryanchetcuti.com/review/) provides the private interactive workflow and turns responses into a **Baseline Review Summary** focused on priorities, evidence needs and practical next actions. It does not produce a score, rating or assurance conclusion.
 
 ## The ten canonical questions
 
@@ -64,9 +65,9 @@ The five-guide sequence is intentionally complete and bounded. Each guide addres
 
 The [worked walkthrough](https://baseline.bryanchetcuti.com/walkthrough/) shows how one fictional Australian not-for-profit moves from an unchanged Baseline review through these five guides into evidence, decisions, organisational records and recurring review. Portable CSV and Markdown starter records are included with the guides for use in existing organisational systems.
 
-## Using the interactive baseline
+## Using the interactive baseline review
 
-The published Baseline is deliberately local and lightweight:
+The published review at `/review/` is deliberately local and lightweight:
 
 - no account;
 - no retained answers;
@@ -76,6 +77,8 @@ The published Baseline is deliberately local and lightweight:
 - copied and printed outputs are generated locally in the browser.
 
 Organisations can therefore review ownership gaps, supplier dependencies and incident readiness without placing those answers into another external assessment system.
+
+The route split is an information-architecture boundary, not a product expansion: `/` remains the canonical authored and citable Baseline, while `/review/` is the place where someone actively works through it.
 
 ## Stewardship and versioning
 
@@ -116,13 +119,16 @@ The published site is intentionally simple:
 - plain HTML, CSS and vanilla JavaScript;
 - no framework or build step;
 - no runtime dependencies;
+- no backend or retained review state;
 - static practical guides and portable starter files; and
 - restrictive browser security headers for the deployed site.
 
 Key repository surfaces include:
 
-- `index.html` - interactive baseline;
+- `index.html` - canonical authored Baseline homepage;
+- `review/index.html` - interactive Baseline Review;
 - `js/data.js` - canonical questions and optional follow-on themes;
+- `js/app.js` - local interaction and review behaviour;
 - `walkthrough/` - fictional end-to-end worked walkthrough;
 - `resources/` - five bounded practice guides and starter records;
 - `reference/v1.0/` - fixed v1.0 reference edition;

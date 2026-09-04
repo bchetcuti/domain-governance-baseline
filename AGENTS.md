@@ -76,15 +76,18 @@ The published site is deliberately simple:
 
 Key paths:
 
-- `index.html` - main interactive Baseline page.
+- `index.html` - canonical authored and citable Baseline homepage.
+- `review/index.html` - interactive Baseline Review and locally generated review summary.
 - `js/data.js` - canonical questions, optional follow-on themes and supporting content model.
-- `js/app.js` - base interaction and review behaviour.
+- `js/app.js` - base interaction and review behaviour used by `/review/`.
 - `js/reflection-priorities.js` - priority-first review output.
 - `js/instrument-enhancements.js` - governance layers, practical pathways, version identity and provenance links.
 - `resources/` - five bounded practice guides and starter records.
 - `citation/` - public citation, reuse and stewardship surface.
 - `reference/v1.0/` - fixed v1.0 reference edition.
 - `llms.txt` - curated website-facing navigation manifest for LLMs. Keep canonical Baseline material first and label wider ecosystem links as contextual rather than normative.
+
+The root URL and review route have intentionally different responsibilities. Do not move the interactive instrument back onto `index.html` without an explicit information-architecture decision. Likewise, do not treat `/review/` as a separate assessment product: it is the working interface for the same authored Baseline.
 
 ## Content and style
 
