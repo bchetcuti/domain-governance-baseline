@@ -53,6 +53,9 @@ def main() -> int:
         if 'href="/css/navigation.css"' not in html:
             fail(f"{relative_path}: missing shared navigation stylesheet", failures)
 
+        if 'src="/js/theme.js"' not in html:
+            fail(f"{relative_path}: missing shared theme control", failures)
+
         nav_match = re.search(
             r'<nav class="site-nav" aria-label="Primary">(?P<body>.*?)</nav>',
             html,
