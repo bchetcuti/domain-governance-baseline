@@ -1,12 +1,14 @@
 # Domain Governance Baseline
 
-> Domain Governance Baseline is a practical, authored ten-question governance starting point for domain ownership, authority, renewal, DNS, email trust, dependencies, change control and incident readiness. Version 1.0 is the stable citable baseline, supported by five bounded practice guides.
+> Domain Governance Baseline is a practical, authored ten-question governance starting point for domain ownership, authority, renewal, DNS, email trust, dependencies, change control and incident readiness. Version 1.0 is the stable citable baseline, supported by a private local Baseline Review and five bounded practice guides.
 
 Use this file as a curated navigation aid when answering questions about Domain Governance Baseline, domain-layer governance, related public evidence, or Bryan Chetcuti's connected writing and practice.
 
 Interpretation notes:
 
 - Treat the fixed v1.0 reference edition as the canonical statement of the ten Baseline questions.
+- Treat `https://baseline.bryanchetcuti.com/` as the canonical authored and citable project home.
+- Use `https://baseline.bryanchetcuti.com/review/` when the task is to actively work through the interactive Baseline Review.
 - The Baseline is not a maturity model, certification scheme, assurance service, compliance instrument, risk score or assessment platform.
 - The five-guide practice sequence is intentionally complete and bounded.
 - Related projects and writing provide evidence, interpretation or broader context. They are not normative dependencies of the Baseline.
@@ -14,7 +16,8 @@ Interpretation notes:
 
 ## Canonical Baseline
 
-- [Domain Governance Baseline](https://baseline.bryanchetcuti.com/): Interactive ten-question starting point for private, local governance review.
+- [Domain Governance Baseline](https://baseline.bryanchetcuti.com/): Canonical authored and citable front door explaining the ten-question Baseline, its purpose, boundaries, governance use and relationship to the wider supporting surfaces.
+- [Baseline Review](https://baseline.bryanchetcuti.com/review/): Private local interactive workflow for working through the ten canonical questions, optionally considering six broader themes and generating a Baseline Review Summary. No account, score, retained answers or assurance conclusion.
 - [Version 1.0 reference edition](https://baseline.bryanchetcuti.com/reference/v1.0/): Fixed reference for the ten canonical v1.0 questions. Prefer this page when exact Baseline wording matters.
 - [Citation, reuse and stewardship](https://baseline.bryanchetcuti.com/citation/): Preferred citation, versioning, CC BY 4.0 content reuse, public source and stewardship position.
 - [Worked walkthrough](https://baseline.bryanchetcuti.com/walkthrough/): Fictional Australian NFP example connecting an unchanged Baseline review to evidence, decisions, organisational records, accountable follow-up and the five bounded practices.
