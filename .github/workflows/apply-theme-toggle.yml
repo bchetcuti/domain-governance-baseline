@@ -1,0 +1,88 @@
+name: Apply shared theme toggle
+
+on:
+  push:
+    branches:
+      - feat/primary-site-navigation
+    paths:
+      - .github/workflows/apply-theme-toggle.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/primary-site-navigation
+          fetch-depth: 0
+
+      - name: Apply global theme control
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          pages = [
+              Path("index.html"),
+              Path("404.html"),
+              Path("review/index.html"),
+              Path("citation/index.html"),
+              Path("reference/v1.0/index.html"),
+              Path("walkthrough/index.html"),
+              Path("resources/index.html"),
+              Path("resources/domain-register/index.html"),
+              Path("resources/registrar-dns-authority/index.html"),
+              Path("resources/email-authority-public-signals/index.html"),
+              Path("resources/domain-incident-readiness/index.html"),
+              Path("resources/recurring-domain-governance-review/index.html"),
+          ]
+
+          theme_script = '  <script src="/js/theme.js"></script>\n'
+          for path in pages:
+              text = path.read_text(encoding="utf-8")
+              if 'src="/js/theme.js"' not in text:
+                  text = text.replace("</head>", theme_script + "</head>", 1)
+                  path.write_text(text, encoding="utf-8")
+
+          app = Path("js/app.js")
+          text = app.read_text(encoding="utf-8")
+          text, count = re.subn(
+              r'/\* ---------- THEME TOGGLE ---------- \*/.*?(?=/\* ---------- INIT ---------- \*/)',
+              '',
+              text,
+              count=1,
+              flags=re.DOTALL,
+          )
+          if count != 1:
+              raise SystemExit("Expected exactly one legacy theme-toggle block in js/app.js")
+          app.write_text(text, encoding="utf-8")
+
+          validator = Path("scripts/validate_navigation.py")
+          text = validator.read_text(encoding="utf-8")
+          needle = '''        if 'href="/css/navigation.css"' not in html:\n            fail(f"{relative_path}: missing shared navigation stylesheet", failures)\n'''
+          addition = needle + '''\n        if 'src="/js/theme.js"' not in html:\n            fail(f"{relative_path}: missing shared theme control", failures)\n'''
+          if 'missing shared theme control' not in text:
+              if needle not in text:
+                  raise SystemExit("Could not locate navigation stylesheet validation block")
+              text = text.replace(needle, addition, 1)
+              validator.write_text(text, encoding="utf-8")
+          PY
+
+          python scripts/validate_navigation.py
+          git diff --check
+
+      - name: Commit theme consistency fix
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html 404.html review/index.html citation/index.html reference/v1.0/index.html walkthrough/index.html resources/index.html resources/*/index.html js/app.js scripts/validate_navigation.py
+          git commit -m "fix: make theme toggle available across public pages"
+          git push origin HEAD:feat/primary-site-navigation
