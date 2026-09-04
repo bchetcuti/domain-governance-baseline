@@ -41,12 +41,11 @@
   --color-text-faint: #9a9d97;
   --color-text-inverse: #f6f5f1;
 
-  --color-primary: #0d5b5f;        /* deep teal - trust / infrastructure */
+  --color-primary: #0d5b5f;
   --color-primary-hover: #0a474b;
   --color-primary-active: #073437;
   --color-primary-soft: #dceae9;
 
-  /* state accents used sparingly in reflection & tags */
   --color-good: #2f6d3f;
   --color-good-soft: #dbe8dc;
   --color-partial: #9a6a12;
@@ -532,7 +531,7 @@ a, button, [role="button"], input, select {
 }
 @media print {
   .site-header, .cta-row, .reflect-actions, .answers, .m-scale, .site-footer, .hero-meta, .stance, .progress-line, .icon-btn, .toast { display: none !important; }
-  .section:not(#reflection-section) { display: none !important; }
+  .review-page .section:not(#reflection-section) { display: none !important; }
   body { background: #fff; color: #000; }
   .reflection { display: block !important; }
   .finding, .summary-stat, .mat-row, .reflection-intro { break-inside: avoid; box-shadow: none; }
