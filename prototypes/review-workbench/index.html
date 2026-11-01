@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="author" content="Bryan Chetcuti">
+  <title>Review workbench – design prototype | Domain Governance Baseline</title>
+  <meta name="description" content="An isolated design prototype of the guided Baseline review, optional exploration and governance decision brief.">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/navigation.css">
+  <link rel="stylesheet" href="/css/site-shell.css">
+  <link rel="stylesheet" href="/css/review-workbench-prototype.css">
+  <script src="/js/theme.js"></script>
+</head>
+<body class="workbench-prototype">
+<header class="site-header shell-header">
+    <div class="wrap wrap-wide shell-header-inner">
+      <a class="brand shell-brand" href="/" aria-label="Domain Governance Baseline - overview">
+        <img src="/assets/img/brand-mark.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-text">
+          <span class="brand-name">Domain Governance Baseline</span>
+          <span class="brand-sub">by Bryan Chetcuti</span>
+        </span>
+      </a>
+      <nav class="site-nav shell-nav" aria-label="Primary">
+        <a href="/">Overview</a>
+        <a href="/walkthrough/">Walkthrough</a>
+        <a href="/resources/">Practice guides</a>
+        <a href="/reference/v1.0/">Reference</a>
+      </nav>
+      <div class="shell-actions header-actions">
+        <a class="shell-review-link" href="/review/">Start review <span aria-hidden="true">→</span></a>
+        <button class="icon-btn" data-theme-toggle type="button" aria-label="Toggle colour theme"></button>
+      </div>
+    </div>
+  </header>
+  <main id="top" class="workbench-main">
+    <div class="wrap wrap-wide">
+      <div class="prototype-strip" role="note">
+        <div class="prototype-strip-copy">
+          <span class="prototype-tag">Design prototype</span>
+          <span>Fictional example · Southern Community Services · No real assessment is being conducted</span>
+        </div>
+        <a href="/review/">Return to live review</a>
+      </div>
+
+      <div class="wb-intro">
+        <div>
+          <span class="eyebrow">The Baseline Review · Interaction study</span>
+          <h1>From a question to a governance decision.</h1>
+          <p>Three connected moments to test: a clearer ten-question workbench, optional deeper exploration, and a practical decision brief.</p>
+        </div>
+        <div class="wb-intro-context">
+          <span>What is real here?</span>
+          <p>The canonical question and optional theme are sourced from Version 1.0. All example answers are fictional and stay in this browser tab.</p>
+        </div>
+      </div>
+
+      <nav class="wb-steps" aria-label="Prototype stages">
+        <button type="button" class="wb-step" data-stage-target="review" aria-current="step"><span>01</span><strong>Review the questions</strong><small>Understand and answer</small></button>
+        <button type="button" class="wb-step" data-stage-target="explore"><span>02</span><strong>Explore further</strong><small>Optional, not scored</small></button>
+        <button type="button" class="wb-step" data-stage-target="brief"><span>03</span><strong>Decision brief</strong><small>Carry findings to work</small></button>
+      </nav>
+
+      <section class="wb-stage is-visible" id="stage-review" aria-labelledby="stage-review-title">
+        <div class="wb-stage-head">
+          <div>
+            <span class="wb-kicker">01 / The ten-question checklist</span>
+            <h2 id="stage-review-title">One question at a time. The whole picture in view.</h2>
+            <p>The numbered question retains its canonical wording. Explanatory detail helps interpretation without competing with the decision.</p>
+          </div>
+          <div class="wb-progress-summary">
+            <strong id="review-progress-heading">8 of 10 answered</strong>
+            <span>Fictional pass · not a score</span>
+            <div class="wb-progress-track" aria-hidden="true"><div class="wb-progress-fill" id="review-progress-fill"></div></div>
+          </div>
+        </div>
+
+        <div class="wb-review-grid">
+          <article class="wb-question-panel" aria-labelledby="prototype-question">
+            <div class="wb-question-topline">
+              <span class="wb-question-number" id="question-number">Question 03 / 10</span>
+              <span class="wb-question-visibility" id="question-visibility"></span>
+            </div>
+            <div class="wb-question-domain" id="question-domain"></div>
+            <h3 id="prototype-question"></h3>
+            <p class="wb-question-explain" id="question-why"></p>
+            <div class="wb-answer-heading">What can the organisation say today?</div>
+            <div class="wb-answer-grid" id="prototype-answer-options" role="group" aria-label="Answer the canonical question"></div>
+            <details class="wb-help-detail">
+              <summary>What evidence would help?</summary>
+              <p id="question-evidence"></p>
+              <p class="wb-detail-note">Use an existing register, supplier record or governance forum. This prototype does not collect evidence.</p>
+            </details>
+            <div class="wb-question-actions">
+              <button type="button" class="btn btn-ghost" id="reset-answer">Reset fictional answer</button>
+              <button type="button" class="btn btn-primary" data-stage-target="brief">See the decision brief <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <aside class="wb-overview" aria-labelledby="overview-heading">
+            <div class="wb-overview-head">
+              <span class="wb-kicker">The full review</span>
+              <h3 id="overview-heading">Your ten-question overview</h3>
+              <p>A compact, editable overview in the proposed full experience. Q03 is interactive in this prototype; the other answers provide fictional context.</p>
+            </div>
+            <ol id="question-overview" class="wb-overview-list"></ol>
+            <p class="wb-overview-foot">Unaddressed questions remain visible and are never treated as “in place”.</p>
+          </aside>
+        </div>
+        <div class="wb-stage-next">
+          <div><strong>The review can end here.</strong><p>Optional themes shouldn't stand between an answer and a useful result.</p></div>
+          <button type="button" class="btn btn-ghost" data-stage-target="explore">Or explore an optional theme <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section class="wb-stage" id="stage-explore" aria-labelledby="stage-explore-title" hidden>
+        <div class="wb-stage-head">
+          <div>
+            <span class="wb-kicker">02 / Optional follow-on</span>
+            <h2 id="stage-explore-title">Only go deeper where it helps.</h2>
+            <p>The six existing themes become optional guidance, not another maturity questionnaire. Select what warrants a governance conversation.</p>
+          </div>
+          <span class="wb-optional-label">Entirely optional</span>
+        </div>
+        <div class="wb-theme-grid">
+          <div class="wb-theme-feature">
+            <div class="wb-theme-head">
+              <div>
+                <span class="wb-kicker">Connected to the domain and supplier estate</span>
+                <h3 id="theme-title">Supplier assurance</h3>
+              </div>
+              <span class="wb-theme-type">Theme 02 of 06</span>
+            </div>
+            <p id="theme-meaning"></p>
+            <button type="button" class="wb-expand-trigger" id="theme-toggle" aria-expanded="false" aria-controls="theme-detail">
+              See the practical context <span aria-hidden="true">+</span>
+            </button>
+            <div class="wb-theme-detail" id="theme-detail" hidden>
+              <h4>What credible practice looks like</h4><p id="theme-good"></p>
+              <h4>Questions to take into governance</h4><p id="theme-prompt"></p>
+            </div>
+            <label class="wb-theme-choice">
+              <input type="checkbox" id="include-theme">
+              <span><strong>Include this theme in the follow-up</strong><small>Not a rating or a claim that the practice exists.</small></span>
+            </label>
+          </div>
+          <aside class="wb-theme-context">
+            <span class="wb-kicker">The other existing themes</span>
+            <h3>Explore by relevance, not by obligation.</h3>
+            <ul id="other-themes"></ul>
+            <p>Each theme would use the same optional pattern in a full implementation. No second set of maturity scores is proposed.</p>
+          </aside>
+        </div>
+        <div class="wb-stage-next">
+          <button type="button" class="btn btn-ghost" data-stage-target="review">Back to the question</button>
+          <button type="button" class="btn btn-primary" data-stage-target="brief">Continue to decision brief <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section class="wb-stage" id="stage-brief" aria-labelledby="stage-brief-title" hidden>
+        <div class="wb-stage-head">
+          <div>
+            <span class="wb-kicker">03 / From reflection to action</span>
+            <h2 id="stage-brief-title">A brief for your existing governance forum.</h2>
+            <p>Coverage first, then actionable questions, then supporting evidence. The result follows the selected answers without generating a score or prescribing risk priority.</p>
+          </div>
+          <span class="wb-brief-sample">Fictional illustrative result</span>
+        </div>
+        <div class="wb-brief-paper" id="print-brief">
+          <div class="wb-brief-heading">
+            <div><span class="wb-kicker">Domain Governance Baseline · Version 1.0</span><h3>Governance review brief</h3><p>Southern Community Services · fictional example</p></div>
+            <span class="wb-brief-cover" id="brief-cover-label">Partial review</span>
+          </div>
+          <div class="wb-metrics">
+            <div><strong id="metric-answered">8 of 10</strong><span>Questions answered</span></div>
+            <div><strong id="metric-open">4</strong><span>For follow-up</span></div>
+            <div><strong id="metric-unaddressed">2</strong><span>Not addressed</span></div>
+          </div>
+          <p class="wb-metrics-boundary" id="metrics-description">These are review coverage counts, not a risk or maturity rating.</p>
+          <div class="wb-brief-content">
+            <div class="wb-brief-section-head">
+              <div><span class="wb-kicker">For discussion</span><h4>Questions requiring follow-up</h4></div>
+              <span>Question order · not a risk ranking</span>
+            </div>
+            <div class="wb-findings" id="brief-findings"></div>
+            <section class="wb-not-addressed" aria-labelledby="not-addressed-title">
+              <h4 id="not-addressed-title">Not addressed in this pass</h4>
+              <div id="unaddressed-items"></div>
+            </section>
+            <section class="wb-governance-handoff" aria-labelledby="handoff-heading">
+              <span class="wb-kicker">Take this into an existing forum</span>
+              <h4 id="handoff-heading">Turn questions into accountable decisions.</h4>
+              <ol>
+                <li>Confirm the missing evidence or supplier record.</li>
+                <li>Assign an accountable owner and agree the required decision or action.</li>
+                <li>Record the follow-up date in an existing technology, risk or service review.</li>
+              </ol>
+            </section>
+            <section class="wb-included-theme" id="brief-theme-section" hidden>
+              <span class="wb-kicker">Optional follow-on selected</span>
+              <h4 id="brief-theme-title"></h4><p id="brief-theme-summary"></p>
+            </section>
+          </div>
+          <div class="wb-brief-fineprint">A fictional design example, generated locally. Not independently validated. No score, assurance conclusion or risk rating.</div>
+        </div>
+        <div class="wb-stage-next wb-export-actions">
+          <button type="button" class="btn btn-ghost" data-stage-target="review">Change a question</button>
+          <div class="wb-stage-cta">
+            <button type="button" class="btn btn-ghost" id="brief-copy">Copy illustrative brief</button>
+            <button type="button" class="btn btn-primary" id="brief-print">Print / save example</button>
+          </div>
+        </div>
+        <p id="copy-status" role="status" aria-live="polite" class="wb-copy-status"></p>
+      </section>
+
+      <section class="wb-boundary" aria-labelledby="boundary-title">
+        <div><span class="wb-kicker">Design acceptance boundary</span><h2 id="boundary-title">A prototype of the interaction, not a new version of the instrument.</h2></div>
+        <p>The production review at <a href="/review/">/review/</a> is unchanged. This route uses the existing canonical question and optional-theme data, with prefilled fictional answers to make the results meaningful. It stores nothing, sends no answers to a server, and is excluded from indexing.</p>
+      </section>
+    </div>
+  </main>
+<footer class="site-footer shell-footer">
+    <div class="wrap wrap-wide shell-footer-invite">
+      <div>
+        <p class="shell-footer-kicker">The next practical step</p>
+        <h2>Make uncertainty governable.</h2>
+        <p>Work through the ten questions, then bring unresolved ownership, authority and readiness into a forum that already exists.</p>
+      </div>
+      <a class="btn btn-primary" href="/review/">Start a Baseline Review</a>
+    </div>
+    <div class="wrap wrap-wide shell-footer-grid">
+      <div class="shell-footer-about">
+        <a class="shell-footer-brand" href="/">
+          <img src="/assets/img/brand-mark.svg" width="30" height="30" alt="" aria-hidden="true">
+          <span>Domain Governance Baseline</span>
+        </a>
+        <p>A practical, citable starting point for governing the domains organisations rely on.</p>
+        <a class="shell-byline" href="https://bryanchetcuti.com/">Created and stewarded by Bryan Chetcuti</a>
+      </div>
+      <nav class="footer-nav shell-footer-nav" aria-label="Explore">
+        <p class="footer-nav-title">Use the Baseline</p>
+        <div class="footer-links">
+          <a href="/">Overview</a>
+          <a href="/review/">Baseline Review</a>
+          <a href="/walkthrough/">Worked walkthrough</a>
+          <a href="/resources/">Practice guides</a>
+        </div>
+      </nav>
+      <nav class="footer-nav shell-footer-nav" aria-label="Reference and reuse">
+        <p class="footer-nav-title">Reference &amp; reuse</p>
+        <div class="footer-links">
+          <a href="/reference/v1.0/">Version 1.0 reference</a>
+          <a href="/citation/">Citation and stewardship</a>
+          <a href="https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/">Source essay</a>
+        </div>
+      </nav>
+      <div class="shell-footer-related">
+        <p class="footer-nav-title">Related work</p>
+        <div class="footer-links">
+          <a href="https://audo.bryanchetcuti.com/">.au Domain Observatory</a>
+          <a href="https://threatscopecheck.com/">ThreatScope Check</a>
+        </div>
+        <p class="shell-footer-context">Related work provides context, but is not required to use the Baseline.</p>
+      </div>
+    </div>
+    <div class="wrap wrap-wide shell-footer-bottom">
+      <p>&copy; 2026 Bryan Chetcuti. Version 1.0. Authored content available under CC BY 4.0.</p>
+      <p>Private local review. No scoring or assurance conclusion.</p>
+    </div>
+  </footer>
+  <script src="/js/data.js"></script>
+  <script src="/js/review-workbench-prototype.js"></script>
+</body>
+</html>
