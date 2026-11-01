@@ -34,6 +34,12 @@ def main():
                  "review-coverage-counts", "review-coverage-label"):
         require(item in parser.ids, "missing DOM contract: " + item)
     require(page.count('id="generate-btn"') == 1, "exactly one summary button required")
+    require('<details class="review-boundaries" id="review-boundaries">' in page,
+            "review boundaries must be a collapsed native disclosure")
+    require('Private, browser-only' in page and '/reference/v1.0/' in page,
+            "collapsed boundaries must keep privacy and canonical reference accessible")
+    require(page.index('id="review-boundaries"') < page.index('id="baseline-section"'),
+            "review boundaries must remain available before the first question")
     require('<details class="review-optional-panel"' in page, "optional themes must be opt-in")
     require(page.index('id="maturity-section"') > page.index('id="reflection-section"'),
             "optional themes must be within the generated review, not before the brief")
