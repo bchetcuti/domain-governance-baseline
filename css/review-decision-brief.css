@@ -1,0 +1,133 @@
+/* Practitioner governance brief: results are an action aid, not a scorecard. */
+.review-page #reflection-section {padding-top:clamp(var(--space-10),5vw,var(--space-16))}
+.review-page #reflection-section .section-head {margin-bottom:var(--space-7)}
+.review-page #reflection-section .section-head h2 {
+  font-size:clamp(1.8rem,3vw,2.5rem);font-weight:500;max-width:32ch
+}
+.review-page #reflection-section .section-head p{color:var(--color-text-muted);max-width:75ch;margin-top:var(--space-3);font-size:var(--text-sm)}
+.review-page .review-coverage {border-left:1px solid var(--color-border);border-top:3px solid var(--color-primary);border-radius:var(--radius-lg)}
+.review-page .review-brief-metrics {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);margin-top:var(--space-4)}
+.review-page .review-brief-metrics .summary-stat {background:var(--color-surface-offset);border-color:var(--color-divider);box-shadow:none}
+.review-page .review-brief-metrics .s-count {font-size:clamp(1.3rem,2.5vw,1.9rem);color:var(--color-text);font-variant-numeric:tabular-nums}
+.review-page .review-brief-metrics .s-label {line-height:1.45}
+.review-brief-breakdown {margin-top:var(--space-4);font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6}
+.review-page .review-brief-overview{padding:clamp(var(--space-5),3vw,var(--space-7))}
+.review-page .review-brief-overview .review-coverage-top{margin-bottom:var(--space-2)}
+.review-page .review-brief-overview .review-coverage-counts[hidden]{display:none!important}
+.review-page .review-brief-overview h3{font-size:var(--text-base);font-weight:600}
+.review-page .review-brief-overview .review-brief-metrics{margin-top:var(--space-4);gap:var(--space-3)}
+.review-page .review-brief-overview .summary-stat{padding:var(--space-4)}
+.review-brief-intro{max-width:72ch;font-size:var(--text-sm);line-height:1.65;color:var(--color-text);margin-top:var(--space-4)}
+.review-coverage-more{border-top:1px solid var(--color-divider);margin-top:var(--space-5);padding-top:var(--space-3)}
+.review-coverage-more summary{cursor:pointer;font-size:var(--text-xs);font-weight:600;color:var(--color-primary)}
+.review-coverage-more summary:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px}
+.review-coverage-more p{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;margin-top:var(--space-3)}
+.review-page #gaps-block {display:grid;gap:var(--space-4)}
+.review-page #gaps-block .finding {margin:0}
+.review-brief-finding {padding:var(--space-6);border-left:1px solid var(--color-border)!important;border-top:2px solid var(--color-primary)}
+.review-brief-finding .finding-head {align-items:center}
+.review-finding-index {font-weight:600;font-size:var(--text-xs);color:var(--color-primary)}
+.review-brief-finding .finding-q {display:block;font-size:var(--text-base);line-height:1.5;margin-top:var(--space-3);font-weight:600}
+.review-finding-action{font-size:var(--text-sm);line-height:1.7;color:var(--color-text-muted);margin-top:var(--space-4);max-width:80ch}
+.review-finding-action strong{color:var(--color-text);font-weight:600}
+.review-finding-context{margin-top:var(--space-5);padding-top:var(--space-4);border-top:1px solid var(--color-divider)}
+.review-finding-context summary{cursor:pointer;font-size:var(--text-sm);font-weight:600;color:var(--color-primary)}
+.review-finding-context .finding-layers{margin-top:var(--space-4)}
+.review-finding-context .layer{grid-template-columns:minmax(110px,155px) minmax(0,1fr)}
+.review-page .review-unaddressed{
+  margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)
+}
+.review-page .review-unaddressed[hidden]{display:none!important}
+.review-unaddressed>summary{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);cursor:pointer;font-size:var(--text-sm);font-weight:600}
+.review-unaddressed>summary span{font-size:var(--text-xs);font-weight:500;color:var(--color-text-muted)}
+.review-unaddressed>summary:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px}
+.review-unaddressed #unaddressed-block{display:grid;gap:var(--space-2);margin-top:var(--space-4)}
+.review-unaddressed .mat-row{background:var(--color-surface-offset);padding:var(--space-3) var(--space-4);border:0}
+.review-unaddressed .mat-name{font-weight:500}
+.review-page #pathways-section {padding-top:var(--space-5);border-top:0}
+.review-page .review-handoff{border-top:3px solid var(--color-primary);box-shadow:none}
+.review-page .review-handoff{margin-top:var(--space-8);padding:clamp(var(--space-5),3vw,var(--space-7))}
+.review-page .review-handoff-list{gap:var(--space-2);margin-top:var(--space-4)}
+.review-page .review-handoff-list li{grid-template-columns:1.8rem minmax(0,1fr)}
+.review-page .review-handoff-link{margin-top:var(--space-4)!important;padding-top:var(--space-3)}
+.review-page #review-selected-topics[hidden]{display:none!important}
+.review-page #review-selected-topics{border-top:1px solid var(--color-divider);padding-top:var(--space-4);margin-top:var(--space-5);margin-bottom:var(--space-5)}
+.review-brief-boundary,.review-brief-footer{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;margin-top:var(--space-5)}
+.review-brief-footer{padding-top:var(--space-4);border-top:1px solid var(--color-divider)}
+.review-brief-footer a{color:var(--color-primary);font-weight:500}
+
+.review-brief-support{
+  margin-top:var(--space-10);border:1px solid var(--color-border);
+  border-radius:var(--radius-lg);background:var(--color-surface)
+}
+.review-brief-support>summary{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);
+  padding:var(--space-6);font-size:var(--text-base);font-weight:600;cursor:pointer
+}
+.review-brief-support>summary span{font-size:var(--text-xs);font-weight:400;color:var(--color-text-muted)}
+.review-brief-support-body{padding:0 var(--space-6) var(--space-7);border-top:1px solid var(--color-divider)}
+.review-brief-support-body .reflect-block:first-child{margin-top:var(--space-6)}
+.review-brief-support-body .reflect-block{margin-top:var(--space-8)}
+.review-brief-support-body #good-block{display:grid;gap:var(--space-3)}
+.review-brief-support-body #good-block .finding{margin-bottom:0}
+.review-page #reflection-section .reflect-actions {margin-top:var(--space-8)}
+/* Contextual optional follow-on sits between findings and governance hand-off. */
+.review-page .review-follow-on { margin-top:var(--space-10); }
+.review-theme-connections {
+  margin:var(--space-4) 0;
+  padding:var(--space-4);
+  background:var(--color-surface-offset);
+  border:1px solid var(--color-divider);
+  border-radius:var(--radius-md)
+}
+.review-theme-connections h4{font-size:var(--text-sm);font-weight:600}
+.review-theme-connections>p{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;margin-top:var(--space-2)}
+.review-theme-contextual-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-2);margin-top:var(--space-3)}
+.review-theme-connection{
+  display:flex;flex-direction:column;align-items:flex-start;text-align:left;
+  min-width:0;padding:var(--space-3);gap:var(--space-1);
+  border:1px solid var(--color-border);border-radius:var(--radius-md);
+  color:var(--color-text);background:var(--color-surface);cursor:pointer
+}
+.review-theme-connection strong{font-size:var(--text-sm);font-weight:600}
+.review-theme-connection span{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5}
+.review-theme-connection:hover,.review-theme-connection:focus-visible{border-color:var(--color-primary)}
+.review-theme-connection:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px}
+.review-selected-topics .maturity-summary{display:grid;gap:var(--space-3)}
+.review-selected-topic{padding:var(--space-5);border:1px solid var(--color-border);border-left:3px solid var(--color-primary);border-radius:var(--radius-md);background:var(--color-surface)}
+.review-selected-topic h5{font-size:var(--text-sm);font-weight:600}
+.review-theme-reference{display:block;margin-top:var(--space-1);font-size:var(--text-xs);font-weight:500;color:var(--color-primary)}
+.review-selected-topic p{margin-top:var(--space-3);font-size:var(--text-sm);line-height:1.65;color:var(--color-text-muted)}
+.review-theme-edit{padding:0;border:0;background:none;cursor:pointer;color:var(--color-primary);font-size:var(--text-xs);font-weight:600;margin-top:var(--space-4)}
+.review-theme-edit:hover{text-decoration:underline}
+.review-theme-edit:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px}
+.review-page .review-theme-card:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px}
+@media(max-width:760px){
+  .review-theme-contextual-list{grid-template-columns:1fr}
+
+  .review-page .review-brief-metrics{grid-template-columns:1fr;gap:var(--space-2)}
+  .review-page .review-brief-metrics .summary-stat{padding:var(--space-4)}
+  .review-brief-support>summary{flex-direction:column;align-items:flex-start}
+  .review-finding-context .layer{grid-template-columns:1fr;gap:var(--space-1)}
+}
+@media print {
+  /* Follow-on exploration belongs to the interactive review; only
+     explicitly selected topics in the governance hand-off are printable. */
+  .review-follow-on, #optional-exploration {display:none!important}
+  .review-coverage-more {display:block!important}
+  .review-brief-overview {break-inside:avoid}
+  .review-page .review-unaddressed:not([hidden]) {display:block}
+  .review-selected-topic {break-inside:avoid}
+
+  .review-theme-connections,.review-theme-edit{display:none!important}
+  .review-selected-topic{background:#fff;break-inside:avoid}
+
+  .review-page #reflection-section {padding:0!important}
+  .review-brief-metrics {grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .review-page #reflection-section .review-brief-metrics .summary-stat {background:#fff;color:#000;border-color:#aaa}
+  .review-brief-breakdown,.review-finding-action,.review-finding-context summary {color:#333}
+  .review-brief-finding,.review-unaddressed .mat-row {break-inside:avoid}
+  .review-brief-support {background:#fff;border-color:#999}
+  .review-brief-support-body {display:block!important}
+  .review-page #reflection-section .reflect-actions {display:none!important}
+}

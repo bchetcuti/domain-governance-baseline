@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="/css/site-shell.css" />
   <link rel="stylesheet" href="/css/review-adoption.css" />
   <link rel="stylesheet" href="/css/review-workbench.css" />
+  <link rel="stylesheet" href="/css/review-decision-brief.css" />
   <script src="/js/theme.js"></script>
 </head>
 <body class="review-page">
@@ -169,63 +170,59 @@
     <section class="section reflection" id="reflection-section">
       <div class="print-brand" aria-hidden="true">
         <p class="print-brand-kicker">Domain Governance Baseline</p>
-        <h2>Baseline Review Summary</h2>
+        <h2>Governance review brief</h2>
         <p>Created by Bryan Chetcuti · baseline.bryanchetcuti.com</p>
         <p>Review aid. Not an assurance report, compliance instrument, maturity score or rating.</p>
       </div>
       <div class="wrap">
         <div class="section-head">
           <span class="section-index">Your baseline review</span>
-          <h2>Review summary</h2>
+          <h2>Governance review brief</h2>
+          <p>A decision aid for an existing governance forum. Question order is preserved; responses alone do not determine risk or priority.</p>
         </div>
 
-        <section class="review-coverage" aria-labelledby="review-coverage-heading">
+        <section class="review-coverage review-brief-overview" aria-labelledby="review-coverage-heading">
           <div class="review-coverage-top">
             <span class="review-coverage-badge" id="review-coverage-label">Partial review</span>
-            <span class="review-coverage-counts" id="review-coverage-counts"></span>
+            <span class="review-coverage-counts" id="review-coverage-counts" hidden></span>
           </div>
-          <h3 id="review-coverage-heading">What this review covers</h3>
-          <p id="review-coverage-detail"></p>
+          <h3 id="review-coverage-heading">At a glance</h3>
+          <div class="summary-grid review-brief-metrics" id="summary-grid"></div>
+          <p class="review-brief-intro" id="reflection-intro-text"></p>
+          <details class="review-coverage-more">
+            <summary>Coverage and response detail</summary>
+            <p id="review-coverage-detail"></p>
+            <p class="review-brief-breakdown" id="review-brief-breakdown"></p>
+          </details>
         </section>
 
-        <div class="reflection-intro">
-          <p id="reflection-intro-text"></p>
-        </div>
-
         <div class="reflect-block">
-          <h3>Priorities for follow-up</h3>
-          <p class="block-intro">Baseline questions you marked as partial, not in place, or not sure - ordered so the most open questions come first. Each is shown at three levels: board / exec / risk, technical, and public trust / service impact.</p>
+          <span class="section-index">For discussion</span>
+          <h3>Questions requiring follow-up</h3>
+          <p class="block-intro">Questions marked Partial, Not in place or Not sure, in canonical order. Expand any finding for further governance context; responses alone do not determine priority.</p>
           <div id="gaps-block"></div>
         </div>
 
-        <div class="summary-grid" id="summary-grid"></div>
-
-        <div class="reflect-block">
-          <h3>Your public trust surface</h3>
-          <p class="block-intro">The externally observable items - the parts of your domain layer anyone can inspect from outside via DNS, RDAP, DMARC or certificate transparency.</p>
-          <div id="external-block"></div>
-        </div>
-
-        <div class="reflect-block" id="pathways-section">
-          <h3>Practical next steps</h3>
-          <p class="block-intro">Guide links based on the questions that need follow-up. These are not scores, findings of fault or automated assurance recommendations.</p>
-          <div class="pathway-list" id="pathways-block"></div>
-        </div>
+        <details class="review-unaddressed" aria-labelledby="review-unaddressed-heading">
+          <summary id="review-unaddressed-heading">Skipped and unaddressed questions <span id="review-unaddressed-count"></span></summary>
+          <div id="unaddressed-block"></div>
+        </details>
 
         <section class="reflect-block review-follow-on" id="maturity-section" aria-labelledby="review-follow-on-title">
           <div class="review-follow-on-heading">
             <span class="section-index">Where to take this further</span>
             <h3 id="review-follow-on-title">Build on what your review revealed.</h3>
-            <p>The ten questions are your starting point. These six existing governance themes can extend the discussion where useful, without another questionnaire or maturity rating.</p>
+            <p>Optional themes connected to questions that need follow-up. Explore only those useful to the governance conversation.</p>
           </div>
-          <div class="review-selected-topics" aria-live="polite">
-            <h4>Selected for governance follow-up</h4>
-            <div class="maturity-summary" id="maturity-summary"></div>
+          <div class="review-theme-connections" id="review-theme-connections">
+            <h4>Connected themes</h4>
+            <p>Related to Partial, Not in place or Not sure responses. Not a risk ranking.</p>
+            <div id="review-theme-contextual-list" class="review-theme-contextual-list"></div>
           </div>
           <details class="review-optional-panel" id="optional-exploration">
             <summary>Explore all six governance themes <span id="maturity-progress-text">0 selected for follow-up</span></summary>
             <div class="review-optional-intro">
-              <p>Select only the themes you want to bring into an existing governance conversation. None is required, and none is an assessment result.</p>
+              <p>Explore the existing themes and include only those worth taking into governance. All six remain accessible, even when none is connected to an open response.</p>
             </div>
             <div class="q-list" id="maturity-list"></div>
           </details>
@@ -233,15 +230,34 @@
 
         <section class="review-handoff" aria-labelledby="review-handoff-heading">
           <span class="section-index">From reflection to action</span>
-          <h3 id="review-handoff-heading">Bring this into an existing governance forum</h3>
-          <p>The summary is a conversation aid. Record decisions and evidence in the organisational systems you already maintain, rather than creating another register in this tool.</p>
+          <h3 id="review-handoff-heading">Take the brief into governance</h3>
+          <p>Use an existing forum and record decisions in systems you already maintain.</p>
+          <div class="review-selected-topics" id="review-selected-topics" aria-live="polite" hidden>
+            <h4>Selected for governance follow-up</h4>
+            <div class="maturity-summary" id="maturity-summary"></div>
+          </div>
           <ol class="review-handoff-list">
-            <li><strong>Confirm the question and evidence.</strong><span>Identify the record, technical evidence or supplier confirmation needed to resolve each uncertainty.</span></li>
-            <li><strong>Assign accountability.</strong><span>Capture the responsible owner, decision or action, and when it needs to be revisited.</span></li>
-            <li><strong>Keep the result current.</strong><span>Revisit open questions and exceptions through an existing technology, risk or service review.</span></li>
+            <li><strong>Confirm evidence.</strong><span>Locate the record or supplier confirmation needed.</span></li>
+            <li><strong>Assign accountability.</strong><span>Agree an owner and decision or action.</span></li>
+            <li><strong>Set a review date.</strong><span>Revisit exceptions through an existing forum.</span></li>
           </ol>
           <p class="review-handoff-link">Need a repeatable format? <a href="/resources/recurring-domain-governance-review/">Use the recurring domain-governance review guide</a>.</p>
         </section>
+
+        <details class="review-brief-support" id="supporting-review-detail">
+          <summary>Supporting evidence and guidance <span>Practice guides, public trust signals and in-place answers</span></summary>
+          <div class="review-brief-support-body">
+        <div class="reflect-block" id="pathways-section">
+          <h3>Practical guidance for the open questions</h3>
+          <p class="block-intro">Guides that may help resolve the questions in this review. They are not an automated risk-priority order or assurance recommendations.</p>
+          <div class="pathway-list" id="pathways-block"></div>
+        </div>
+
+        <div class="reflect-block review-supporting-detail">
+          <h3>Your public trust surface</h3>
+          <p class="block-intro">The externally observable items - the parts of your domain layer anyone can inspect from outside via DNS, RDAP, DMARC or certificate transparency.</p>
+          <div id="external-block"></div>
+        </div>
 
         <div class="reflect-block">
           <h3>What is already in place</h3>
@@ -249,24 +265,20 @@
           <div id="good-block"></div>
         </div>
 
-        <div class="disclaimer">
-          A missing signal does not mean an organisation is irresponsible, and a passing signal does not mean everything behind it is well managed. Observation is not judgement - but it can strengthen governance decisions, evidence and follow-up. Use this as a starting point to bring the domain layer into broader digital governance.
-        </div>
+          </div>
+        </details>
+
+        <p class="review-brief-boundary">Responses and public signals prompt governance discussion; they are not independently validated assurance conclusions.</p>
 
         <div class="reflect-actions">
           <button id="copy-btn" class="btn btn-primary" type="button">Copy review summary as text</button>
           <button id="print-btn" class="btn btn-ghost" type="button">Print / save as PDF</button>
         </div>
 
-        <div class="disclaimer">
-          <strong>Move from review to practice.</strong>
-          See the <a href="/walkthrough/">worked walkthrough</a> for one fictional organisation's path from uncertainty to evidence, decisions and records, then use the <a href="/resources/">five practical guides</a> to establish and sustain domain visibility, privileged authority, email trust, incident readiness and recurring governance.
-        </div>
-
-        <div class="disclaimer">
-          <strong>Used this in practice?</strong>
-          <a href="https://bryanchetcuti.com/" target="_blank" rel="noopener">Tell Bryan what worked or what was missing.</a>
-        </div>
+        <p class="review-brief-footer">
+          <a href="/walkthrough/">Worked walkthrough</a> · <a href="/resources/">Five practical guides</a> ·
+          <a href="https://bryanchetcuti.com/contact/" target="_blank" rel="noopener">Share practitioner feedback</a>
+        </p>
       </div>
     </section>
   </main>

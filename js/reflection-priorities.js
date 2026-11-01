@@ -11,9 +11,8 @@
     unsure: { cls: "unsure", stCls: "st-unsure", fCls: "f-unsure", label: "Not sure" },
   };
 
-  const priorityOrder = { not_in_place: 0, unsure: 1, partial: 2, in_place: 3 };
-  const priorityItems = (answered) =>
-    [...answered].sort((a, b) => priorityOrder[state.baseline[a.id]] - priorityOrder[state.baseline[b.id]]);
+  // A response alone does not establish organisational risk priority.
+  const priorityItems = (answered) => [...answered];
 
   const create = (tag, cls, html) => {
     const node = document.createElement(tag);
@@ -497,22 +496,27 @@
 
   function renderPriorityFinding(question, stateId) {
     const meta = stateMeta[stateId];
+    const index = BASELINE_QUESTIONS.findIndex((entry) => entry.id === question.id) + 1;
     const vis = VISIBILITY[question.visibility];
     const visTag = question.visibility === "external"
       ? `<span class="tag tag-external">${ICONS.eye}${vis.label}</span>`
       : `<span class="tag tag-internal">${ICONS.lock}${vis.label}</span>`;
-
-    return create("article", `finding ${meta.fCls}`, `
+    return create("article", `finding review-brief-finding ${meta.fCls}`, `
       <div class="finding-head">
-        <span class="finding-q">${question.question}</span>
+        <span class="review-finding-index">Q${String(index).padStart(2, "0")}</span>
         <span class="finding-state ${meta.stCls}">${meta.label}</span>
       </div>
-      <div class="finding-layers">
-        <div class="layer"><span class="layer-label">Board / exec / risk</span><span class="layer-text">${question.board}</span></div>
-        <div class="layer"><span class="layer-label">Technical</span><span class="layer-text">${question.tech}</span></div>
-        <div class="layer"><span class="layer-label">Public trust / service impact</span><span class="layer-text">${question.publicOrg}</span></div>
-      </div>
-      <div class="finding-visibility">${visTag}</div>
+      <h4 class="finding-q">${question.question}</h4>
+      <p class="review-finding-action"><strong>Evidence to confirm:</strong> ${question.tech}</p>
+      <details class="review-finding-context">
+        <summary>Supporting governance interpretation</summary>
+        <div class="finding-layers">
+          <div class="layer"><span class="layer-label">Board / exec / risk</span><span class="layer-text">${question.board}</span></div>
+          <div class="layer"><span class="layer-label">Technical</span><span class="layer-text">${question.tech}</span></div>
+          <div class="layer"><span class="layer-label">Public trust / service impact</span><span class="layer-text">${question.publicOrg}</span></div>
+        </div>
+        <div class="finding-visibility">${visTag}</div>
+      </details>
     `);
   }
 
@@ -527,18 +531,74 @@
     return block;
   }
 
-  function renderSelectedFollowOn() {
-    const matBlock = document.querySelector("#maturity-summary");
-    if (!matBlock) return;
-    matBlock.replaceChildren();
-    const selectedThemes = MATURITY_THEMES.filter((theme) => state.maturity[theme.id] === "selected");
-    if (!selectedThemes.length) {
-      matBlock.appendChild(create("p", "review-no-topics",
-        "No additional topics selected. Your ten-question review remains complete on its own."));
+  // Editorial cross-references, not inferred risks or ranked recommendations.
+  // m6 spans the full Baseline; it is always available in Explore all.
+  const themeQuestions = {
+    m1: ["b1", "b2"], m2: ["b5", "b6"], m3: ["b9"],
+    m4: ["b10"], m5: ["b5", "b7", "b8"], m6: [],
+  };
+  const referencesFor = (theme) =>
+    (themeQuestions[theme.id] || []).map((id) => {
+      const index = BASELINE_QUESTIONS.findIndex((q) => q.id === id);
+      return index < 0 ? null : `Q${String(index + 1).padStart(2, "0")}`;
+    }).filter(Boolean);
+
+  function renderThemeConnections() {
+    const list = document.querySelector("#review-theme-contextual-list");
+    if (!list) return;
+    list.replaceChildren();
+    const related = MATURITY_THEMES.map((theme) => {
+      const connected = (themeQuestions[theme.id] || []).filter((id) =>
+        state.baseline[id] && state.baseline[id] !== "in_place"
+      );
+      return { theme, connected };
+    }).filter((item) => item.connected.length);
+    if (!related.length) {
+      const message = create("p", "review-no-topics");
+      message.textContent = "No themes are linked to a question marked for follow-up in this pass. All six themes remain available to explore.";
+      list.appendChild(message);
       return;
     }
-    selectedThemes.forEach((theme) => matBlock.appendChild(create("div", "mat-row",
-      `<span class="mat-name">${theme.theme}</span><span class="mat-badge b-set">Included in follow-up</span>`)));
+    related.forEach(({ theme, connected }) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "review-theme-connection";
+      button.dataset.followOnTheme = theme.id;
+      const title = create("strong");
+      title.textContent = theme.theme;
+      const prompt = create("span");
+      prompt.textContent = `Connects to ${connected.map((id) =>
+        `Q${String(BASELINE_QUESTIONS.findIndex((q) => q.id === id) + 1).padStart(2, "0")}`
+      ).join(", ")}`;
+      button.append(title, prompt);
+      list.appendChild(button);
+    });
+  }
+
+  function renderSelectedFollowOn() {
+    const matBlock = document.querySelector("#maturity-summary");
+    const container = document.querySelector("#review-selected-topics");
+    if (!matBlock || !container) return;
+    matBlock.replaceChildren();
+    const selectedThemes = MATURITY_THEMES.filter((theme) => state.maturity[theme.id] === "selected");
+    container.hidden = selectedThemes.length === 0;
+    selectedThemes.forEach((theme) => {
+      const article = create("article", "review-selected-topic");
+      const heading = create("h5");
+      heading.textContent = theme.theme;
+      const ref = create("span", "review-theme-reference");
+      const references = referencesFor(theme);
+      ref.textContent = references.length ? `Extends ${references.join(", ")}` : "Across the full Baseline";
+      const good = create("p");
+      good.textContent = theme.good;
+      const edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "review-theme-edit";
+      edit.dataset.followOnTheme = theme.id;
+      edit.textContent = "Review selection";
+      article.append(heading, ref, good, edit);
+      matBlock.appendChild(article);
+    });
   }
 
   function buildPriorityFirstReview() {
@@ -552,13 +612,9 @@
 
     const gapCount = counts.not_in_place + counts.unsure + counts.partial;
     const intro = document.querySelector("#reflection-intro-text");
-    if (gapCount === 0 && counts.in_place === answered.length) {
-      intro.textContent = "Every attempted baseline question is marked in place. Treat that as a useful starting position, not a score. The next step is to keep those answers current through recurring review.";
-    } else if (counts.unsure >= 3) {
-      intro.textContent = "Several answers are not sure. That is the most useful finding: uncertainty shows where accountability, evidence or ownership is missing. Resolve those questions first.";
-    } else {
-      intro.textContent = "This review summary leads with priorities for follow-up rather than a score. Use it to decide which domain-governance questions need ownership, evidence, remediation or escalation.";
-    }
+    intro.textContent = gapCount
+      ? `${gapCount} answered question${gapCount === 1 ? "" : "s"} invite follow-up. Decide significance and next actions in an existing governance forum.`
+      : "No answered questions flagged for follow-up. Validate the evidence and revisit it through recurring review.";
 
     const sorted = priorityItems(answered);
     const gapItems = sorted.filter((question) => state.baseline[question.id] !== "in_place");
@@ -571,22 +627,37 @@
     } else {
       gapItems.forEach((question) => gapsBlock.appendChild(renderPriorityFinding(question, state.baseline[question.id])));
     }
-    const skippedSummary = renderSkippedBaselineSummary(skippedBaseline);
-    if (skippedSummary) gapsBlock.appendChild(skippedSummary);
+    const unaddressedBlock = document.querySelector("#unaddressed-block");
+    unaddressedBlock.replaceChildren();
+    const notAddressed = BASELINE_QUESTIONS.filter((question) => !state.baseline[question.id]);
+    const unaddressedSection = document.querySelector(".review-unaddressed");
+    if (unaddressedSection) unaddressedSection.hidden = notAddressed.length === 0;
+    const unaddressedCount = document.querySelector("#review-unaddressed-count");
+    if (unaddressedCount) unaddressedCount.textContent =
+      `${notAddressed.length} to revisit`;
+    if (!notAddressed.length) {
+      unaddressedBlock.appendChild(create("p", "block-intro", "All ten questions were answered."));
+    } else {
+      notAddressed.forEach((question) => {
+        const skipped = state.skippedBaseline[question.id];
+        const index = BASELINE_QUESTIONS.indexOf(question) + 1;
+        unaddressedBlock.appendChild(create("div", "mat-row",
+          `<span class="mat-name">Q${String(index).padStart(2, "0")} · ${question.question}</span><span class="mat-badge">${skipped ? "Skipped for now" : "Not addressed"}</span>`));
+      });
+    }
 
     const grid = document.querySelector("#summary-grid");
-    grid.innerHTML = "";
+    grid.replaceChildren();
+    const coverage = getReviewCoverage();
     [
-      { key: "not_in_place", cls: "stat-absent", label: "not in place" },
-      { key: "unsure", cls: "stat-unsure", label: "not sure" },
-      { key: "partial", cls: "stat-partial", label: "partial" },
-      { key: "in_place", cls: "stat-good", label: "in place" },
-    ].forEach((item) => {
-      grid.appendChild(create("div", `summary-stat ${item.cls}`, `<div class="s-count">${counts[item.key]}</div><div class="s-label">${item.label}</div>`));
-    });
-    if (skippedBaseline.length) {
-      grid.appendChild(create("div", "summary-stat stat-unsure", `<div class="s-count">${skippedBaseline.length}</div><div class="s-label">skipped</div>`));
-    }
+      { count: `${coverage.answered} of ${coverage.total}`, label: "questions answered" },
+      { count: String(gapCount), label: "answered questions for follow-up" },
+      { count: String(coverage.skipped + coverage.unaddressed), label: "skipped or unaddressed" },
+    ].forEach((entry) => grid.appendChild(create("div", "summary-stat",
+      `<div class="s-count">${entry.count}</div><div class="s-label">${entry.label}</div>`)));
+    const breakdown = document.querySelector("#review-brief-breakdown");
+    if (breakdown) breakdown.textContent =
+      `Among answered: ${counts.not_in_place} not in place · ${counts.unsure} not sure · ${counts.partial} partial · ${counts.in_place} in place. ${coverage.skipped} skipped; ${coverage.unaddressed} unaddressed. Counts describe this review, not risk or maturity.`;
 
     const extAnswered = answered.filter((question) => question.visibility === "external");
     const extGaps = extAnswered.filter((question) => state.baseline[question.id] !== "in_place");
@@ -612,6 +683,7 @@
       goodItems.forEach((question) => goodBlock.appendChild(renderPriorityFinding(question, "in_place")));
     }
 
+    renderThemeConnections();
     renderSelectedFollowOn();
 
     const notice = document.querySelector("#review-refresh-notice");
@@ -623,128 +695,68 @@
   function buildReviewSummaryText() {
     ensureGuidedState();
     const answered = BASELINE_QUESTIONS.filter((question) => state.baseline[question.id]);
-    const skippedBaseline = BASELINE_QUESTIONS.filter((question) => state.skippedBaseline[question.id]);
-    const counts = { in_place: 0, partial: 0, not_in_place: 0, unsure: 0 };
-    answered.forEach((question) => counts[state.baseline[question.id]]++);
-    const sorted = priorityItems(answered);
-    const gapItems = sorted.filter((question) => state.baseline[question.id] !== "in_place");
-    const goodItems = sorted.filter((question) => state.baseline[question.id] === "in_place");
-    const extAnswered = answered.filter((question) => question.visibility === "external");
-
-    const lines = [];
-    const wrap = (text, indent = "    ", width = 76) => {
-      const words = String(text).split(/\s+/);
-      const out = [];
-      let line = indent;
-      words.forEach((word) => {
-        if ((line + word).length > width && line.trim().length) {
-          out.push(line);
-          line = indent + word + " ";
-        } else {
-          line += word + " ";
-        }
-      });
-      if (line.trim().length) out.push(line.replace(/\s+$/, ""));
-      return out;
-    };
-
-    const addFinding = (question) => {
-      const label = stateMeta[state.baseline[question.id]].label;
-      const visibility = question.visibility === "external" ? "externally observable" : "internal only";
-      lines.push(`- ${question.question} [${label}; ${visibility}]`);
-      lines.push("  Board / exec / risk:");
-      lines.push(...wrap(question.board));
-      lines.push("  Technical:");
-      lines.push(...wrap(question.tech));
-      lines.push("  Public trust / service impact:");
-      lines.push(...wrap(question.publicOrg));
-      lines.push("");
-    };
-
-    lines.push("DOMAIN GOVERNANCE BASELINE");
-    lines.push("Baseline Review Summary");
-    lines.push("");
-    lines.push("Created by Bryan Chetcuti");
-    lines.push("https://baseline.bryanchetcuti.com/");
-    lines.push("");
-    lines.push("Based on the essay:");
-    lines.push("Domain Governance as a Trust Surface");
-    lines.push("https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/");
-    lines.push("");
-    lines.push(`Generated locally: ${new Date().toLocaleString()}`);
-    lines.push("");
-    lines.push(...coverageExportLines());
-    lines.push("Purpose:");
-    lines.push("Use this summary to identify domain-governance priorities, evidence gaps,");
-    lines.push("accountable owners and practical next actions.");
-    lines.push("");
-    lines.push("Boundary:");
-    lines.push("This is a review aid, not an assurance report, compliance instrument,");
-    lines.push("maturity score or rating. Observation is not judgement.");
-    lines.push("");
-    lines.push("Privacy:");
-    lines.push("This summary was generated in the browser. No answers were sent to a backend");
-    lines.push("or stored by the tool.");
-    lines.push("");
-    lines.push("=".repeat(72));
-    lines.push("");
-
-    lines.push("PRIORITIES FOR FOLLOW-UP");
-    if (gapItems.length === 0) {
-      lines.push("Every attempted baseline question is marked in place. Use recurring review to keep the evidence, ownership and practices current.");
-      lines.push("");
-    } else {
-      gapItems.forEach(addFinding);
-    }
-
-    if (skippedBaseline.length) {
-      lines.push("QUESTIONS SKIPPED IN THIS PASS");
-      skippedBaseline.forEach((question) => lines.push(`- ${question.question}`));
-      lines.push("");
-    }
-
-    lines.push("PUBLIC TRUST SURFACE");
-    if (extAnswered.length === 0) {
-      lines.push("No externally observable questions were answered. Revisit authoritative DNS, sending domains and email authentication as externally visible signals.");
-    } else {
-      extAnswered.forEach((question) => lines.push(`- ${question.question}: ${stateMeta[state.baseline[question.id]].label}`));
-    }
-    lines.push("");
-
-    lines.push("SUMMARY COUNTS - CONTEXT ONLY, NOT A SCORE");
-    lines.push(`- Not in place: ${counts.not_in_place}`);
-    lines.push(`- Not sure: ${counts.unsure}`);
-    lines.push(`- Partial: ${counts.partial}`);
-    lines.push(`- In place: ${counts.in_place}`);
-    if (skippedBaseline.length) lines.push(`- Skipped this pass: ${skippedBaseline.length}`);
-    lines.push("");
-
-    lines.push("WHAT IS ALREADY IN PLACE");
-    if (goodItems.length === 0) lines.push("No baseline items were marked fully in place yet.");
-    else goodItems.forEach((question) => lines.push(`- ${question.question}`));
-    lines.push("");
-
-    lines.push("OPTIONAL FOLLOW-ON THEMES");
+    const followUp = answered.filter((question) => state.baseline[question.id] !== "in_place");
+    const inPlace = answered.filter((question) => state.baseline[question.id] === "in_place");
+    const missing = BASELINE_QUESTIONS.filter((question) => !state.baseline[question.id]);
     const selectedThemes = MATURITY_THEMES.filter((theme) => state.maturity[theme.id]);
-    if (!selectedThemes.length) lines.push("No optional themes selected for follow-up.");
-    selectedThemes.forEach((theme) => {
-      lines.push(`- ${theme.theme}: Selected for follow-up, not assessed`);
-      lines.push(...wrap(theme.good));
+    const lines = [
+      "DOMAIN GOVERNANCE BASELINE",
+      "Governance review brief · Version 1.0",
+      "Created and stewarded by Bryan Chetcuti",
+      "https://baseline.bryanchetcuti.com/",
+      "",
+      `Generated locally: ${new Date().toLocaleString()}`,
+      "",
+      ...coverageExportLines(),
+      "QUESTIONS FOR GOVERNANCE DISCUSSION (CANONICAL QUESTION ORDER)",
+      "The selected response does not determine risk or action priority.",
+    ];
+    if (!followUp.length) lines.push("No answered questions marked for follow-up in this pass.");
+    followUp.forEach((question) => {
+      const index = BASELINE_QUESTIONS.indexOf(question) + 1;
+      const label = stateMeta[state.baseline[question.id]].label;
+      lines.push(`Q${String(index).padStart(2, "0")} · ${question.question} [${label}]`);
+      lines.push(`  Evidence to confirm: ${question.tech}`);
       lines.push("");
     });
-
-    lines.push(...governanceHandoffLines());
+    lines.push("", "NOT ADDRESSED IN THIS PASS");
+    if (!missing.length) lines.push("All ten questions were answered.");
+    missing.forEach((question) => {
+      const index = BASELINE_QUESTIONS.indexOf(question) + 1;
+      lines.push(`Q${String(index).padStart(2, "0")} · ${question.question} - ${state.skippedBaseline[question.id] ? "Skipped for now" : "Not addressed"}`);
+    });
+    lines.push("", "WHERE TO TAKE THIS FURTHER - OPTIONAL THEMES");
+    if (!selectedThemes.length) lines.push("None selected. The ten-question review stands on its own.");
+    selectedThemes.forEach((theme) => {
+      const refs = referencesFor(theme);
+      lines.push(`- ${theme.theme}: Selected for discussion, not assessed`);
+      lines.push(`  ${refs.length ? "Extends " + refs.join(", ") : "Across the full Baseline"}`);
+      lines.push(`  ${theme.good}`);
+    });
+    lines.push("", ...governanceHandoffLines());
+    lines.push("", "SUPPORTING REVIEW DETAIL");
+    lines.push("Publicly observable answers:");
+    const external = answered.filter((question) => question.visibility === "external");
+    if (!external.length) lines.push("None answered.");
+    external.forEach((question) => lines.push(`- ${question.question}: ${stateMeta[state.baseline[question.id]].label}`));
+    lines.push("", "Answers marked in place:");
+    if (!inPlace.length) lines.push("None in this pass.");
+    inPlace.forEach((question) => lines.push(`- ${question.question}`));
+    lines.push("", "Detailed interpretation for questions requiring follow-up:");
+    followUp.forEach((question) => {
+      lines.push(`- ${question.question}`);
+      lines.push(`  Board / executive: ${question.board}`);
+      lines.push(`  Technical: ${question.tech}`);
+      lines.push(`  Public trust / service impact: ${question.publicOrg}`);
+      lines.push("");
+    });
     lines.push("FINAL NOTE");
+    lines.push("This is a private, browser-generated review aid, not independent validation,");
+    lines.push("a risk rating, maturity score, compliance or assurance conclusion.");
+    lines.push("Unanswered and skipped questions are not treated as in place.");
+    lines.push("Evidence and decisions belong in existing organisational governance records.");
     lines.push("");
-    lines.push("Visible signals should not be over-interpreted.");
-    lines.push("A missing signal does not mean an organisation is irresponsible.");
-    lines.push("A passing signal does not mean everything behind it is well managed.");
-    lines.push("");
-    lines.push("The goal is to make domain governance visible, governable and improvable.");
-    lines.push("");
-    lines.push("Generated with Domain Governance Baseline");
-    lines.push("https://baseline.bryanchetcuti.com/");
-    lines.push("");
+    lines.push("Citation and stewardship: https://baseline.bryanchetcuti.com/citation/");
     return lines.join("\n");
   }
 
@@ -753,10 +765,24 @@
   setupGuidedPass();
   document.addEventListener("click", handleGuidedClick, false);
   document.addEventListener("review:changed", () => {
-    // Optional topics affect the follow-up only; do not discard a valid
-    // ten-question brief or force the reviewer to regenerate results.
+    // Theme selection is part of a valid review's follow-up, not a change
+    // to its ten answers. Reflect selection immediately in screen and export.
     syncGuidedProgress();
     renderSelectedFollowOn();
+  });
+  document.addEventListener("click", (event) => {
+    const open = event.target.closest("[data-follow-on-theme]");
+    if (!open) return;
+    const theme = MATURITY_THEMES.find((item) => item.id === open.dataset.followOnTheme);
+    if (!theme) return;
+    const panel = document.querySelector("#optional-exploration");
+    if (panel) panel.open = true;
+    const card = document.getElementById(theme.anchor);
+    if (card) {
+      card.tabIndex = -1;
+      card.scrollIntoView({ behavior: "smooth", block: "start" });
+      card.focus({ preventScroll: true });
+    }
   });
 
   const generateButton = document.querySelector("#generate-btn");
@@ -767,6 +793,21 @@
       buildPriorityFirstReview();
     }, true);
   }
+
+  // Printing never rebuilds the generated brief, which would discard the
+  // reviewer's expanded supporting context. Restore their choices afterwards.
+  let disclosureState = null;
+  window.addEventListener("beforeprint", () => {
+    if (!document.querySelector("#reflection-section")?.classList.contains("is-visible")) return;
+    disclosureState = Array.from(document.querySelectorAll("#reflection-section details"))
+      .map((detail) => [detail, detail.open]);
+    disclosureState.forEach(([detail]) => { detail.open = true; });
+  });
+  window.addEventListener("afterprint", () => {
+    if (!disclosureState) return;
+    disclosureState.forEach(([detail, wasOpen]) => { detail.open = wasOpen; });
+    disclosureState = null;
+  });
 
   const copyButton = document.querySelector("#copy-btn");
   if (copyButton) {
