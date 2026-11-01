@@ -41,13 +41,15 @@ function renderBaseline() {
 
     card.innerHTML = `
       <div class="q-top">
-        <span class="q-num">${String(i + 1).padStart(2, "0")}</span>
+        <div class="review-question-meta">
+          <span class="q-num">Question ${String(i + 1).padStart(2, "0")} / 10</span>
+          <span class="tag ${tagCls}" title="${vis.blurb}">${tagIcon}${vis.label}</span>
+        </div>
         <div class="q-body">
           <div class="q-domain">${q.domain}</div>
-          <div class="q-text">${q.question}</div>
+          <h3 class="q-text">${q.question}</h3>
           <p class="q-why">${q.why}</p>
         </div>
-        <span class="tag ${tagCls}" title="${vis.blurb}">${tagIcon}${vis.label}</span>
       </div>
     `;
 
@@ -67,7 +69,13 @@ function renderBaseline() {
       });
       answers.appendChild(btn);
     });
+    card.appendChild(el("div", "review-answer-instruction", "What can the organisation say today?"));
     card.appendChild(answers);
+    const evidence = el("details", "review-question-evidence");
+    const summary = el("summary", "", "What evidence would help?");
+    const guidance = el("p", "", q.tech);
+    evidence.append(summary, guidance);
+    card.appendChild(evidence);
     if (linkout) card.appendChild(el("div", "q-linkout-wrap", linkout));
     list.appendChild(card);
   });
@@ -76,40 +84,37 @@ function renderBaseline() {
 /* ---------- RENDER: optional themes ---------- */
 function renderMaturity() {
   const list = $("#maturity-list");
-  MATURITY_THEMES.forEach((m, idx) => {
-    const card = el("article", "m-card");
-    card.id = m.anchor;
-    const failuresHtml = m.failures.map((f) => `<li>${f}</li>`).join("");
+  MATURITY_THEMES.forEach((theme, index) => {
+    const card = el("article", "m-card review-theme-card");
+    card.id = theme.anchor;
     card.innerHTML = `
       <div class="m-head">
-        <span class="m-index">Theme ${String(idx + 1).padStart(2, "0")}</span>
-        <a class="m-anchor" href="#${m.anchor}" aria-label="Link to ${m.theme}">#</a>
+        <span class="m-index">Theme ${String(index + 1).padStart(2, "0")} / 06</span>
+        <a class="m-anchor" href="#${theme.anchor}" aria-label="Link to ${theme.theme}">#</a>
       </div>
-      <h3 class="m-theme">${m.theme}</h3>
-      <p class="m-meaning">${m.meaning}</p>
-      <div class="m-guide">
-        <div class="m-guide-block"><span class="m-guide-label">Why it matters</span><p>${m.why}</p></div>
-        <div class="m-guide-block"><span class="m-guide-label">What good looks like</span><p>${m.good}</p></div>
-        <div class="m-guide-block"><span class="m-guide-label">Common failure modes</span><ul class="m-failures">${failuresHtml}</ul></div>
-      </div>
-      <p class="m-connects">${m.connects}</p>
-      <p class="m-prompt"><strong>Where does your organisation sit today?</strong> ${m.prompt}</p>
+      <h3 class="m-theme">${theme.theme}</h3>
+      <p class="m-meaning">${theme.meaning}</p>
+      <details class="review-theme-detail">
+        <summary>Explore the practical context</summary>
+        <div class="m-guide">
+          <div class="m-guide-block"><span class="m-guide-label">What credible practice looks like</span><p>${theme.good}</p></div>
+          <div class="m-guide-block"><span class="m-guide-label">What to discuss</span><p>${theme.prompt}</p></div>
+          <div class="m-guide-block"><span class="m-guide-label">Common failure modes</span><ul class="m-failures">${theme.failures.map(failure => `<li>${failure}</li>`).join("")}</ul></div>
+        </div>
+      </details>
+      <label class="review-theme-select">
+        <input class="m-follow-checkbox" type="checkbox" data-theme-id="${theme.id}">
+        <span><strong>Include this theme in the follow-up</strong><small>Optional discussion prompt, not a maturity rating.</small></span>
+      </label>
+      <p class="m-connects">${theme.connects}</p>
     `;
-    const scale = el("div", "m-scale");
-    MATURITY_STATES.forEach((s) => {
-      const btn = el("button", "m-opt");
-      btn.type = "button";
-      btn.setAttribute("aria-pressed", "false");
-      btn.innerHTML = `${s.label}<span class="m-opt-note">${s.note}</span>`;
-      btn.addEventListener("click", () => {
-        state.maturity[m.id] = s.id;
-        scale.querySelectorAll(".m-opt").forEach((b) => b.setAttribute("aria-pressed", "false"));
-        btn.setAttribute("aria-pressed", "true");
-        updateProgress();
-      });
-      scale.appendChild(btn);
+    const checkbox = card.querySelector(".m-follow-checkbox");
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) state.maturity[theme.id] = "selected";
+      else delete state.maturity[theme.id];
+      updateProgress();
+      document.dispatchEvent(new Event("review:changed"));
     });
-    card.appendChild(scale);
     list.appendChild(card);
   });
 }
@@ -123,8 +128,8 @@ function updateProgress() {
 
   const mTotal = MATURITY_THEMES.length;
   const mDone = Object.keys(state.maturity).length;
-  $("#maturity-progress-fill").style.width = `${(mDone / mTotal) * 100}%`;
-  $("#maturity-progress-text").textContent = `${mDone} of ${mTotal} considered`;
+  const optionalLabel = $("#maturity-progress-text");
+  if (optionalLabel) optionalLabel.textContent = `${mDone} of ${mTotal} selected for follow-up`;
 
   const btn = $("#generate-btn");
   if (bDone > 0) {
@@ -218,7 +223,7 @@ function buildReflection() {
   } else {
     MATURITY_THEMES.forEach((m) => {
       const chosen = state.maturity[m.id];
-      const label = chosen ? MATURITY_STATES.find((s) => s.id === chosen).label : "Not considered";
+      const label = chosen === "selected" ? "Selected for follow-up" : chosen ? (MATURITY_STATES.find((s) => s.id === chosen)?.label || "Selected for follow-up") : "Not selected";
       matBlock.appendChild(el("div", "mat-row", `<span class="mat-name">${m.theme}</span><span class="mat-badge ${chosen ? "b-set" : ""}">${label}</span>`));
     });
   }
@@ -296,7 +301,7 @@ function buildTextReport() {
 
   MATURITY_THEMES.forEach((m, i) => {
     const selected = state.maturity[m.id];
-    const label = selected ? MATURITY_STATES.find((x) => x.id === selected).label : "Not considered";
+    const label = selected === "selected" ? "Selected for follow-up" : selected ? (MATURITY_STATES.find((x) => x.id === selected)?.label || "Selected for follow-up") : "Not selected";
     lines.push(`THEME ${String(i + 1).padStart(2, "0")} - ${m.theme.toUpperCase()}`);
     lines.push(`  Where we sit today: ${label}`);
     lines.push(`  What good looks like: ${m.good}`);
