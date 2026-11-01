@@ -254,7 +254,8 @@
       }
     });
     $("#brief-print").addEventListener("click", () => {
-      renderBrief();
+      // The brief is refreshed on answer/theme changes. Rebuilding here would
+      // discard any supporting governance details the reviewer has expanded.
       window.print();
     });
   }
