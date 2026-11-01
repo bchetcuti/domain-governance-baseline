@@ -35,13 +35,22 @@ def main():
         require(item in parser.ids, "missing DOM contract: " + item)
     require(page.count('id="generate-btn"') == 1, "exactly one summary button required")
     require('<details class="review-optional-panel"' in page, "optional themes must be opt-in")
+    require(page.index('id="maturity-section"') > page.index('id="reflection-section"'),
+            "optional themes must be within the generated review, not before the brief")
+    require(page.index('id="maturity-section"') < page.index('id="review-handoff-heading"'),
+            "optional themes must precede governance handoff")
+    require(page.count('id="maturity-summary"') == 1,
+            "only one visible selected-follow-up destination is permitted")
+
     require('href="/css/review-workbench.css"' in page, "workbench stylesheet missing")
     require('const ANSWER_STATES = [' in (ROOT / "js/data.js").read_text(encoding="utf-8"), "canonical states missing")
     require('class="m-follow-checkbox"' in app, "optional selection must be a checkbox")
     require('MATURITY_STATES.forEach((s)' not in app, "optional maturity-rating buttons still rendered")
     require('state.maturity[theme.id] = "selected"' in app, "optional follow-up value missing")
     require('document.dispatchEvent(new Event("review:changed"))' in app, "optional change signal missing")
-    require('document.addEventListener("review:changed"' in priority, "summary invalidation signal missing")
+    require('document.addEventListener("review:changed"' in priority and
+            'renderSelectedFollowOn();' in priority, "optional change must update selected follow-ups")
+    require('function renderSelectedFollowOn()' in priority, "instant selected-topics rendering missing")
     require('function renderReviewOverview()' in priority, "question overview not generated")
     require('if (overview)' in priority and 'card.focus({ preventScroll: true })' in priority,
             "overview navigation must focus question cards")
