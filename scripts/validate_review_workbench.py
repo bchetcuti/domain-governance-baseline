@@ -45,6 +45,16 @@ def main():
             "optional themes must be within the generated review, not before the brief")
     require(page.index('id="maturity-section"') < page.index('id="review-handoff-heading"'),
             "optional themes must precede governance handoff")
+    require('id="review-theme-contextual-list"' in page,
+            "contextual related themes container missing")
+    require('id="review-selected-topics"' in page and 'id="review-unaddressed-count"' in page,
+            "compact brief must expose contextual hand-off and unanswered count")
+    require('class="review-coverage review-brief-overview"' in page and
+            '<details class="review-unaddressed"' in page,
+            "summary and unanswered items must retain compact disclosure layout")
+    require(page.index('id="maturity-section"') < page.index('id="review-handoff-heading"') <
+            page.index('id="pathways-section"'),
+            "follow-on must precede handoff and supporting practice guidance")
     require(page.count('id="maturity-summary"') == 1,
             "only one visible selected-follow-up destination is permitted")
 
