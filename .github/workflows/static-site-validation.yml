@@ -20,3 +20,7 @@ jobs:
         run: python3 scripts/validate_navigation.py
       - name: Check interior guides and resources
         run: python3 scripts/validate_interior_pages.py
+      - name: Check review workbench prototype
+        run: python3 scripts/validate_review_workbench_prototype.py
+      - name: Check prototype JavaScript syntax
+        run: node --check js/review-workbench-prototype.js
