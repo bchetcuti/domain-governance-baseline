@@ -367,7 +367,13 @@
   function scrollGuided(kind) {
     if ((kind === "baseline" && state.guided.baselineShowAll) || (kind === "maturity" && state.guided.maturityShowAll)) return;
     const target = firstVisibleActive(kind);
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (kind === "baseline") {
+        target.tabIndex = -1;
+        target.focus({ preventScroll: true });
+      }
+    }
   }
 
   function clearPressedButtons(card, selector) {
