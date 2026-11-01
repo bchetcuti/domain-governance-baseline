@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="../../css/resources.css" />
   <link rel="stylesheet" href="/css/navigation.css" />
   <link rel="stylesheet" href="/css/site-shell.css" />
+  <link rel="stylesheet" href="/css/inner-pages.css" />
   <script src="/js/theme.js"></script>
 </head>
 <body>
@@ -44,29 +45,56 @@
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero guide-hero">
-      <div class="wrap">
-        <span class="eyebrow">From baseline to practice · Guide 02</span>
-        <p class="hero-note">Control the privileged paths that can alter or recover public identity and service routing.</p>
-        <h1>Control registrar and DNS authority.</h1>
-        <p class="lede">
+  <main id="top" class="guide-prototype">
+    <section class="hero guide-hero guide-preview-hero">
+      <div class="wrap wrap-wide guide-preview-hero-grid">
+        <div class="guide-preview-hero-copy">
+          <span class="eyebrow">From baseline to practice · Guide 02 of 05</span>
+          <p class="guide-preview-audience">Practical governance guidance · Guide 02</p>
+          <h1>Control registrar and DNS authority.</h1>
+          <p class="lede">
           Establish named, reviewable and recoverable control over domain registration, delegation and authoritative DNS -
           without relying on shared credentials, personal mailboxes or undocumented console changes.
         </p>
-        <div class="hero-meta">
-          <span class="pill">For technology and risk generalists</span>
-          <span class="pill">Eight practical steps</span>
-          <span class="pill">Authority-review CSV</span>
-          <span class="pill">DNS change-record template</span>
-        </div>
-        <div class="cta-row">
+          <p class="guide-preview-promise">Start with the record or decision that needs to exist. Use the steps below to make the practice dependable.</p>
+          <div class="cta-row">
           <a class="btn btn-primary btn-lg" href="../downloads/domain-authority-review-template.csv" download>Download authority-review CSV</a>
           <a class="btn btn-ghost btn-lg" href="../downloads/dns-change-record-template.md" download>Download DNS change record</a>
-          <a class="btn btn-ghost btn-lg" href="../../">Open the baseline</a>
+        
+          </div>
+          <p class="guide-preview-hero-note">Eight practical steps · Portable starter files · Use your existing governance systems</p>
         </div>
+
+        <aside class="guide-record guide-output-card" aria-label="What this guide helps establish">
+          <div class="guide-record-header">
+            <div>
+              <span class="guide-record-kicker">What you will establish</span>
+              <h2>Authority you can name and recover</h2>
+            </div>
+          </div>
+          <p class="guide-record-intro">A practical output to record, verify and maintain in your existing organisational processes.</p>
+          <ol class="guide-output-list">
+            <li><span>Document registrar, reseller, DNS and recovery authority</span></li>
+            <li><span>Review privileged access, MFA and supplier limitations</span></li>
+            <li><span>Record material DNS changes and recovery evidence</span></li>
+          </ol>
+        </aside>
       </div>
     </section>
+
+    <nav class="guide-contents" aria-label="On this guide">
+      <div class="wrap wrap-wide guide-contents-inner">
+        <span>In this guide</span>
+        <div class="guide-contents-links">
+          <a href="#authority-boundaries">Scope</a>
+          <a href="#establish">Eight steps</a>
+          <a href="#authority-record">Authority record</a>
+          <a href="#change-record">DNS changes</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#failure-modes">Pitfalls</a>
+        </div>
+      </div>
+    </nav>
 
     <section class="section guide-summary">
       <div class="wrap">

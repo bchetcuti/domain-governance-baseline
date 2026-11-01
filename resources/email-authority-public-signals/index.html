@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="../../css/resources.css" />
   <link rel="stylesheet" href="/css/navigation.css" />
   <link rel="stylesheet" href="/css/site-shell.css" />
+  <link rel="stylesheet" href="/css/inner-pages.css" />
   <script src="/js/theme.js"></script>
 </head>
 <body>
@@ -44,29 +45,56 @@
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero guide-hero">
-      <div class="wrap">
-        <span class="eyebrow">From baseline to practice · Guide 03</span>
-        <p class="hero-note">Know who may send in the organisation's name and whether the public evidence matches that authority.</p>
-        <h1>Govern email authority and public signals.</h1>
-        <p class="lede">
+  <main id="top" class="guide-prototype">
+    <section class="hero guide-hero guide-preview-hero">
+      <div class="wrap wrap-wide guide-preview-hero-grid">
+        <div class="guide-preview-hero-copy">
+          <span class="eyebrow">From baseline to practice · Guide 03 of 05</span>
+          <p class="guide-preview-audience">Practical governance guidance · Guide 03</p>
+          <h1>Govern email authority and public signals.</h1>
+          <p class="lede">
           Establish a dependable record of authorised senders, authentication paths and public mail posture -
           then reconcile SPF, DKIM and DMARC evidence with what the organisation has actually approved.
         </p>
-        <div class="hero-meta">
-          <span class="pill">For technology and risk generalists</span>
-          <span class="pill">Eight practical steps</span>
-          <span class="pill">Authorised-sender CSV</span>
-          <span class="pill">Public-signal review record</span>
-        </div>
-        <div class="cta-row">
+          <p class="guide-preview-promise">Start with the record or decision that needs to exist. Use the steps below to make the practice dependable.</p>
+          <div class="cta-row">
           <a class="btn btn-primary btn-lg" href="../downloads/authorised-sender-register-template.csv" download>Download sender-register CSV</a>
           <a class="btn btn-ghost btn-lg" href="../downloads/email-public-signal-review-template.md" download>Download signal-review record</a>
-          <a class="btn btn-ghost btn-lg" href="../../">Open the baseline</a>
+        
+          </div>
+          <p class="guide-preview-hero-note">Eight practical steps · Portable starter files · Use your existing governance systems</p>
         </div>
+
+        <aside class="guide-record guide-output-card" aria-label="What this guide helps establish">
+          <div class="guide-record-header">
+            <div>
+              <span class="guide-record-kicker">What you will establish</span>
+              <h2>Sender authority backed by evidence</h2>
+            </div>
+          </div>
+          <p class="guide-record-intro">A practical output to record, verify and maintain in your existing organisational processes.</p>
+          <ol class="guide-output-list">
+            <li><span>Record approved senders, domains and supplier responsibilities</span></li>
+            <li><span>Reconcile SPF, DKIM and DMARC signals with those approvals</span></li>
+            <li><span>Remove obsolete access and record time-bound exceptions</span></li>
+          </ol>
+        </aside>
       </div>
     </section>
+
+    <nav class="guide-contents" aria-label="On this guide">
+      <div class="wrap wrap-wide guide-contents-inner">
+        <span>In this guide</span>
+        <div class="guide-contents-links">
+          <a href="#authority-boundaries">Scope</a>
+          <a href="#establish">Eight steps</a>
+          <a href="#sender-register">Sender record</a>
+          <a href="#public-signal-review">Public signals</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#failure-modes">Pitfalls</a>
+        </div>
+      </div>
+    </nav>
 
     <section class="section guide-summary">
       <div class="wrap">

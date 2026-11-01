@@ -1,0 +1,22 @@
+name: Validate static Baseline site
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  static-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Check canonical header and footer
+        run: python3 scripts/sync_site_shell.py --check
+      - name: Check global navigation and accessibility semantics
+        run: python3 scripts/validate_navigation.py
+      - name: Check interior guides and resources
+        run: python3 scripts/validate_interior_pages.py
