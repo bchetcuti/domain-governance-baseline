@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="/css/navigation.css" />
   <link rel="stylesheet" href="/css/site-shell.css" />
   <link rel="stylesheet" href="/css/review-adoption.css" />
+  <link rel="stylesheet" href="/css/review-workbench.css" />
   <script src="/js/theme.js"></script>
 </head>
 <body class="review-page">
@@ -86,27 +87,28 @@
         <div class="section-head">
           <span class="section-index">Before you begin</span>
           <h2 id="review-guide-heading">A useful review starts with a clear scope.</h2>
-          <p>Ideally, consider the organisation's domain estate rather than just its main website. This is a starting conversation, not an assurance assessment.</p>
+          <p>Start with the domain estate, not only the website. This is a conversation aid, not an assurance assessment.</p>
         </div>
         <div class="review-guide-grid">
           <article class="review-guide-item">
             <span class="review-guide-number" aria-hidden="true">01</span>
             <h3>Think across the estate</h3>
-            <p>Include domains, suppliers and services the organisation owns or depends on. Use the questions to expose where the evidence is incomplete.</p>
+            <p>Consider the domains, suppliers and services across the estate, not only the main website.</p>
           </article>
           <article class="review-guide-item">
             <span class="review-guide-number" aria-hidden="true">02</span>
             <h3>Answer what you know</h3>
-            <p>Choose <strong>Not sure</strong> when uncertainty itself needs follow-up. Choose <strong>Skip for now</strong> only when leaving a question out of this pass.</p>
+            <p><strong>Not sure</strong> captures uncertainty; <strong>Skip for now</strong> leaves a question unanswered.</p>
           </article>
           <article class="review-guide-item">
             <span class="review-guide-number" aria-hidden="true">03</span>
             <h3>Take the result to work</h3>
-            <p>Copy or print the summary, assign evidence and decisions through an existing forum, and revisit unanswered items. Incomplete reviews are clearly labelled.</p>
+            <p>Take the brief into an existing governance forum for evidence, decisions and follow-up.</p>
           </article>
         </div>
-        <div class="instrument-meta review-boundaries" aria-label="Review source and boundaries">
-          <p class="instrument-meta-title">Review boundaries and reference</p>
+        <details class="review-boundaries" id="review-boundaries">
+          <summary>About this review <span>Private, browser-only · No scoring or assurance · Version 1.0</span></summary>
+          <div class="instrument-meta review-boundaries-content">
           <dl>
             <div>
               <dt>Checklist</dt>
@@ -125,7 +127,8 @@
               <dd><a href="/reference/v1.0/">The Version 1.0 reference edition</a> preserves the exact ten questions.</dd>
             </div>
           </dl>
-        </div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -142,31 +145,24 @@
             <span id="baseline-progress-text">0 of 10 answered</span>
           </div>
         </div>
-        <div class="q-list" id="baseline-list"></div>
-      </div>
-    </section>
-
-    <section class="section" id="maturity-section">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="section-index">Optional follow-on</span>
-          <h2>Go further only where useful</h2>
-          <p>
-            The ten questions are the complete starting point. These six themes are optional prompts for organisations that want to carry the findings into broader recurring governance. You do not need to answer them to generate a review summary.
-          </p>
-          <div class="progress-line">
-            <div class="progress-track"><div class="progress-fill" id="maturity-progress-fill"></div></div>
-            <span id="maturity-progress-text">0 of 6 considered</span>
+        <div class="review-workbench-grid">
+          <div class="review-workbench-main">
+            <div class="q-list" id="baseline-list"></div>
+            <div class="cta-row review-summary-action">
+              <button id="generate-btn" class="btn btn-primary btn-lg" type="button" disabled>Answer at least one question to continue</button>
+            </div>
+            <p id="review-refresh-notice" class="review-refresh-notice" role="status" aria-live="polite" hidden>
+              Your answers have changed since the last summary. Generate a new summary before copying or printing.
+            </p>
           </div>
+          <aside class="review-workbench-overview" aria-labelledby="review-overview-heading">
+            <span class="section-index">The full review</span>
+            <h3 id="review-overview-heading">Ten-question overview</h3>
+            <p>Follow the questions in order or return to any question. Your responses stay in this browser tab.</p>
+            <ol id="review-question-overview"></ol>
+            <p class="review-overview-note">Skipped is not the same as Not sure. An unanswered question is not treated as in place.</p>
+          </aside>
         </div>
-        <div class="q-list" id="maturity-list"></div>
-
-        <div class="cta-row">
-          <button id="generate-btn" class="btn btn-primary btn-lg" type="button" disabled>Answer at least one question to continue</button>
-        </div>
-        <p id="review-refresh-notice" class="review-refresh-notice" role="status" aria-live="polite" hidden>
-          Your answers have changed since the last summary. Generate a new summary before copying or printing.
-        </p>
       </div>
     </section>
 
@@ -216,6 +212,25 @@
           <div class="pathway-list" id="pathways-block"></div>
         </div>
 
+        <section class="reflect-block review-follow-on" id="maturity-section" aria-labelledby="review-follow-on-title">
+          <div class="review-follow-on-heading">
+            <span class="section-index">Where to take this further</span>
+            <h3 id="review-follow-on-title">Build on what your review revealed.</h3>
+            <p>The ten questions are your starting point. These six existing governance themes can extend the discussion where useful, without another questionnaire or maturity rating.</p>
+          </div>
+          <div class="review-selected-topics" aria-live="polite">
+            <h4>Selected for governance follow-up</h4>
+            <div class="maturity-summary" id="maturity-summary"></div>
+          </div>
+          <details class="review-optional-panel" id="optional-exploration">
+            <summary>Explore all six governance themes <span id="maturity-progress-text">0 selected for follow-up</span></summary>
+            <div class="review-optional-intro">
+              <p>Select only the themes you want to bring into an existing governance conversation. None is required, and none is an assessment result.</p>
+            </div>
+            <div class="q-list" id="maturity-list"></div>
+          </details>
+        </section>
+
         <section class="review-handoff" aria-labelledby="review-handoff-heading">
           <span class="section-index">From reflection to action</span>
           <h3 id="review-handoff-heading">Bring this into an existing governance forum</h3>
@@ -232,12 +247,6 @@
           <h3>What is already in place</h3>
           <p class="block-intro">Baseline items you can answer clearly today. Worth protecting - the recurring-review guide is how you keep them true.</p>
           <div id="good-block"></div>
-        </div>
-
-        <div class="reflect-block">
-          <h3>Optional follow-on themes</h3>
-          <p class="block-intro">Only the broader themes you chose to consider in this pass.</p>
-          <div class="maturity-summary" id="maturity-summary"></div>
         </div>
 
         <div class="disclaimer">

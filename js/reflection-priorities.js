@@ -176,17 +176,8 @@
       addSkipButton(card, "baseline");
     });
 
-    MATURITY_THEMES.forEach((theme) => {
-      const card = document.querySelector(`#${theme.anchor}`);
-      if (!card) return;
-      card.dataset.guidedKind = "maturity";
-      card.dataset.guidedId = theme.id;
-      ensureSummary(card);
-      addSkipButton(card, "maturity");
-    });
-
+    // Optional themes are guidance, not a second guided assessment.
     ensureGuidedControls("baseline");
-    ensureGuidedControls("maturity");
     syncGuidedProgress();
     applyGuidedFlow();
   }
@@ -305,18 +296,9 @@
         : `${bAnswered} of ${bTotal} answered`;
     }
 
-    const mTotal = MATURITY_THEMES.length;
-    const mConsidered = countKeys(state.maturity);
-    const mSkipped = countKeys(state.skippedMaturity);
-    const mRemaining = mTotal - mConsidered - mSkipped;
-    const mFill = document.querySelector("#maturity-progress-fill");
-    const mText = document.querySelector("#maturity-progress-text");
-    if (mFill) mFill.style.width = `${((mConsidered + mSkipped) / mTotal) * 100}%`;
-    if (mText) {
-      mText.textContent = mSkipped
-        ? `${mConsidered} considered · ${mSkipped} skipped · ${mRemaining} remaining`
-        : `${mConsidered} of ${mTotal} considered`;
-    }
+    const optional = document.querySelector("#maturity-progress-text");
+    if (optional) optional.textContent =
+      `${countKeys(state.maturity)} of ${MATURITY_THEMES.length} selected for follow-up`;
 
     const btn = document.querySelector("#generate-btn");
     if (btn) {
@@ -332,21 +314,40 @@
 
     const baselineToggle = document.querySelector('[data-guided-toggle="baseline"]');
     if (baselineToggle) baselineToggle.textContent = state.guided.baselineShowAll ? "Return to guided view" : "Show all questions";
-    const maturityToggle = document.querySelector('[data-guided-toggle="maturity"]');
-    if (maturityToggle) maturityToggle.textContent = state.guided.maturityShowAll ? "Return to guided view" : "Show all themes";
   }
 
   function applyGuidedFlow() {
     ensureGuidedState();
     const activeBaseline = currentBaselineIndex();
-    const activeMaturity = currentMaturityIndex();
-
     BASELINE_QUESTIONS.forEach((question, index) => updateBaselineCard(question, index, activeBaseline));
-    MATURITY_THEMES.forEach((theme, index) => updateMaturityCard(theme, index, activeMaturity));
-
     updateCompletePanel("baseline");
-    updateCompletePanel("maturity");
     syncGuidedProgress();
+    renderReviewOverview();
+  }
+
+  function renderReviewOverview() {
+    const list = document.querySelector("#review-question-overview");
+    if (!list) return;
+    const active = state.guided.baselineOpenId ||
+      BASELINE_QUESTIONS[currentBaselineIndex()]?.id || null;
+    list.replaceChildren();
+    BASELINE_QUESTIONS.forEach((question, index) => {
+      const answered = state.baseline[question.id];
+      const skipped = !answered && state.skippedBaseline[question.id];
+      const label = answered ? stateMeta[answered].label : skipped ? "Skipped" : "Unanswered";
+      const row = create("li", "review-overview-row");
+      const button = create("button", "review-overview-button");
+      button.type = "button";
+      button.dataset.reviewOpen = question.id;
+      if (active === question.id) button.setAttribute("aria-current", "step");
+      button.append(
+        create("span", "review-overview-number", String(index + 1).padStart(2, "0")),
+        create("span", "review-overview-name", question.domain),
+        create("span", "review-overview-status", label)
+      );
+      row.appendChild(button);
+      list.appendChild(row);
+    });
   }
 
   function firstVisibleActive(kind) {
@@ -366,7 +367,13 @@
   function scrollGuided(kind) {
     if ((kind === "baseline" && state.guided.baselineShowAll) || (kind === "maturity" && state.guided.maturityShowAll)) return;
     const target = firstVisibleActive(kind);
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (kind === "baseline") {
+        target.tabIndex = -1;
+        target.focus({ preventScroll: true });
+      }
+    }
   }
 
   function clearPressedButtons(card, selector) {
@@ -385,6 +392,18 @@
   }
 
   function handleGuidedClick(event) {
+    const overview = event.target.closest("[data-review-open]");
+    if (overview) {
+      event.preventDefault();
+      state.guided.baselineOpenId = overview.dataset.reviewOpen;
+      applyGuidedFlow();
+      const card = document.querySelector("#card-" + state.guided.baselineOpenId);
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+        card.focus({ preventScroll: true });
+      }
+      return;
+    }
     const answer = event.target.closest(".answer");
     if (answer && answer.closest("#baseline-list")) {
       const card = answer.closest(".q-card");
@@ -508,6 +527,20 @@
     return block;
   }
 
+  function renderSelectedFollowOn() {
+    const matBlock = document.querySelector("#maturity-summary");
+    if (!matBlock) return;
+    matBlock.replaceChildren();
+    const selectedThemes = MATURITY_THEMES.filter((theme) => state.maturity[theme.id] === "selected");
+    if (!selectedThemes.length) {
+      matBlock.appendChild(create("p", "review-no-topics",
+        "No additional topics selected. Your ten-question review remains complete on its own."));
+      return;
+    }
+    selectedThemes.forEach((theme) => matBlock.appendChild(create("div", "mat-row",
+      `<span class="mat-name">${theme.theme}</span><span class="mat-badge b-set">Included in follow-up</span>`)));
+  }
+
   function buildPriorityFirstReview() {
     ensureGuidedState();
     const answered = BASELINE_QUESTIONS.filter((question) => state.baseline[question.id]);
@@ -579,19 +612,7 @@
       goodItems.forEach((question) => goodBlock.appendChild(renderPriorityFinding(question, "in_place")));
     }
 
-    const matBlock = document.querySelector("#maturity-summary");
-    matBlock.innerHTML = "";
-    const considered = MATURITY_THEMES.filter((theme) => state.maturity[theme.id]);
-    if (considered.length === 0 && skippedMaturity.length === 0) {
-      matBlock.appendChild(create("div", "empty-good", "You have not considered the optional themes in this pass. Use them only where they help deepen portfolio, supplier, change, monitoring, public-signal or executive-governance work."));
-    } else {
-      MATURITY_THEMES.forEach((theme) => {
-        const chosen = state.maturity[theme.id];
-        const skipped = state.skippedMaturity[theme.id];
-        const label = chosen ? MATURITY_STATES.find((entry) => entry.id === chosen).label : skipped ? "Skipped for now" : "Not considered";
-        matBlock.appendChild(create("div", "mat-row", `<span class="mat-name">${theme.theme}</span><span class="mat-badge ${chosen ? "b-set" : ""}">${label}</span>`));
-      });
-    }
+    renderSelectedFollowOn();
 
     const notice = document.querySelector("#review-refresh-notice");
     if (notice) notice.hidden = true;
@@ -704,11 +725,10 @@
     lines.push("");
 
     lines.push("OPTIONAL FOLLOW-ON THEMES");
-    MATURITY_THEMES.forEach((theme, index) => {
-      const chosen = state.maturity[theme.id];
-      const skipped = state.skippedMaturity?.[theme.id];
-      const label = chosen ? MATURITY_STATES.find((entry) => entry.id === chosen).label : skipped ? "Skipped for now" : "Not considered";
-      lines.push(`${String(index + 1).padStart(2, "0")}. ${theme.theme}: ${label}`);
+    const selectedThemes = MATURITY_THEMES.filter((theme) => state.maturity[theme.id]);
+    if (!selectedThemes.length) lines.push("No optional themes selected for follow-up.");
+    selectedThemes.forEach((theme) => {
+      lines.push(`- ${theme.theme}: Selected for follow-up, not assessed`);
       lines.push(...wrap(theme.good));
       lines.push("");
     });
@@ -732,6 +752,12 @@
 
   setupGuidedPass();
   document.addEventListener("click", handleGuidedClick, false);
+  document.addEventListener("review:changed", () => {
+    // Optional topics affect the follow-up only; do not discard a valid
+    // ten-question brief or force the reviewer to regenerate results.
+    syncGuidedProgress();
+    renderSelectedFollowOn();
+  });
 
   const generateButton = document.querySelector("#generate-btn");
   if (generateButton) {
