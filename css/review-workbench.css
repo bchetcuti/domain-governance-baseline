@@ -1,4 +1,6 @@
 /* Production review workbench – canonical question content and browser-only answers. */
+.review-page #baseline-list [hidden] { display:none !important; }
+
 .review-workbench-grid { display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.72fr);gap:var(--space-6);align-items:start }
 .review-workbench-main {min-width:0}
 .review-workbench-overview {
