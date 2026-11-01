@@ -40,7 +40,6 @@ NAV_SECTIONS = {
     "resources/domain-incident-readiness/index.html": "GUIDES",
     "resources/recurring-domain-governance-review/index.html": "GUIDES",
     "reference/v1.0/index.html": "REFERENCE",
-    "citation/index.html": "REFERENCE",
 }
 HEADER_RE = re.compile(
     r'(?m)^[ \t]*<header class="site-header(?: shell-header)?">[\s\S]*?^[ \t]*</header>'
