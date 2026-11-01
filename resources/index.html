@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="../css/resources.css" />
   <link rel="stylesheet" href="/css/navigation.css" />
   <link rel="stylesheet" href="/css/site-shell.css" />
+  <link rel="stylesheet" href="/css/inner-pages.css" />
   <script src="/js/theme.js"></script>
 </head>
 <body>
@@ -44,11 +45,12 @@
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero practice-hero">
-      <div class="wrap">
+  <main id="top" class="practice-index">
+    <section class="hero practice-hero practice-overview-hero">
+      <div class="wrap wrap-wide practice-overview-hero-grid">
+        <div class="practice-overview-intro">
+
         <span class="eyebrow">From baseline to practice</span>
-        <p class="hero-note">Practical guidance, not another maturity model or governance platform.</p>
         <h1>Establish the basic practices behind the ten questions.</h1>
         <p class="lede">
           The baseline helps reveal what is unclear. These five guides explain what to put in place next,
@@ -60,13 +62,23 @@
           <span class="pill">Portable starter files</span>
           <span class="pill">No scoring or platform</span>
         </div>
-        <div class="stance">
-          <p>
-            <strong>Build and maintain in sequence.</strong>
-            Know which domains matter. Control who can alter them. Govern who may send.
-            Prepare for failure. Then use an existing forum to keep those answers true.
-          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="/review/">Start with the ten questions</a>
+            <a class="btn btn-ghost btn-lg" href="/walkthrough/">See a worked example</a>
+          </div>
         </div>
+        <aside class="practice-map" aria-label="The five-practice sequence">
+          <span class="practice-map-label">Five bounded practices</span>
+          <h2>From ownership to recurring review</h2>
+          <ol>
+            <li>Establish a dependable domain register</li>
+            <li>Control registrar and DNS authority</li>
+            <li>Govern email authority and public signals</li>
+            <li>Prepare for a domain-layer incident</li>
+            <li>Keep evidence, decisions and exceptions current</li>
+          </ol>
+          <p class="practice-map-foot">Use what you need where the Baseline reveals uncertainty. No new governance platform is required.</p>
+        </aside>
       </div>
     </section>
 
