@@ -527,6 +527,20 @@
     return block;
   }
 
+  function renderSelectedFollowOn() {
+    const matBlock = document.querySelector("#maturity-summary");
+    if (!matBlock) return;
+    matBlock.replaceChildren();
+    const selectedThemes = MATURITY_THEMES.filter((theme) => state.maturity[theme.id] === "selected");
+    if (!selectedThemes.length) {
+      matBlock.appendChild(create("p", "review-no-topics",
+        "No additional topics selected. Your ten-question review remains complete on its own."));
+      return;
+    }
+    selectedThemes.forEach((theme) => matBlock.appendChild(create("div", "mat-row",
+      `<span class="mat-name">${theme.theme}</span><span class="mat-badge b-set">Included in follow-up</span>`)));
+  }
+
   function buildPriorityFirstReview() {
     ensureGuidedState();
     const answered = BASELINE_QUESTIONS.filter((question) => state.baseline[question.id]);
@@ -598,15 +612,7 @@
       goodItems.forEach((question) => goodBlock.appendChild(renderPriorityFinding(question, "in_place")));
     }
 
-    const matBlock = document.querySelector("#maturity-summary");
-    matBlock.replaceChildren();
-    const selectedThemes = MATURITY_THEMES.filter((theme) => state.maturity[theme.id]);
-    if (!selectedThemes.length) {
-      matBlock.appendChild(create("div", "empty-good", "No optional follow-on themes selected. The ten-question review stands on its own."));
-    } else {
-      selectedThemes.forEach((theme) => matBlock.appendChild(create("div", "mat-row",
-        `<span class="mat-name">${theme.theme}</span><span class="mat-badge b-set">Selected for follow-up</span>`)));
-    }
+    renderSelectedFollowOn();
 
     const notice = document.querySelector("#review-refresh-notice");
     if (notice) notice.hidden = true;
@@ -747,8 +753,10 @@
   setupGuidedPass();
   document.addEventListener("click", handleGuidedClick, false);
   document.addEventListener("review:changed", () => {
-    invalidateGeneratedReview();
+    // Optional topics affect the follow-up only; do not discard a valid
+    // ten-question brief or force the reviewer to regenerate results.
     syncGuidedProgress();
+    renderSelectedFollowOn();
   });
 
   const generateButton = document.querySelector("#generate-btn");
