@@ -63,6 +63,8 @@
         responses[question.id] = answer.id;
         skipped.delete(question.id);
         renderAll();
+        const replacement = document.querySelector('#prototype-answer-options [data-answer="' + answer.id + '"]');
+        if (replacement) replacement.focus({ preventScroll: true });
       });
       wrap.append(btn);
     });
