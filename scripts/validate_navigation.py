@@ -22,6 +22,19 @@ PUBLIC_PAGES = {
     "resources/recurring-domain-governance-review/index.html": "/resources/",
 }
 
+# Design-validation branch only: two pages demonstrate a proposed new shell.
+# All other public pages must continue to pass the existing global rules.
+SHELL_PREVIEW_PAGES = {
+    "index.html": "/",
+    "resources/domain-register/index.html": "/resources/",
+}
+SHELL_PREVIEW_LINKS = (
+    ('href="/"', ">Overview</a>"),
+    ('href="/walkthrough/"', ">Walkthrough</a>"),
+    ('href="/resources/"', ">Practice guides</a>"),
+    ('href="/reference/v1.0/"', ">Reference</a>"),
+)
+
 PRIMARY_LINKS = (
     ('href="/review/"', ">Review</a>"),
     ('href="/resources/"', ">Practice guides</a>"),
@@ -57,7 +70,7 @@ def main() -> int:
             fail(f"{relative_path}: missing shared theme control", failures)
 
         nav_match = re.search(
-            r'<nav class="site-nav" aria-label="Primary">(?P<body>.*?)</nav>',
+            r'<nav class="site-nav(?: shell-nav)?" aria-label="Primary">(?P<body>.*?)</nav>',
             html,
             flags=re.DOTALL,
         )
@@ -66,14 +79,24 @@ def main() -> int:
             continue
 
         nav = nav_match.group("body")
-        for href, label in PRIMARY_LINKS:
+        preview = relative_path in SHELL_PREVIEW_PAGES
+        required = SHELL_PREVIEW_LINKS if preview else PRIMARY_LINKS
+        for href, label in required:
             if href not in nav or label not in nav:
                 fail(f"{relative_path}: missing primary navigation item {label[1:-4]}", failures)
+
+        if preview:
+            if 'href="/css/shell-preview.css"' not in html:
+                fail(f"{relative_path}: missing preview stylesheet", failures)
+            if 'class="site-header shell-header"' not in html or 'class="site-footer shell-footer"' not in html:
+                fail(f"{relative_path}: missing new shell prototype", failures)
+            if 'class="shell-review-link" href="/review/"' not in html:
+                fail(f"{relative_path}: missing primary review action", failures)
 
         active_links = re.findall(
             r'<a href="([^"]+)" aria-current="page">', nav
         )
-        expected = [] if active_href is None else [active_href]
+        expected = [SHELL_PREVIEW_PAGES[relative_path]] if preview else ([] if active_href is None else [active_href])
         if active_links != expected:
             fail(
                 f"{relative_path}: aria-current links {active_links!r}, expected {expected!r}",
@@ -81,7 +104,7 @@ def main() -> int:
             )
 
         footer_match = re.search(
-            r'<nav class="footer-nav" aria-label="Explore">(?P<body>.*?)</nav>',
+            r'<nav class="footer-nav(?: shell-footer-nav)?" aria-label="Explore">(?P<body>.*?)</nav>',
             html,
             flags=re.DOTALL,
         )
@@ -99,7 +122,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    print(f"Navigation validation passed for {len(PUBLIC_PAGES)} public HTML pages.")
+    print(f"Navigation validation passed for {len(PUBLIC_PAGES)} public HTML pages, including {len(SHELL_PREVIEW_PAGES)} preview pages.")
     return 0
 
 
