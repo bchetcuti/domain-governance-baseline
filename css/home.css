@@ -96,16 +96,52 @@
   gap: var(--space-2);
 }
 
-.home-scenario-fiction,
-.home-preview-context {
+/* A visible editorial disclosure, not small metadata that could be missed. */
+.home-example-banner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-8);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid color-mix(in oklab, var(--color-primary) 28%, var(--color-divider));
+  border-radius: var(--radius-md);
+  background: var(--color-primary-soft);
+}
+
+.home-example-banner strong {
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.home-example-banner span {
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+
+.home-scenario-topic {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
 }
 
-.home-scenario-org {
-  margin-top: var(--space-8);
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
+.home-preview-head {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.home-example-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid color-mix(in oklab, var(--color-primary) 30%, var(--color-divider));
+  border-radius: var(--radius-md);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  line-height: 1.35;
+  font-weight: 600;
 }
 
 .home-scenario h2 {
