@@ -1,105 +1,94 @@
 #!/usr/bin/env python3
-"""Validate global navigation across public Domain Governance Baseline HTML pages."""
-
+"""Validate shared static navigation, footer, page context and shell drift."""
 from pathlib import Path
 import re
 import sys
 
+from sync_site_shell import PUBLIC_PAGES, NAV_SECTIONS, render_page
+
 ROOT = Path(__file__).resolve().parents[1]
-
-PUBLIC_PAGES = {
-    "index.html": None,
-    "404.html": None,
-    "review/index.html": "/review/",
-    "citation/index.html": None,
-    "reference/v1.0/index.html": None,
-    "walkthrough/index.html": "/walkthrough/",
-    "resources/index.html": "/resources/",
-    "resources/domain-register/index.html": "/resources/",
-    "resources/registrar-dns-authority/index.html": "/resources/",
-    "resources/email-authority-public-signals/index.html": "/resources/",
-    "resources/domain-incident-readiness/index.html": "/resources/",
-    "resources/recurring-domain-governance-review/index.html": "/resources/",
+NAV_LINKS = (
+    ("/", "Overview"),
+    ("/walkthrough/", "Walkthrough"),
+    ("/resources/", "Practice guides"),
+    ("/reference/v1.0/", "Reference"),
+)
+FOOTER_LINKS = ("Baseline Review", "Worked walkthrough", "Practice guides")
+SECTION_TARGETS = {
+    "OVERVIEW": "/",
+    "WALKTHROUGH": "/walkthrough/",
+    "GUIDES": "/resources/",
+    "REFERENCE": "/reference/v1.0/",
 }
-
-PRIMARY_LINKS = (
-    ('href="/review/"', ">Review</a>"),
-    ('href="/resources/"', ">Practice guides</a>"),
-    ('href="/walkthrough/"', ">Walkthrough</a>"),
-)
-
-FOOTER_LABELS = (
-    "Baseline Review",
-    "Practice guides",
-    "Worked walkthrough",
-)
-
-
-def fail(message: str, failures: list[str]) -> None:
-    failures.append(message)
 
 
 def main() -> int:
-    failures: list[str] = []
+    errors: list[str] = []
+    header = (ROOT / "templates/site-header.html").read_text(encoding="utf-8").rstrip("\n")
+    footer = (ROOT / "templates/site-footer.html").read_text(encoding="utf-8").rstrip("\n")
 
-    for relative_path, active_href in PUBLIC_PAGES.items():
-        path = ROOT / relative_path
-        if not path.exists():
-            fail(f"{relative_path}: file is missing", failures)
+    for path in PUBLIC_PAGES:
+        html = (ROOT / path).read_text(encoding="utf-8")
+        try:
+            expected = render_page(path, html, header, footer)
+            if expected != html:
+                errors.append(f"{path}: header/footer does not match canonical template")
+        except ValueError as exc:
+            errors.append(str(exc))
             continue
 
-        html = path.read_text(encoding="utf-8")
-
-        if 'href="/css/navigation.css"' not in html:
-            fail(f"{relative_path}: missing shared navigation stylesheet", failures)
-
+        if 'href="/css/navigation.css"' not in html or 'href="/css/site-shell.css"' not in html:
+            errors.append(f"{path}: missing shared navigation or shell stylesheet")
         if 'src="/js/theme.js"' not in html:
-            fail(f"{relative_path}: missing shared theme control", failures)
+            errors.append(f"{path}: missing theme control script")
+        if html.count('data-theme-toggle') != 1:
+            errors.append(f"{path}: expected one theme-toggle control")
 
-        nav_match = re.search(
-            r'<nav class="site-nav" aria-label="Primary">(?P<body>.*?)</nav>',
+        nav = re.search(
+            r'<nav class="site-nav shell-nav" aria-label="Primary">(?P<links>.*?)</nav>',
             html,
             flags=re.DOTALL,
         )
-        if not nav_match:
-            fail(f"{relative_path}: missing primary site navigation", failures)
+        if not nav:
+            errors.append(f"{path}: missing primary navigation")
             continue
 
-        nav = nav_match.group("body")
-        for href, label in PRIMARY_LINKS:
-            if href not in nav or label not in nav:
-                fail(f"{relative_path}: missing primary navigation item {label[1:-4]}", failures)
+        content = nav.group("links")
+        for href, label in NAV_LINKS:
+            if f'href="{href}"' not in content or f">{label}</a>" not in content:
+                errors.append(f"{path}: missing navigation item {label}")
 
-        active_links = re.findall(
-            r'<a href="([^"]+)" aria-current="page">', nav
-        )
-        expected = [] if active_href is None else [active_href]
-        if active_links != expected:
-            fail(
-                f"{relative_path}: aria-current links {active_links!r}, expected {expected!r}",
-                failures,
-            )
+        active = re.findall(r'<a href="([^"]+)" aria-current="page">', content)
+        section = NAV_SECTIONS.get(path)
+        expected_current = [SECTION_TARGETS[section]] if section in SECTION_TARGETS else []
+        if active != expected_current:
+            errors.append(f"{path}: active navigation {active!r}, expected {expected_current!r}")
 
-        footer_match = re.search(
-            r'<nav class="footer-nav" aria-label="Explore">(?P<body>.*?)</nav>',
+        review_action = re.search(r'<a class="shell-review-link"[^>]+>', html)
+        if not review_action or 'href="/review/"' not in review_action.group():
+            errors.append(f"{path}: missing primary review action")
+        elif ('aria-current="page"' in review_action.group()) != (path == "review/index.html"):
+            errors.append(f"{path}: incorrect review action current-page state")
+
+        foot = re.search(
+            r'<nav class="footer-nav shell-footer-nav" aria-label="Explore">(.*?)</nav>',
             html,
             flags=re.DOTALL,
         )
-        if not footer_match:
-            fail(f"{relative_path}: missing Explore footer navigation", failures)
+        if not foot:
+            errors.append(f"{path}: missing shared footer exploration")
         else:
-            footer = footer_match.group("body")
-            for label in FOOTER_LABELS:
-                if f">{label}</a>" not in footer:
-                    fail(f"{relative_path}: footer label is not normalised: {label}", failures)
+            for label in FOOTER_LINKS:
+                if f">{label}</a>" not in foot.group(1):
+                    errors.append(f"{path}: footer navigation missing {label}")
 
-    if failures:
-        print("Navigation validation failed:")
-        for failure in failures:
-            print(f"- {failure}")
+    if errors:
+        print("Site navigation validation failed:", file=sys.stderr)
+        for error in errors:
+            print("- " + error, file=sys.stderr)
         return 1
 
-    print(f"Navigation validation passed for {len(PUBLIC_PAGES)} public HTML pages.")
+    print(f"Site navigation and shell validation passed for {len(PUBLIC_PAGES)} pages.")
     return 0
 
 

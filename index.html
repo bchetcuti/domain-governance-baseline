@@ -28,24 +28,30 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/instrument.css" />
   <link rel="stylesheet" href="/css/navigation.css" />
+  <link rel="stylesheet" href="/css/site-shell.css" />
   <link rel="stylesheet" href="/css/home.css" />
   <script src="/js/theme.js"></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap wrap-wide">
-      <a class="brand" href="/" aria-label="Domain Governance Baseline home">
-        <img src="/assets/img/brand-mark.svg" width="30" height="30" alt="" aria-hidden="true">
+  <header class="site-header shell-header">
+    <div class="wrap wrap-wide shell-header-inner">
+      <a class="brand shell-brand" href="/" aria-label="Domain Governance Baseline - overview">
+        <img src="/assets/img/brand-mark.svg" width="32" height="32" alt="" aria-hidden="true">
         <span class="brand-text">
           <span class="brand-name">Domain Governance Baseline</span>
-          <span class="brand-sub">Version 1.0 · by Bryan Chetcuti</span>
+          <span class="brand-sub">by Bryan Chetcuti</span>
         </span>
       </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="/review/">Review</a>
-        <a href="/resources/">Practice guides</a>
+      <nav class="site-nav shell-nav" aria-label="Primary">
+        <a href="/" aria-current="page">Overview</a>
         <a href="/walkthrough/">Walkthrough</a>
+        <a href="/resources/">Practice guides</a>
+        <a href="/reference/v1.0/">Reference</a>
       </nav>
+      <div class="shell-actions header-actions">
+        <a class="shell-review-link" href="/review/">Start review <span aria-hidden="true">→</span></a>
+        <button class="icon-btn" data-theme-toggle type="button" aria-label="Toggle colour theme"></button>
+      </div>
     </div>
   </header>
 
@@ -233,52 +239,53 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div class="footer-brand-block">
-        <a class="footer-brand" href="/" aria-label="Domain Governance Baseline home">
-          <img src="/assets/img/brand-mark.svg" width="30" height="30" alt="" aria-hidden="true">
-          <span>
-            <span class="footer-brand-title">Domain Governance Baseline</span>
-            <span class="footer-brand-sub">by Bryan Chetcuti</span>
-          </span>
-        </a>
-        <p>A practical, citable starting point for making domain ownership, DNS, email authority, continuity and accountability visible and governable.</p>
+  <footer class="site-footer shell-footer">
+    <div class="wrap wrap-wide shell-footer-invite">
+      <div>
+        <p class="shell-footer-kicker">The next practical step</p>
+        <h2>Make uncertainty governable.</h2>
+        <p>Work through the ten questions, then bring unresolved ownership, authority and readiness into a forum that already exists.</p>
       </div>
-
-      <nav class="footer-nav" aria-label="Explore">
-        <p class="footer-nav-title">Explore</p>
+      <a class="btn btn-primary" href="/review/">Start a Baseline Review</a>
+    </div>
+    <div class="wrap wrap-wide shell-footer-grid">
+      <div class="shell-footer-about">
+        <a class="shell-footer-brand" href="/">
+          <img src="/assets/img/brand-mark.svg" width="30" height="30" alt="" aria-hidden="true">
+          <span>Domain Governance Baseline</span>
+        </a>
+        <p>A practical, citable starting point for governing the domains organisations rely on.</p>
+        <a class="shell-byline" href="https://bryanchetcuti.com/">Created and stewarded by Bryan Chetcuti</a>
+      </div>
+      <nav class="footer-nav shell-footer-nav" aria-label="Explore">
+        <p class="footer-nav-title">Use the Baseline</p>
         <div class="footer-links">
+          <a href="/">Overview</a>
           <a href="/review/">Baseline Review</a>
-          <a href="/resources/">Practice guides</a>
           <a href="/walkthrough/">Worked walkthrough</a>
-          <a href="/reference/v1.0/">v1.0 reference edition</a>
-          <a href="/citation/">Citation &amp; stewardship</a>
+          <a href="/resources/">Practice guides</a>
         </div>
       </nav>
-
-      <nav class="footer-nav" aria-label="Related work">
+      <nav class="footer-nav shell-footer-nav" aria-label="Reference and reuse">
+        <p class="footer-nav-title">Reference &amp; reuse</p>
+        <div class="footer-links">
+          <a href="/reference/v1.0/">Version 1.0 reference</a>
+          <a href="/citation/">Citation and stewardship</a>
+          <a href="https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/">Source essay</a>
+        </div>
+      </nav>
+      <div class="shell-footer-related">
         <p class="footer-nav-title">Related work</p>
         <div class="footer-links">
-          <a href="https://bryanchetcuti.com/" target="_blank" rel="noopener">Bryan Chetcuti</a>
-          <a href="https://audo.bryanchetcuti.com/" target="_blank" rel="noopener">.au Domain Observatory (.auDO)</a>
-          <a href="https://threatscopecheck.com/" target="_blank" rel="noopener">ThreatScope Check</a>
+          <a href="https://audo.bryanchetcuti.com/">.au Domain Observatory</a>
+          <a href="https://threatscopecheck.com/">ThreatScope Check</a>
         </div>
-      </nav>
-
-      <div class="footer-note">
-        <p class="footer-note-title">Boundaries</p>
-        <ul class="trust-list">
-          <li>Not a maturity model</li>
-          <li>No score or assurance conclusion</li>
-          <li>Interactive review remains local</li>
-          <li>Ten canonical Version 1.0 questions</li>
-        </ul>
+        <p class="shell-footer-context">Related work provides context, but is not required to use the Baseline.</p>
       </div>
     </div>
-
-    <div class="wrap footer-legal">
-      <p>&copy; 2026 Bryan Chetcuti. Domain Governance Baseline v1.0. Authored governance content available under CC BY 4.0.</p>
+    <div class="wrap wrap-wide shell-footer-bottom">
+      <p>&copy; 2026 Bryan Chetcuti. Version 1.0. Authored content available under CC BY 4.0.</p>
+      <p>Private local review. No scoring or assurance conclusion.</p>
     </div>
   </footer>
 </body>
