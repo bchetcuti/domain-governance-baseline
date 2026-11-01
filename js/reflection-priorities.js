@@ -373,6 +373,17 @@
     card.querySelectorAll(selector).forEach((button) => button.setAttribute("aria-pressed", "false"));
   }
 
+  // A visible summary is a snapshot. Once an answer changes it must be
+  // regenerated before copy or print can expose an outdated result.
+  function invalidateGeneratedReview() {
+    const summary = document.querySelector("#reflection-section");
+    if (!summary?.classList.contains("is-visible")) return;
+
+    summary.classList.remove("is-visible");
+    const notice = document.querySelector("#review-refresh-notice");
+    if (notice) notice.hidden = false;
+  }
+
   function handleGuidedClick(event) {
     const answer = event.target.closest(".answer");
     if (answer && answer.closest("#baseline-list")) {
@@ -380,6 +391,7 @@
       const id = card?.dataset.guidedId;
       if (id) {
         delete state.skippedBaseline[id];
+        invalidateGeneratedReview();
         state.guided.baselineOpenId = null;
         applyGuidedFlow();
         scrollGuided("baseline");
@@ -393,6 +405,7 @@
       const id = card?.dataset.guidedId;
       if (id) {
         delete state.skippedMaturity[id];
+        invalidateGeneratedReview();
         state.guided.maturityOpenId = null;
         applyGuidedFlow();
         scrollGuided("maturity");
@@ -420,6 +433,7 @@
         clearPressedButtons(card, ".m-opt");
       }
 
+      invalidateGeneratedReview();
       applyGuidedFlow();
       scrollGuided(kind);
       return;
@@ -579,6 +593,8 @@
       });
     }
 
+    const notice = document.querySelector("#review-refresh-notice");
+    if (notice) notice.hidden = true;
     document.querySelector("#reflection-section").classList.add("is-visible");
     document.querySelector("#reflection-section").scrollIntoView({ behavior: "smooth" });
   }
