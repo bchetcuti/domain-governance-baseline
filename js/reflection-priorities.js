@@ -35,6 +35,66 @@
     };
   }
 
+  // Review coverage describes participation, not maturity or assurance.
+  // Skipped questions remain distinct from unknown answers ("Not sure").
+  function getReviewCoverage() {
+    ensureGuidedState();
+    const total = BASELINE_QUESTIONS.length;
+    const answered = BASELINE_QUESTIONS.filter((question) => state.baseline[question.id]).length;
+    const skipped = BASELINE_QUESTIONS.filter((question) => !state.baseline[question.id] && state.skippedBaseline[question.id]).length;
+    return {
+      total,
+      answered,
+      skipped,
+      unaddressed: total - answered - skipped,
+      complete: answered === total,
+    };
+  }
+
+  function coverageDescription(coverage) {
+    if (coverage.complete) {
+      return "All ten questions were answered in this pass. This records stated responses, not independent validation of evidence, control effectiveness or assurance.";
+    }
+    return "This is a partial review. Skipped or unaddressed questions are not assessed and must not be treated as in place. Return to them if they matter to the decision.";
+  }
+
+  function renderReviewCoverage() {
+    const coverage = getReviewCoverage();
+    const label = document.querySelector("#review-coverage-label");
+    const counts = document.querySelector("#review-coverage-counts");
+    const detail = document.querySelector("#review-coverage-detail");
+    if (!label || !counts || !detail) return;
+
+    label.textContent = coverage.complete ? "Complete ten-question pass" : "Partial review";
+    label.classList.toggle("is-complete", coverage.complete);
+    counts.textContent = `${coverage.answered} of ${coverage.total} answered · ${coverage.skipped} skipped · ${coverage.unaddressed} unaddressed`;
+    detail.textContent = coverageDescription(coverage);
+  }
+
+  function coverageExportLines() {
+    const coverage = getReviewCoverage();
+    return [
+      "REVIEW COVERAGE",
+      `Status: ${coverage.complete ? "Complete ten-question pass" : "Partial review"}`,
+      `Questions: ${coverage.answered} of ${coverage.total} answered; ${coverage.skipped} skipped; ${coverage.unaddressed} unaddressed.`,
+      coverageDescription(coverage),
+      "",
+    ];
+  }
+
+  function governanceHandoffLines() {
+    return [
+      "HAND-OFF TO EXISTING GOVERNANCE",
+      "Use this summary in an existing technology, risk, supplier or service forum.",
+      "For each material open question:",
+      "- Confirm the missing evidence or record, including supplier evidence where needed.",
+      "- Record an accountable owner, decision or action, and a follow-up date.",
+      "- Revisit unresolved questions and exceptions in the existing review cadence.",
+      "Recurring review guide: https://baseline.bryanchetcuti.com/resources/recurring-domain-governance-review/",
+      "",
+    ];
+  }
+
   function currentBaselineIndex() {
     return BASELINE_QUESTIONS.findIndex((question) =>
       !state.baseline[question.id] && !state.skippedBaseline[question.id]
@@ -313,6 +373,17 @@
     card.querySelectorAll(selector).forEach((button) => button.setAttribute("aria-pressed", "false"));
   }
 
+  // A visible summary is a snapshot. Once an answer changes it must be
+  // regenerated before copy or print can expose an outdated result.
+  function invalidateGeneratedReview() {
+    const summary = document.querySelector("#reflection-section");
+    if (!summary?.classList.contains("is-visible")) return;
+
+    summary.classList.remove("is-visible");
+    const notice = document.querySelector("#review-refresh-notice");
+    if (notice) notice.hidden = false;
+  }
+
   function handleGuidedClick(event) {
     const answer = event.target.closest(".answer");
     if (answer && answer.closest("#baseline-list")) {
@@ -320,6 +391,7 @@
       const id = card?.dataset.guidedId;
       if (id) {
         delete state.skippedBaseline[id];
+        invalidateGeneratedReview();
         state.guided.baselineOpenId = null;
         applyGuidedFlow();
         scrollGuided("baseline");
@@ -333,6 +405,7 @@
       const id = card?.dataset.guidedId;
       if (id) {
         delete state.skippedMaturity[id];
+        invalidateGeneratedReview();
         state.guided.maturityOpenId = null;
         applyGuidedFlow();
         scrollGuided("maturity");
@@ -360,6 +433,7 @@
         clearPressedButtons(card, ".m-opt");
       }
 
+      invalidateGeneratedReview();
       applyGuidedFlow();
       scrollGuided(kind);
       return;
@@ -439,6 +513,7 @@
     const answered = BASELINE_QUESTIONS.filter((question) => state.baseline[question.id]);
     const skippedBaseline = BASELINE_QUESTIONS.filter((question) => state.skippedBaseline[question.id]);
     const skippedMaturity = MATURITY_THEMES.filter((theme) => state.skippedMaturity[theme.id]);
+    renderReviewCoverage();
     const counts = { in_place: 0, partial: 0, not_in_place: 0, unsure: 0 };
     answered.forEach((question) => counts[state.baseline[question.id]]++);
 
@@ -518,6 +593,8 @@
       });
     }
 
+    const notice = document.querySelector("#review-refresh-notice");
+    if (notice) notice.hidden = true;
     document.querySelector("#reflection-section").classList.add("is-visible");
     document.querySelector("#reflection-section").scrollIntoView({ behavior: "smooth" });
   }
@@ -575,6 +652,7 @@
     lines.push("");
     lines.push(`Generated locally: ${new Date().toLocaleString()}`);
     lines.push("");
+    lines.push(...coverageExportLines());
     lines.push("Purpose:");
     lines.push("Use this summary to identify domain-governance priorities, evidence gaps,");
     lines.push("accountable owners and practical next actions.");
@@ -635,6 +713,7 @@
       lines.push("");
     });
 
+    lines.push(...governanceHandoffLines());
     lines.push("FINAL NOTE");
     lines.push("");
     lines.push("Visible signals should not be over-interpreted.");
