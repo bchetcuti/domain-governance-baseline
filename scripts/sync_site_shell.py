@@ -43,10 +43,10 @@ NAV_SECTIONS = {
     "citation/index.html": "REFERENCE",
 }
 HEADER_RE = re.compile(
-    r'(?m)^[ \\t]*<header class="site-header(?: shell-header)?">[\\s\\S]*?^[ \\t]*</header>'
+    r'(?m)^[ \t]*<header class="site-header(?: shell-header)?">[\s\S]*?^[ \t]*</header>'
 )
 FOOTER_RE = re.compile(
-    r'(?m)^[ \\t]*<footer class="site-footer(?: shell-footer)?">[\\s\\S]*?^[ \\t]*</footer>'
+    r'(?m)^[ \t]*<footer class="site-footer(?: shell-footer)?">[\s\S]*?^[ \t]*</footer>'
 )
 STYLESHEET = '  <link rel="stylesheet" href="/css/site-shell.css" />'
 NAV_CSS = '  <link rel="stylesheet" href="/css/navigation.css" />'
