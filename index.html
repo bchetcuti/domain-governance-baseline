@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Domain Governance Baseline - Ten-question governance starting point</title>
-  <meta name="description" content="Domain Governance Baseline is a stable, citable ten-question starting point for domain ownership, authority, renewal, DNS, email trust, dependencies, change control and incident readiness." />
+  <title>Domain Governance Baseline | Ten practical questions for domain governance</title>
+  <meta name="description" content="Ten practical questions to review who owns and controls your organisation's domains, DNS, email authority and recovery. Review privately and take away a portable summary." />
   <link rel="canonical" href="https://baseline.bryanchetcuti.com/" />
   <meta property="og:url" content="https://baseline.bryanchetcuti.com/" />
   <meta property="og:site_name" content="baseline.bryanchetcuti.com" />
-  <meta property="og:title" content="Domain Governance Baseline - Ten-question governance starting point" />
-  <meta property="og:description" content="A practical, citable ten-question starting point for making domain ownership, authority, DNS, email trust, continuity and accountability visible and governable." />
+  <meta property="og:title" content="Domain Governance Baseline | Ten practical questions for domain governance" />
+  <meta property="og:description" content="Who controls the domains your organisation depends on? Use a private ten-question review to make ownership, authority and recovery questions governable." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://baseline.bryanchetcuti.com/assets/img/og.png">
   <meta property="og:image:alt" content="Domain Governance Baseline - a ten-question starting-point checklist">
@@ -28,12 +28,13 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/instrument.css" />
   <link rel="stylesheet" href="/css/navigation.css" />
+  <link rel="stylesheet" href="/css/home.css" />
   <script src="/js/theme.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="wrap wrap-wide">
-      <a class="brand" href="#top" aria-label="Domain Governance Baseline home">
+      <a class="brand" href="/" aria-label="Domain Governance Baseline home">
         <img src="/assets/img/brand-mark.svg" width="30" height="30" alt="" aria-hidden="true">
         <span class="brand-text">
           <span class="brand-name">Domain Governance Baseline</span>
@@ -48,67 +49,116 @@
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="wrap">
-        <span class="eyebrow">Domain Governance Baseline · Version 1.0</span>
-        <p class="hero-note">A small authored governance artefact, not an assessment platform.</p>
-        <h1>The ten-question starting point for domain governance.</h1>
-        <p class="lede">
-          Domain Governance Baseline helps organisations determine whether the fundamentals of domain ownership, authority, renewal, DNS, email trust, dependencies, change control and incident readiness are understood and governed.
-        </p>
-
-        <div class="hero-meta">
-          <span class="pill">10 canonical questions</span>
-          <span class="pill">Stable v1.0 core</span>
-          <span class="pill">No scoring</span>
-          <span class="pill">CC BY 4.0 content</span>
-        </div>
-
-        <div class="stance">
-          <p>
-            <strong>If an organisation cannot answer one question clearly, that uncertainty is the starting point for follow-up.</strong>
-            The Baseline is designed to move unresolved ownership, evidence and action into governance processes the organisation already operates.
+  <main id="top" class="home-page">
+    <section class="hero home-hero" aria-labelledby="home-heading">
+      <div class="wrap wrap-wide home-hero-grid">
+        <div class="home-hero-copy">
+          <span class="eyebrow">Practical domain governance</span>
+          <p class="home-audience">For technology, risk and governance practitioners</p>
+          <h1 id="home-heading">Who controls the domains your organisation depends on?</h1>
+          <p class="lede">
+            Use ten practical questions to clarify domain ownership, DNS and email authority,
+            dependencies and recovery, then bring unanswered questions into your existing
+            governance conversations.
           </p>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="/review/">Start a private review</a>
+            <a class="btn btn-ghost btn-lg" href="/walkthrough/">See it used in practice</a>
+          </div>
+          <p class="home-hero-reassurance">No account or scoring. Your answers stay in your browser tab; take away a summary you can copy or print.</p>
         </div>
 
-        <div class="cta-row">
-          <a class="btn btn-primary btn-lg" href="/review/#baseline-section">Start a Baseline Review</a>
-          <a class="btn btn-ghost btn-lg" href="/reference/v1.0/">View the v1.0 reference</a>
-          <a class="btn btn-ghost btn-lg" href="/walkthrough/">See a worked walkthrough</a>
+        <aside class="home-scenario" aria-labelledby="scenario-heading">
+          <div class="home-example-banner" role="note">
+            <strong>Fictional example</strong>
+            <span>Southern Community Services · an illustrative Australian not-for-profit</span>
+          </div>
+          <div class="home-scenario-top">
+            <span class="home-label">From question to decision</span>
+            <span class="home-scenario-topic">Registrar and DNS authority</span>
+          </div>
+          <h2 id="scenario-heading">Who still has registrar access?</h2>
+          <ol class="home-scenario-steps">
+            <li>
+              <span class="home-step-label">Uncertainty</span>
+              <p>An historic supplier access path exists alongside named internal administrators.</p>
+            </li>
+            <li>
+              <span class="home-step-label">Evidence</span>
+              <p>Review registrar and DNS roles, MFA, recovery contacts and why the supplier needs access.</p>
+            </li>
+            <li>
+              <span class="home-step-label">Decision</span>
+              <p>Remove unnecessary registrar privilege, constrain DNS access and document organisational recovery.</p>
+            </li>
+          </ol>
+          <a class="home-text-link" href="/walkthrough/">Follow the full worked example <span aria-hidden="true">→</span></a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-offset" id="take-away">
+      <div class="wrap wrap-wide home-outcome-grid">
+        <div class="home-outcome-intro">
+          <span class="section-index">What you take back to work</span>
+          <h2>Not a score. A useful place to start.</h2>
+          <p>The Baseline helps turn uncertainty into evidence requests, named ownership and decisions. It is designed to fit the technology, risk and supplier processes you already use.</p>
+          <ol class="home-how-list">
+            <li><strong>Work through the ten questions.</strong><span>Use what your organisation knows today. “Not sure” is a valid finding.</span></li>
+            <li><strong>Take away your review summary.</strong><span>Copy or print priorities, open questions and practical next steps.</span></li>
+            <li><strong>Bring it into an existing forum.</strong><span>Use the summary to assign evidence, decisions and follow-up.</span></li>
+          </ol>
+        </div>
+        <div class="home-preview" aria-label="Fictional example of a governance review summary">
+          <div class="home-preview-head">
+            <span class="home-label">A useful output</span>
+            <span class="home-example-tag">Fictional example</span>
+          </div>
+          <h3>Review summary</h3>
+          <p class="home-preview-subtitle">A sample follow-up from Southern Community Services. Your own review produces a copyable, printable summary.</p>
+          <div class="home-preview-finding">
+            <div class="home-preview-finding-top">
+              <span>07 · Email authority</span>
+              <span class="home-preview-state">Not sure</span>
+            </div>
+            <p>A previous campaign sending path remains visible, but its continuing approval needs to be checked.</p>
+          </div>
+          <div class="home-preview-detail">
+            <span class="home-step-label">Evidence to confirm</span>
+            <p>Approved sender uses, supplier arrangements and SPF, DKIM and DMARC evidence.</p>
+          </div>
+          <div class="home-preview-detail">
+            <span class="home-step-label">Decision to take</span>
+            <p>Record authorised senders and a time-bound exception for the previous campaign path.</p>
+          </div>
+          <p class="home-preview-footnote">Illustrative content from the fictional walkthrough, not an actual assessment or a screenshot of the generated report.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="about-baseline">
+    <section class="section" id="use-this-when">
       <div class="wrap">
         <div class="section-head">
-          <span class="section-index">Purpose and boundary</span>
-          <h2>A governance starting point, not a judgement of maturity</h2>
-          <p>
-            The Baseline is intentionally small. It does not score, benchmark, certify or assure an organisation, and it does not create another workflow or assessment platform.
-          </p>
+          <span class="section-index">Use it when it matters</span>
+          <h2>A starting point for real governance moments</h2>
+          <p>You do not need a new programme. Use the Baseline when ownership, evidence or a decision needs to be clearer.</p>
         </div>
-
-        <div class="q-list">
-          <article class="m-card">
-            <h3 class="m-theme">What it is for</h3>
-            <p class="m-meaning">Use the ten questions to make uncertainty around ownership, authority, DNS, email trust, dependencies, change and incident readiness explicit enough to govern.</p>
-            <div class="m-guide">
-              <div class="m-guide-block"><span class="m-guide-label">Use</span><p>Board, executive and risk preparation; incident review; supplier assurance; and recurring domain-governance review.</p></div>
-              <div class="m-guide-block"><span class="m-guide-label">Output</span><p>A Baseline Review Summary of priorities, evidence needs and practical next actions - not a score or assurance report.</p></div>
-              <div class="m-guide-block"><span class="m-guide-label">Stewardship</span><p>Version 1.0 keeps the ten canonical questions stable enough to cite and reuse while supporting material improves through evidence from real use.</p></div>
-            </div>
+        <div class="home-use-grid">
+          <article class="home-use-item">
+            <span class="home-use-number">01</span>
+            <div><h3>Preparing a board or risk update</h3><p>Surface ownership and evidence gaps before they become unexplained assurances.</p></div>
           </article>
-
-          <article class="m-card">
-            <h3 class="m-theme">Why the review stays local</h3>
-            <p class="m-meaning">Organisations should be able to review ownership gaps, supplier dependencies and incident readiness without placing those answers into another external system.</p>
-            <div class="m-guide">
-              <div class="m-guide-block"><span class="m-guide-label">No account</span><p>The interactive review requires no identity or sign-in.</p></div>
-              <div class="m-guide-block"><span class="m-guide-label">No retained answers</span><p>Responses remain in the browser tab and disappear when the review is closed or reloaded.</p></div>
-              <div class="m-guide-block"><span class="m-guide-label">No telemetry</span><p>The Baseline uses no analytics or backend assessment processing.</p></div>
-            </div>
+          <article class="home-use-item">
+            <span class="home-use-number">02</span>
+            <div><h3>Reviewing a supplier</h3><p>Clarify who holds registrar, DNS and email authority, and how it can be recovered.</p></div>
+          </article>
+          <article class="home-use-item">
+            <span class="home-use-number">03</span>
+            <div><h3>Following a domain or email incident</h3><p>Identify the access, change, dependency or recovery questions the incident exposed.</p></div>
+          </article>
+          <article class="home-use-item">
+            <span class="home-use-number">04</span>
+            <div><h3>Running an existing governance review</h3><p>Recheck whether domain owners, renewal paths, public signals and incident contacts remain current.</p></div>
           </article>
         </div>
       </div>
@@ -117,101 +167,67 @@
     <section class="section section-offset" id="questions">
       <div class="wrap">
         <div class="section-head">
-          <span class="section-index">Canonical baseline</span>
-          <h2>The ten questions</h2>
-          <p>Version 1.0 establishes these questions as the stable citable core. The <a href="/reference/v1.0/">reference edition</a> is the fixed source when exact wording matters.</p>
+          <span class="section-index">The canonical Baseline · Version 1.0</span>
+          <h2>Ten questions your organisation should be able to answer</h2>
+          <p>They are deliberately straightforward. An unclear answer is a reason to find evidence or make a decision, not a score against the organisation.</p>
         </div>
-
-        <article class="m-card">
-          <ol>
-            <li>Which domains do we own, and why do we own them?</li>
-            <li>Who is the accountable business owner for each domain?</li>
-            <li>Who has registrar access, and how is that access controlled?</li>
-            <li>When do the domains renew, and who receives renewal notices?</li>
-            <li>Which providers host authoritative DNS?</li>
-            <li>Which systems and suppliers rely on each domain?</li>
-            <li>Which domains are authorised to send email?</li>
-            <li>Are SPF, DKIM and DMARC configured and reviewed?</li>
-            <li>Are DNS changes logged, reviewed and recoverable?</li>
-            <li>What is the incident path if a domain, DNS record or email control fails?</li>
-          </ol>
-        </article>
-
+        <ol class="home-question-list">
+          <li>Which domains do we own, and why do we own them?</li>
+          <li>Who is the accountable business owner for each domain?</li>
+          <li>Who has registrar access, and how is that access controlled?</li>
+          <li>When do the domains renew, and who receives renewal notices?</li>
+          <li>Which providers host authoritative DNS?</li>
+          <li>Which systems and suppliers rely on each domain?</li>
+          <li>Which domains are authorised to send email?</li>
+          <li>Are SPF, DKIM and DMARC configured and reviewed?</li>
+          <li>Are DNS changes logged, reviewed and recoverable?</li>
+          <li>What is the incident path if a domain, DNS record or email control fails?</li>
+        </ol>
         <div class="cta-row">
-          <a class="btn btn-primary btn-lg" href="/review/#baseline-section">Work through the ten questions</a>
-          <a class="btn btn-ghost btn-lg" href="/reference/v1.0/">Open the fixed reference edition</a>
+          <a class="btn btn-primary btn-lg" href="/review/">Work through the questions</a>
+          <a class="btn btn-ghost" href="/reference/v1.0/">Open the fixed v1.0 reference</a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="use-this-when">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="section-index">Use it in existing governance</span>
-          <h2>Use the Baseline where domain governance already matters</h2>
-          <p>It is most useful when a real governance moment requires evidence, ownership or a decision rather than another standalone programme.</p>
-        </div>
-
-        <div class="q-list q-list--purpose">
-          <article class="m-card purpose-card">
-            <h3 class="m-theme">Before a board, executive or risk update</h3>
-            <p class="m-meaning">Identify evidence gaps, accountable owners, decisions and escalation points that belong in the brief.</p>
-          </article>
-          <article class="m-card purpose-card">
-            <h3 class="m-theme">After a domain, DNS or email incident</h3>
-            <p class="m-meaning">Test whether the incident exposed unclear accountability, access, dependencies or recovery paths.</p>
-          </article>
-          <article class="m-card purpose-card">
-            <h3 class="m-theme">During supplier assurance</h3>
-            <p class="m-meaning">Review registrar, DNS, email and digital-service responsibilities before accepting that a supplier has the domain layer covered.</p>
-          </article>
-          <article class="m-card purpose-card">
-            <h3 class="m-theme">At a recurring domain review</h3>
-            <p class="m-meaning">Reconfirm that ownership, renewal, public signals and incident paths still reflect how the organisation operates today.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-offset">
+    <section class="section" id="next-steps">
       <div class="wrap">
         <div class="section-head">
           <span class="section-index">From baseline to practice</span>
-          <h2>Understand it, use it, then move unresolved work into practice</h2>
-          <p>The public surfaces have distinct roles so the Baseline can stay small and citable without losing a practical implementation path.</p>
+          <h2>See how it works, then go deeper where needed</h2>
+          <p>Use the example to understand the approach. Use the guides where your own review uncovers uncertainty.</p>
         </div>
-
-        <div class="q-list">
-          <article class="m-card">
-            <h3 class="m-theme">Baseline Review</h3>
-            <p class="m-meaning">Work through the ten questions privately, optionally consider six broader themes and generate a local review summary.</p>
-            <p><a href="/review/#baseline-section">Start a Baseline Review →</a></p>
+        <div class="home-path-grid">
+          <article class="home-path-card">
+            <span class="home-label">See it applied</span>
+            <h3>A worked governance walkthrough</h3>
+            <p>Follow a fictional Australian not-for-profit through the ten questions, evidence checks, decisions and recurring review. Unresolved work remains visible and owned.</p>
+            <a class="home-text-link" href="/walkthrough/">Explore Southern Community Services <span aria-hidden="true">→</span></a>
           </article>
-          <article class="m-card">
-            <h3 class="m-theme">Worked walkthrough</h3>
-            <p class="m-meaning">Follow one fictional organisation from an unchanged Baseline review through evidence, decisions, records, follow-up and recurring review.</p>
-            <p><a href="/walkthrough/">Open the worked walkthrough →</a></p>
-          </article>
-          <article class="m-card">
-            <h3 class="m-theme">Five bounded practice guides</h3>
-            <p class="m-meaning">Establish a domain register, control registrar and DNS authority, govern email authority, prepare for incidents and keep the practices current.</p>
-            <p><a href="/resources/">Move from baseline to practice →</a></p>
+          <article class="home-path-card">
+            <span class="home-label">Put it into practice</span>
+            <h3>Five practical guides and starter records</h3>
+            <p>Establish a domain register, govern registrar and DNS authority, review email senders, prepare for incidents and keep the records current.</p>
+            <a class="home-text-link" href="/resources/">Explore the practice guides <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="section-index">Reference, reuse and stewardship</span>
-          <h2>A stable authored artefact with an inspectable public record</h2>
-          <p>The root URL remains the preferred citation for the Baseline. The fixed reference edition preserves exact Version 1.0 wording, while the citation surface explains reuse, versioning and stewardship.</p>
+    <section class="section section-offset" id="about-baseline">
+      <div class="wrap home-about-grid">
+        <div>
+          <span class="section-index">Authored, stable and reusable</span>
+          <h2>Small enough to use. Stable enough to cite.</h2>
         </div>
-        <div class="cta-row">
-          <a class="btn btn-primary btn-lg" href="/reference/v1.0/">Open v1.0 reference edition</a>
-          <a class="btn btn-ghost btn-lg" href="/citation/">Citation and stewardship</a>
-          <a class="btn btn-ghost btn-lg" href="https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/" target="_blank" rel="noopener">Read the source essay</a>
+        <div class="home-about-content">
+          <p>Created and stewarded by <a href="https://bryanchetcuti.com/">Bryan Chetcuti</a>, the Domain Governance Baseline keeps the same ten Version 1.0 questions as a fixed, citable starting point. Its authored content is available under CC BY 4.0.</p>
+          <p>The review is private and local to your browser. It is not a maturity score, certification or assurance conclusion. Its purpose is to support better governance conversations, not create another assessment platform.</p>
+          <div class="home-about-links">
+            <a href="/citation/">Citation and stewardship</a>
+            <a href="https://bryanchetcuti.com/writing/domain-governance-as-a-trust-surface/">Read the source essay</a>
+            <a href="/reference/v1.0/">Version 1.0 reference</a>
+          </div>
         </div>
       </div>
     </section>
