@@ -31,6 +31,7 @@ function renderBaseline() {
   BASELINE_QUESTIONS.forEach((q, i) => {
     const card = el("article", "q-card");
     card.id = `card-${q.id}`;
+    card.tabIndex = -1;
 
     const vis = VISIBILITY[q.visibility];
     const tagCls = q.visibility === "external" ? "tag-external" : "tag-internal";
