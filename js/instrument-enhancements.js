@@ -181,7 +181,7 @@
         title: "Connect internal hygiene with repeated public observation",
         summary: "Your registration hygiene answers are currently clear. Repeated public observation can help retain context about how domain-layer signals change over time.",
         action: "Use .au Domain Observatory (.auDO) as a public observatory reference for repeated observation and sector-level context.",
-        href: "https://audo.bryanchetcuti.com/",
+        href: "https://domainobservatory.au/",
         cta: "Explore .au Domain Observatory (.auDO)",
       });
     }
