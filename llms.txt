@@ -34,9 +34,9 @@ Interpretation notes:
 
 ## Related Public Evidence
 
-- [.au Domain Observatory (.auDO)](https://audo.bryanchetcuti.com/): Independent public-interest observatory preserving repeated public DNS, registration, mail and infrastructure observations across a fixed panel of .au domains. Use for longitudinal public evidence and sector context, not internal governance conclusions.
-- [.auDO methodology](https://audo.bryanchetcuti.com/notes/): Collection, preservation, classification and interpretation method for repeated public observations.
-- [.auDO signals](https://audo.bryanchetcuti.com/signals/): Human-readable definitions and interpretation limits for the public signal families observed by .auDO.
+- [.au Domain Observatory (.auDO)](https://domainobservatory.au/): Independent public-interest observatory preserving repeated public DNS, registration, mail and infrastructure observations across a fixed panel of .au domains. Use for longitudinal public evidence and sector context, not internal governance conclusions.
+- [.auDO methodology](https://domainobservatory.au/notes/): Collection, preservation, classification and interpretation method for repeated public observations.
+- [.auDO signals](https://domainobservatory.au/signals/): Human-readable definitions and interpretation limits for the public signal families observed by .auDO.
 - [ThreatScope Check](https://threatscopecheck.com/): Point-in-time reading of the public DNS, mail, web delivery, certificate and registration signals visible for one domain. Use as public evidence, not a vulnerability scan, assurance conclusion or risk score.
 
 ## Bryan Chetcuti - Writing and Practice

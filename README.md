@@ -153,6 +153,6 @@ See [`LICENSE.md`](LICENSE.md) for the full repository licensing position.
 
 The Domain Governance Baseline remains standalone. Related work may provide evidence or context but is not a normative dependency.
 
-- [.au Domain Observatory (.auDO)](https://audo.bryanchetcuti.com/) - repeated observation of public domain-layer signals.
+- [.au Domain Observatory (.auDO)](https://domainobservatory.au/) - repeated observation of public domain-layer signals.
 - [ThreatScope Check](https://threatscopecheck.com/) - point-in-time public evidence.
 - [Bryan Chetcuti](https://bryanchetcuti.com/) - source essay, technology leadership and related digital-trust work.
